@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import Item from "./item";
 
 mongoose.set("debug", true);
 mongoose.Promise = Promise;
