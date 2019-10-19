@@ -9,4 +9,6 @@ const itemSchema = new mongoose.Schema({
     category: { type: mongoose.Schema.Types.ObjectId, ref: "ItemCategory" }
 });
 
-export default mongoose.model("Item", itemSchema);
+const Item = mongoose.model("Item", itemSchema);
+module.exports = Item;
+//Weird export/import behaviour

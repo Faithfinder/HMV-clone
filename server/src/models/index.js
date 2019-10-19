@@ -1,9 +1,15 @@
 import mongoose from "mongoose";
+import Item from "./item";
+
 mongoose.set("debug", true);
 mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URI, {
-    keepAlive: true
+    keepAlive: true,
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
 });
 
-export { default as Item } from "./item";
-export { default as ItemCategory } from "./itemCategory";
+module.exports.Item = require("./item");
+module.exports.ItemCategory = require("./itemCategory");
+//Weird export/import behaviour

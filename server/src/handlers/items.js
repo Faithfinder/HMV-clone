@@ -1,5 +1,12 @@
+import db from "../models";
+
 export const getItems = async (req, res, next) => {
-    return res.send("Get items");
+    try {
+        let items = await db.Item.find();
+        return res.status(200).json(items);
+    } catch (err) {
+        console.log(err);
+    }
 };
 export const createItem = async (req, res, next) => {
     return res.send("Create item");
