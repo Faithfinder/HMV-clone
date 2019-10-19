@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 mongoose.set("debug", true);
-mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URI, {
     keepAlive: true,
     useNewUrlParser: true,
@@ -9,6 +8,6 @@ mongoose.connect(process.env.MONGODB_URI, {
     useUnifiedTopology: true
 });
 
-module.exports.Item = require("./item");
-module.exports.ItemCategory = require("./itemCategory");
+export const Item = require("./item");
+export const ItemCategory = require("./itemCategory");
 //Weird export/import behaviour
