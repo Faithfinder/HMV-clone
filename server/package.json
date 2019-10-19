@@ -6,7 +6,7 @@
         "mongoose": "^5.7.5"
     },
     "scripts": {
-        "build": "babel src -d lib",
+        "build": "babel src -d lib --source-maps",
         "watch": "nodemon --watch src --exec yarn start",
         "start": "yarn build && yarn serve",
         "serve": "node -r dotenv/config lib/app"
@@ -20,8 +20,10 @@
     "devDependencies": {
         "@babel/cli": "^7.6.4",
         "@babel/core": "^7.6.4",
+        "@babel/plugin-proposal-export-default-from": "^7.5.2",
         "@babel/plugin-transform-runtime": "^7.6.2",
         "@babel/preset-env": "^7.6.3",
+        "babel-plugin-syntax-export-extensions": "^6.13.0",
         "nodemon": "^1.19.4"
     }
 }
