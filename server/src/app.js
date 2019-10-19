@@ -3,10 +3,12 @@ const app = express();
 import bodyParser from "body-parser";
 import errorHandler from "./handlers/error";
 import itemsRoutes from "./routes/items";
+import itemCategoriesRoutes from "./routes/itemCategories";
 
 app.use(bodyParser.json());
 
 app.use("/items", itemsRoutes);
+app.use("/itemCategories", itemCategoriesRoutes);
 
 app.get("/", (req, res) => {
     res.send("Hello world");
