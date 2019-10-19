@@ -5,5 +5,5 @@ mongoose.connect(process.env.MONGODB_URI, {
     keepAlive: true
 });
 
-export * from "./item";
-export * from "./itemCategory";
+export { default as Item } from "./item";
+export { default as ItemCategory } from "./itemCategory";
