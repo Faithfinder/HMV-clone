@@ -1,6 +1,9 @@
 import express from "express";
 const app = express();
+import bodyParser from "body-parser";
 import itemsRoutes from "./routes/items";
+
+app.use(bodyParser.json());
 
 app.use("/items", itemsRoutes);
 
