@@ -10,7 +10,7 @@ export const getItemCategories = async (req, res, next) => {
 };
 export const createItemCategory = async (req, res, next) => {
     try {
-        const itemCategory = await ItemCategory.create(req.body.item);
+        const itemCategory = await ItemCategory.create(req.body.itemCategory);
         await itemCategory.save();
         const foundItemCategory = await ItemCategory.findById(itemCategory._id);
         return res.status(200).json(foundItemCategory);
