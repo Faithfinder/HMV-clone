@@ -15,7 +15,7 @@ router
     .post(createItemCategory);
 
 router
-    .route("/:item_id")
+    .route("/:itemCategory_id")
     .get(getItemCategory)
     .patch(updateItemCategory)
     .delete(deleteItemCategory);
