@@ -3,10 +3,13 @@ import ItemCategory from "./itemCategory";
 
 const itemSchema = new mongoose.Schema({
     title: { type: String, required: true },
-    description: { type: String },
-    price: { type: Number },
-    featured: { type: Boolean },
-    category: { type: mongoose.Schema.Types.ObjectId, ref: "ItemCategory" }
+    description: { type: String, default: "" },
+    price: { type: Number, default: 0 },
+    featured: { type: Boolean, default: false },
+    category: {
+        id: { type: mongoose.Schema.Types.ObjectId, ref: "ItemCategory" },
+        title: String
+    }
 });
 
 const Item = mongoose.model("Item", itemSchema);
