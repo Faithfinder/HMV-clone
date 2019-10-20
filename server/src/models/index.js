@@ -9,4 +9,5 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 export const Item = require("./item");
 export const ItemCategory = require("./itemCategory");
+export const Bundle = require("./bundle");
 //Weird export/import behaviour
