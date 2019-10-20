@@ -1,12 +1,10 @@
 import express from "express";
 const app = express();
-import fs from "fs";
-import https from "https";
-import bodyParser from "body-parser";
+import passport from "passport";
 import errorHandler from "./handlers/error";
 import routes from "./routes/";
 
-app.use(bodyParser.json());
+app.use(express.json())
 
 app.use("/items", routes.items);
 app.use("/itemCategories", routes.itemCategories);
