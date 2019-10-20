@@ -6,10 +6,7 @@ const itemSchema = new mongoose.Schema({
     description: { type: String, default: "" },
     price: { type: Number, default: 0 },
     featured: { type: Boolean, default: false },
-    category: {
-        id: { type: mongoose.Schema.Types.ObjectId, ref: "ItemCategory" },
-        title: String
-    }
+    category: { type: mongoose.Schema.Types.ObjectId, ref: "ItemCategory" }
 });
 
 const Item = mongoose.model("Item", itemSchema);
