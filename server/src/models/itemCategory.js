@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const itemCategorySchema = new mongoose.Schema({
-    title: { type: String, required: true }
+    title: { type: String, required: true, unique:true }
 });
 
 const ItemCategory = mongoose.model("ItemCategory", itemCategorySchema);
