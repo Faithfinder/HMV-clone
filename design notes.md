@@ -6,6 +6,9 @@ Entities:
         Cost
         Featured
         Category
+    Categories
+        Id
+        Title
     Bundles
         Id
         Items
@@ -16,6 +19,7 @@ Entities:
         username
         Facebook_id
         password
+        admin
     Reviews
         Id
         Author
