@@ -50,7 +50,7 @@ export const deleteItemCategory = async (req, res, next) => {
 export const getCategoryItems = async (req, res, next) => {
     try {
         const items = await Item.find({
-            category: { id: req.params.itemCategory_id }
+            category: req.params.itemCategory_id
         });
         return res.status(200).json(items);
     } catch (err) {
