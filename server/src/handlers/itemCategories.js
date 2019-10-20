@@ -40,7 +40,7 @@ export const updateItemCategory = async (req, res, next) => {
 };
 export const deleteItemCategory = async (req, res, next) => {
     try {
-        await ItemCategory.findByIdAndDelete(req.params.item_id);
+        await ItemCategory.findByIdAndDelete(req.params.itemCategory_id);
         return res.sendStatus(204);
     } catch (err) {
         next(err);
