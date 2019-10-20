@@ -19,7 +19,7 @@ Entities:
     Reviews
         Id
         Author
-        Item        
+        Item
         Text
         Rating
     Orders
