@@ -1,11 +1,11 @@
-import { Item } from "../models";
+import { Item, ItemCategory } from "../models";
 
 export const getItems = async (req, res, next) => {
     try {
         const items = await Item.find();
         return res.status(200).json(items);
     } catch (err) {
-       next(err);
+        next(err);
     }
 };
 export const createItem = async (req, res, next) => {
@@ -28,11 +28,19 @@ export const getItem = async (req, res, next) => {
 };
 export const updateItem = async (req, res, next) => {
     try {
-        const item = await Item.findByIdAndUpdate(
+        let item = await Item.findByIdAndUpdate(
             req.params.item_id,
             req.body.item,
             { new: true }
         );
+
+        const category_id = req.body.item.category;
+        if (category_id && item) {
+            const category = await ItemCategory.findById(category_id);
+            item.category = { id: category._id, title: category.title };
+            item = await item.save();
+        }
+
         return res.status(200).json(item);
     } catch (err) {
         next(err);
