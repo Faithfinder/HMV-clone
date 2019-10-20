@@ -11,9 +11,8 @@ export const getItems = async (req, res, next) => {
 export const createItem = async (req, res, next) => {
     try {
         const item = await Item.create(req.body.item);
-        await item.save();
-        const foundItem = await Item.findById(item._id);
-        return res.status(200).json(foundItem);
+        const savedItem = await item.save();
+        return res.status(200).json(savedItem);
     } catch (err) {
         next(err);
     }
