@@ -1,11 +1,11 @@
-import { ItemCategory } from "../models";
+import { ItemCategory, Item } from "../models";
 
 export const getItemCategories = async (req, res, next) => {
     try {
         const itemCategories = await ItemCategory.find();
         return res.status(200).json(itemCategories);
     } catch (err) {
-       next(err);
+        next(err);
     }
 };
 export const createItemCategory = async (req, res, next) => {
@@ -20,7 +20,7 @@ export const createItemCategory = async (req, res, next) => {
 };
 export const getItemCategory = async (req, res, next) => {
     try {
-        const itemCategory = await ItemCategory.findById(req.params.item_id);
+        const itemCategory = await ItemCategory.findById(req.params.itemCategory_id);
         return res.status(200).json(itemCategory);
     } catch (err) {
         next(err);
@@ -42,6 +42,17 @@ export const deleteItemCategory = async (req, res, next) => {
     try {
         await ItemCategory.findByIdAndDelete(req.params.itemCategory_id);
         return res.sendStatus(204);
+    } catch (err) {
+        next(err);
+    }
+};
+
+export const getCategoryItems = async (req, res, next) => {
+    try {
+        const items = await Item.find({
+            category: { id: req.params.itemCategory_id }
+        });
+        return res.status(200).json(items);
     } catch (err) {
         next(err);
     }

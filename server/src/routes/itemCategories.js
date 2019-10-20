@@ -6,7 +6,8 @@ import {
     getItemCategory,
     createItemCategory,
     deleteItemCategory,
-    updateItemCategory
+    updateItemCategory,
+    getCategoryItems
 } from "../handlers/itemCategories";
 
 router
@@ -19,5 +20,9 @@ router
     .get(getItemCategory)
     .patch(updateItemCategory)
     .delete(deleteItemCategory);
+
+router
+    .route("/:itemCategory_id/items")
+    .get(getCategoryItems);
 
 export default router;
