@@ -2,13 +2,13 @@ import express from "express";
 const app = express();
 import bodyParser from "body-parser";
 import errorHandler from "./handlers/error";
-import itemsRoutes from "./routes/items";
-import itemCategoriesRoutes from "./routes/itemCategories";
+import routes from "./routes/";
 
 app.use(bodyParser.json());
 
-app.use("/items", itemsRoutes);
-app.use("/itemCategories", itemCategoriesRoutes);
+app.use("/items", routes.items);
+app.use("/itemCategories", routes.itemCategories);
+app.use("/bundles", routes.bundles);
 
 app.get("/", (req, res) => {
     res.send("Hello world");
