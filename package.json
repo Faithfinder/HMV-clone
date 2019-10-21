@@ -10,7 +10,7 @@
         "socket.io": "^2.3.0"
     },
     "scripts": {
-        "build": "babel src -d lib --source-maps && cd client && yarn build",
+        "build": "babel src -d lib --source-maps && cd client && yarn && yarn build",
         "watch": "yarn build && nodemon --watch src --exec yarn serve",
         "start": "yarn build && yarn serve",
         "serve": "node -r dotenv/config lib/app"
