@@ -1,0 +1,18 @@
+import express from "express";
+const router = express.Router({ mergeParams: true });
+import { authenticate } from "passport";
+import { facebook } from "../handlers/auth"
+
+
+const facebookAuth = authenticate("facebook");
+
+router.get("/facebook/callback", facebookAuth, facebook);
+
+router.use((req, res, next) => {
+    req.session.socketId = req.query.socketId;
+    next();
+});
+
+router.get("/facebook", facebookAuth);
+
+export default router;
