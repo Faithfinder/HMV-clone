@@ -7,8 +7,8 @@ export default class OAuth extends Component {
 
     componentDidMount() {
         const { socket, provider } = this.props;
-
-        socket.on(provider, user => {
+        
+        socket.on("facebook", user => {
             this.popup.close();
             this.setState({ user });
             console.log(user);
@@ -20,7 +20,6 @@ export default class OAuth extends Component {
             const { popup } = this;
             if (!popup || popup.closed || popup.closed === undefined) {
                 clearInterval(check);
-                this.setState({ disabled: "" });
             }
         }, 1000);
     }
@@ -47,10 +46,6 @@ export default class OAuth extends Component {
             this.popup = this.openPopup();
             this.checkPopup();
         }
-    };
-
-    closeCard = () => {
-        this.setState({ user: {} });
     };
 
     render() {

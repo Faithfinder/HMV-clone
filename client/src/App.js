@@ -8,6 +8,7 @@ const socket = io();
 function App() {
     const [text, setText] = useState("Meh");
     axios.get("/api").then(result => setText(result.data));
+
     return (
         <div>
             Text is: {text}
