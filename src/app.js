@@ -13,6 +13,8 @@ import routes from "./routes/";
 
 let server = createServerByEnvironment(app);
 
+app.use(express.static(path.resolve("client/build")));
+
 app.use(express.json());
 app.use(passport.initialize());
 passportInit();
@@ -33,8 +35,12 @@ app.use("/itemCategories", routes.itemCategories);
 app.use("/bundles", routes.bundles);
 app.use("/auth", routes.auth);
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
     res.send("Hello world");
+});
+
+app.get("/", (req, res) => {
+    res.sendFile("client/build/index.html", { root: path.resolve("") });
 });
 
 app.use((req, res, next) => {
