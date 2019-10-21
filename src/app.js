@@ -1,10 +1,16 @@
 import express from "express";
 const app = express();
+import http from "http";
+import https from "https";
+import fs from "fs";
+import path from "path";
 import passport from "passport";
 import errorHandler from "./handlers/error";
 import routes from "./routes/";
 
-app.use(express.json())
+let server = createServerByEnvironment(app);
+
+app.use(express.json());
 
 app.use("/items", routes.items);
 app.use("/itemCategories", routes.itemCategories);
@@ -22,6 +28,22 @@ app.use((req, res, next) => {
 
 app.use(errorHandler);
 
-app.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, () => {
     console.log(`Server is starting on port ${process.env.PORT}`);
 });
+
+function createServerByEnvironment(app) {
+    let server;
+    if (process.env.NODE_ENV === "production") {
+        server = http.createServer(app);
+    } else {
+        server = https.createServer(
+            {
+                pfx: fs.readFileSync(path.resolve("cert.pfx")),
+                passphrase: process.env.CERT_PASS
+            },
+            app
+        );
+    }
+    return server;
+}
