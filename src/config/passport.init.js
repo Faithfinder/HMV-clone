@@ -1,15 +1,15 @@
-import { serializeUser, deserializeUser, use } from "passport";
+import passport from "passport";
 import { Strategy as FacebookStrategy } from "passport-facebook";
 
 export default () => {
-    serializeUser((user, done) => done(null, user));
-    deserializeUser((obj, done) => done(null, obj));
+    passport.serializeUser((user, done) => done(null, user));
+    passport.deserializeUser((obj, done) => done(null, obj));
 
     const done = (accessToken, refreshToken, profile, callback) => {
         return callback(null, profile);
     };
 
-    use(
+    passport.use(
         new FacebookStrategy(
             {
                 clientID: process.env.FACEBOOK_CLIENT,

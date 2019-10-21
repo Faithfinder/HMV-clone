@@ -1,10 +1,10 @@
 import express from "express";
 const router = express.Router({ mergeParams: true });
-import { authenticate } from "passport";
+import passport from "passport";
 import { facebook } from "../handlers/auth"
 
 
-const facebookAuth = authenticate("facebook");
+const facebookAuth = passport.authenticate("facebook");
 
 router.get("/facebook/callback", facebookAuth, facebook);
 
