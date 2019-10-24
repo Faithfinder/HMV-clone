@@ -30,10 +30,10 @@ app.use(
 const io = socketio(server);
 app.set("io", io);
 
-app.use("/items", routes.items);
-app.use("/itemCategories", routes.itemCategories);
-app.use("/bundles", routes.bundles);
-app.use("/auth", routes.auth);
+app.use("/api/items", routes.items);
+app.use("/api/itemCategories", routes.itemCategories);
+app.use("/api/bundles", routes.bundles);
+app.use("/api/auth", routes.auth);
 
 app.get("/api", (req, res) => {
     res.send("Hello world");
