@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "diagnosticLogging": true,
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug",
+            "cwd": "${workspaceFolder}",
+            "sourceMaps": true,
+            "program": "${workspaceFolder}/src/app",
+            "stopOnEntry": false,
+            "outFiles": ["${workspaceFolder}/lib/**"],
+            "runtimeArgs": ["--nolazy", "-r", "dotenv/config"],
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "<node_internals>/**/*.js"
+            ]
+        }
+    ]
+}
