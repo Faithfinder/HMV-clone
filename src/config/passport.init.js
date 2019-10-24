@@ -14,7 +14,7 @@ export default () => {
             {
                 clientID: process.env.FACEBOOK_CLIENT,
                 clientSecret: process.env.FACEBOOK_SECRET,
-                callbackURL: "/auth/facebook/callback",
+                callbackURL: "api/auth/facebook/callback",
                 profileFields: ["id", "emails"]
             },
             done

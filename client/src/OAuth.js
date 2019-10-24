@@ -1,36 +1,23 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 
-export default class OAuth extends Component {
-    state = {
-        user: {}
-    };
+export default ({ socket }) => {
+    const [user, setUser] = useState(undefined);
+    const [popup, setPopup] = useState(undefined);
 
-    componentDidMount() {
-        const { socket, provider } = this.props;
-        
-        socket.on("facebook", user => {
-            this.popup.close();
-            this.setState({ user });
-            console.log(user);
-        });
-    }
-
-    checkPopup() {
+    const checkPopup = () => {
         const check = setInterval(() => {
-            const { popup } = this;
             if (!popup || popup.closed || popup.closed === undefined) {
                 clearInterval(check);
             }
         }, 1000);
-    }
+    };
 
-    openPopup() {
-        const { socket } = this.props;
+    const openPopup = () => {
         const width = 600,
             height = 600;
         const left = window.innerWidth / 2 - width / 2;
         const top = window.innerHeight / 2 - height / 2;
-        const url = `auth/facebook?socketId=${socket.id}`;
+        const url = `api/auth/facebook?socketId=${socket.id}`;
 
         return window.open(
             url,
@@ -39,18 +26,22 @@ export default class OAuth extends Component {
       scrollbars=no, resizable=no, copyhistory=no, width=${width}, 
       height=${height}, top=${top}, left=${left}`
         );
-    }
-
-    startAuth = () => {
-        if (!this.state.disabled) {
-            this.popup = this.openPopup();
-            this.checkPopup();
-        }
     };
 
-    render() {
-        const user = this.state.user;
+    const startAuth = () => {
+        setPopup(openPopup());
+        checkPopup();
+    };
 
-        return <button onClick={this.startAuth}>Log in</button>;
-    }
-}
+    const onReceiveUser = newUser => {
+        popup.close();
+        setUser(newUser);
+        console.log(user);
+    };
+
+    useEffect(() => {
+        socket.on("facebook", onReceiveUser);
+    }, [socket, onReceiveUser]);
+
+    return <button onClick={startAuth}>Log in</button>;
+};
