@@ -29,19 +29,15 @@ export default ({ socket }) => {
     };
 
     const startAuth = () => {
-        setPopup(openPopup());
+        const newPopup = openPopup();
+        setPopup(newPopup);
         checkPopup();
+        socket.on("facebook", newUser => {
+            newPopup.close();
+            setUser(newUser);
+            console.log(newUser);
+        });
     };
-
-    const onReceiveUser = newUser => {
-        popup.close();
-        setUser(newUser);
-        console.log(user);
-    };
-
-    useEffect(() => {
-        socket.on("facebook", onReceiveUser);
-    }, [socket, onReceiveUser]);
-
-    return <button onClick={startAuth}>Log in</button>;
+    const text = user ? user.emails[0].value : "Log in";
+    return <button onClick={startAuth}>{text}</button>;
 };
