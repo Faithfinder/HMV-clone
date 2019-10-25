@@ -5,8 +5,8 @@ export default () => {
     passport.serializeUser((user, done) => done(null, user));
     passport.deserializeUser((obj, done) => done(null, obj));
 
-    const done = (accessToken, refreshToken, profile, callback) => {
-        return callback(null, profile);
+    const done = (accessToken, refreshToken, profile, cb) => {
+        return cb(null, profile);
     };
 
     passport.use(
