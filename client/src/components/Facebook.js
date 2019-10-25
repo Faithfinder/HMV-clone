@@ -6,6 +6,8 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "react-bootstrap/Button";
 
+import "./Facebook.css";
+
 export default ({ socket }) => {
     const [user, setUser] = useState(undefined);
     const [, setPopup] = useState(undefined);
@@ -51,7 +53,7 @@ export default ({ socket }) => {
                 </>
             );
         } else {
-            return "Log in with Facebook";
+            return "Continue with Facebook";
         }
     };
 
