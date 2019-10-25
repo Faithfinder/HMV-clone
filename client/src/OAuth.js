@@ -35,7 +35,6 @@ export default ({ socket }) => {
         socket.on("facebook", newUser => {
             newPopup.close();
             setUser(newUser);
-            console.log(newUser);
         });
     };
     const text = user ? user.emails[0].value : "Log in";

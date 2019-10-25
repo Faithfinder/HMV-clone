@@ -13,6 +13,7 @@ import routes from "./routes/";
 
 let server = createServerByEnvironment(app);
 
+app.enable("trust proxy");
 app.use(express.static(path.resolve("client/build")));
 
 app.use(express.json());
