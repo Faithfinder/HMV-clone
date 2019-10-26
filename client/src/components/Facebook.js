@@ -10,7 +10,6 @@ import "./Facebook.css";
 
 export default ({ socket }) => {
     const [user, setUser] = useState(undefined);
-    const [, setPopup] = useState(undefined);
 
     const openPopup = () => {
         const width = 600,
@@ -29,9 +28,8 @@ export default ({ socket }) => {
     };
 
     const startAuth = () => {
-        const newPopup = openPopup();
-        setPopup(newPopup);
-        attachOnAuthnticateToSocket(newPopup);
+        const popup = openPopup();
+        attachOnAuthnticateToSocket(popup);
     };
 
     const cancelAuth = () => {
@@ -45,7 +43,7 @@ export default ({ socket }) => {
         });
     };
 
-    const getButtonText = user => {
+    const getButtonText = () => {
         if (user) {
             return (
                 <>
@@ -57,7 +55,7 @@ export default ({ socket }) => {
         }
     };
 
-    const buttonText = getButtonText(user);
+    const buttonText = getButtonText();
 
     return (
         <Button className="facebook" onClick={user ? cancelAuth : startAuth}>
