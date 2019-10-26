@@ -2,8 +2,8 @@ import passport from "passport";
 import { Strategy as FacebookStrategy } from "passport-facebook";
 
 export default () => {
-    passport.serializeUser((user, done) => done(null, user));
-    passport.deserializeUser((obj, done) => done(null, obj));
+    passport.serializeUser((user, cb) => cb(null, user));
+    passport.deserializeUser((obj, cb) => cb(null, obj));
 
     const done = (accessToken, refreshToken, profile, cb) => {
         return cb(null, profile);
