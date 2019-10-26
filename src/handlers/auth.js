@@ -8,6 +8,11 @@ export function facebookFailure(req, res) {
     });
 }
 
+export function logout(req, res) {
+    req.logout();
+    res.sendStatus(204);
+}
+
 const emit = (req, res, obj) => {
     const io = req.app.get("io");
     io.in(req.session.socketId).emit("facebook", obj);

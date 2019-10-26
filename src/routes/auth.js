@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router({ mergeParams: true });
 import passport from "passport";
-import { facebook, facebookFailure } from "../handlers/auth";
+import { facebook, facebookFailure, logout } from "../handlers/auth";
 
 const facebookAuth = passport.authenticate("facebook", {
     scope: "email",
@@ -10,7 +10,9 @@ const facebookAuth = passport.authenticate("facebook", {
 
 router.get("/facebook/callback", facebookAuth, facebook);
 
-router.get("/facebook/failure", facebookFailure)
+router.get("/facebook/failure", facebookFailure);
+
+router.post("/logout", logout)
 
 router.use((req, res, next) => {
     req.session.socketId = req.query.socketId;

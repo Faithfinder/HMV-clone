@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
+import axios from "axios";
+
 import Button from "react-bootstrap/Button";
 
 import "./Facebook.css";
@@ -32,13 +34,16 @@ export default ({ socket }) => {
         attachOnAuthnticateToSocket(popup);
     };
 
-    const cancelAuth = () => {
-        setUser(undefined);
+    const cancelAuth = async () => {
+        const response = await axios.post("api/auth/logout");
+        if (response.status === 204) {
+            setUser(undefined);
+        }
     };
 
-    const attachOnAuthnticateToSocket = newPopup => {
+    const attachOnAuthnticateToSocket = popup => {
         socket.on("facebook", obj => {
-            newPopup.close();
+            popup.close();
             setUser(obj.user);
         });
     };
