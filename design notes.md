@@ -12,7 +12,7 @@
   - Reviews
 - Categories
   - Id
-    - Title
+  - Title
 - Bundles
   - Id
   - Items
