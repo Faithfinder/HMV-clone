@@ -39,9 +39,9 @@ export default ({ socket }) => {
     };
 
     const attachOnAuthnticateToSocket = newPopup => {
-        socket.on("facebook", newUser => {
+        socket.on("facebook", obj => {
             newPopup.close();
-            setUser(newUser);
+            setUser(obj.user);
         });
     };
 
