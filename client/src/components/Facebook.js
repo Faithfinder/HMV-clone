@@ -52,7 +52,7 @@ export default ({ socket }) => {
         if (user) {
             return (
                 <>
-                    {user.emails[0].value} <FontAwesomeIcon icon={faTimes} />
+                    {user.email} <FontAwesomeIcon icon={faTimes} />
                 </>
             );
         } else {
