@@ -16,6 +16,7 @@
 - Bundles
   - Id
   - Items
+  - Discount
 - Shopping cart
   - Items
 - Users
