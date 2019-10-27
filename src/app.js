@@ -11,50 +11,64 @@ import passportInit from "./config/passport.init";
 import errorHandler from "./handlers/error";
 import routes from "./routes/";
 
-let server = createServerByEnvironment(app);
+import mongoose from "mongoose";
+(async () => {
+    try {
+        await mongoose.connect(process.env.MONGODB_URI, {
+            keepAlive: true,
+            useNewUrlParser: true,
+            useFindAndModify: false,
+            useUnifiedTopology: true
+        });
 
-app.enable("trust proxy");
-app.use(express.static(path.resolve("client/build")));
+        let server = createServerByEnvironment(app);
 
-app.use(express.json());
-app.use(passport.initialize());
-passportInit();
+        app.enable("trust proxy");
+        app.use(express.static(path.resolve("client/build")));
 
-app.use(
-    session({
-        secret: process.env.SESSION_SECRET,
-        resave: true,
-        saveUninitialized: true
-    })
-);
+        app.use(express.json());
+        app.use(passport.initialize());
+        passportInit();
 
-const io = socketio(server);
-app.set("io", io);
+        app.use(
+            session({
+                secret: process.env.SESSION_SECRET,
+                resave: true,
+                saveUninitialized: true,
+            })
+        );
 
-app.use("/api/items", routes.items);
-app.use("/api/itemCategories", routes.itemCategories);
-app.use("/api/bundles", routes.bundles);
-app.use("/api/auth", routes.auth);
+        const io = socketio(server);
+        app.set("io", io);
 
-app.get("/api", (req, res) => {
-    res.send("Hello world");
-});
+        app.use("/api/items", routes.items);
+        app.use("/api/itemCategories", routes.itemCategories);
+        app.use("/api/bundles", routes.bundles);
+        app.use("/api/auth", routes.auth);
 
-app.get("/", (req, res) => {
-    res.sendFile("client/build/index.html", { root: path.resolve("") });
-});
+        app.get("/api", (req, res) => {
+            res.send("Hello world");
+        });
 
-app.use((req, res, next) => {
-    let err = new Error("Resource not found");
-    err.status = 404;
-    next(err);
-});
+        app.get("/", (req, res) => {
+            res.sendFile("client/build/index.html", { root: path.resolve("") });
+        });
 
-app.use(errorHandler);
+        app.use((req, res, next) => {
+            let err = new Error("Resource not found");
+            err.status = 404;
+            next(err);
+        });
 
-server.listen(process.env.PORT, () => {
-    console.log(`Server is starting on port ${process.env.PORT}`);
-});
+        app.use(errorHandler);
+
+        server.listen(process.env.PORT, () => {
+            console.log(`Server is starting on port ${process.env.PORT}`);
+        });
+    } catch (err) {
+        console.log(err);
+    }
+})();
 
 function createServerByEnvironment(app) {
     let server;
