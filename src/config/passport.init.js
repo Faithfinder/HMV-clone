@@ -1,12 +1,14 @@
 import passport from "passport";
 import { Strategy as FacebookStrategy } from "passport-facebook";
+import { User } from "../models";
 
 export default () => {
     passport.serializeUser((user, cb) => cb(null, user));
     passport.deserializeUser((obj, cb) => cb(null, obj));
 
-    const done = (accessToken, refreshToken, profile, cb) => {
-        return cb(null, profile);
+    const done = async (accessToken, refreshToken, profile, cb) => {
+        const user = await findOrCreateUser(profile);
+        return cb(null, user);
     };
 
     passport.use(
@@ -20,4 +22,16 @@ export default () => {
             done
         )
     );
+};
+
+const findOrCreateUser = async ({ id, emails }) => {
+    let user = await User.findOne({ facebookId: id });
+    if (!user) {
+        const newUser = await User.create({
+            email: emails[0].value,
+            facebookId: id
+        });
+        user = await newUser.save();
+    }
+    return user;
 };
