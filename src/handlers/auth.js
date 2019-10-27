@@ -9,9 +9,21 @@ export const facebookFailure = (req, res) => {
 };
 
 export const logout = (req, res) => {
-    req.logout();
-    res.sendStatus(204);
-}
+    try {
+        req.session.destroy(err => {
+            if (err) throw err;
+            req.logout();
+            res.clearCookie("sid");
+            res.sendStatus(204);
+        });
+    } catch (err) {
+        res.status(422).send(err);
+    }
+};
+
+export const check = (req, res) => {
+    res.send(req.user);
+};
 
 const emit = (req, res, obj) => {
     const io = req.app.get("io");

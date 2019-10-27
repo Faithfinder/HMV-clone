@@ -12,6 +12,8 @@ import errorHandler from "./handlers/error";
 import routes from "./routes/";
 
 import mongoose from "mongoose";
+import connectStore from "connect-mongo";
+
 (async () => {
     try {
         await mongoose.connect(process.env.MONGODB_URI, {
@@ -27,16 +29,27 @@ import mongoose from "mongoose";
         app.use(express.static(path.resolve("client/build")));
 
         app.use(express.json());
-        app.use(passport.initialize());
-        passportInit();
 
+        const MongoStore = connectStore(session);
         app.use(
             session({
+                name: "sid",
                 secret: process.env.SESSION_SECRET,
+                store: new MongoStore({
+                    mongooseConnection: mongoose.connection,
+                    collection: "session"
+                }),
                 resave: true,
                 saveUninitialized: true,
+                cookie: {
+                    sameSite: true
+                }
             })
         );
+
+        app.use(passport.initialize());
+        app.use(passport.session());
+        passportInit();
 
         const io = socketio(server);
         app.set("io", io);
