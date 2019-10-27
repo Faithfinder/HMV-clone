@@ -1,6 +1,8 @@
 import express from "express";
 const router = express.Router({ mergeParams: true });
 
+import { loginRequired, adminRequired } from "../middleware/auth";
+
 import {
     getBundles,
     createBundle,
@@ -12,12 +14,12 @@ import {
 router
     .route("/")
     .get(getBundles)
-    .post(createBundle);
+    .post(loginRequired, adminRequired, createBundle);
 
 router
     .route("/:bundle_id")
     .get(getBundle)
-    .patch(updateBundle)
-    .delete(deleteBundle);
+    .patch(loginRequired, adminRequired, updateBundle)
+    .delete(loginRequired, adminRequired, deleteBundle);
 
 export default router;

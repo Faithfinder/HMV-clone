@@ -1,6 +1,8 @@
 import express from "express";
 const router = express.Router({ mergeParams: true });
 
+import { loginRequired, adminRequired } from "../middleware/auth";
+
 import {
     getItem,
     getItems,
@@ -12,12 +14,12 @@ import {
 router
     .route("/")
     .get(getItems)
-    .post(createItem);
+    .post(loginRequired, adminRequired, createItem);
 
 router
     .route("/:item_id")
     .get(getItem)
-    .patch(updateItem)
-    .delete(deleteItem)
+    .patch(loginRequired, adminRequired, updateItem)
+    .delete(loginRequired, adminRequired, deleteItem);
 
 export default router;

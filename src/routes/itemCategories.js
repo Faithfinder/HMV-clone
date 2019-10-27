@@ -1,6 +1,8 @@
 import express from "express";
 const router = express.Router({ mergeParams: true });
 
+import { loginRequired, adminRequired } from "../middleware/auth";
+
 import {
     getItemCategories,
     getItemCategory,
@@ -13,16 +15,14 @@ import {
 router
     .route("/")
     .get(getItemCategories)
-    .post(createItemCategory);
+    .post(loginRequired, adminRequired, createItemCategory);
 
 router
     .route("/:itemCategory_id")
     .get(getItemCategory)
-    .patch(updateItemCategory)
-    .delete(deleteItemCategory);
+    .patch(loginRequired, adminRequired, updateItemCategory)
+    .delete(loginRequired, adminRequired, deleteItemCategory);
 
-router
-    .route("/:itemCategory_id/items")
-    .get(getCategoryItems);
+router.route("/:itemCategory_id/items").get(getCategoryItems);
 
 export default router;
