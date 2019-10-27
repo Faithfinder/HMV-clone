@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
@@ -12,6 +12,14 @@ import "./Facebook.css";
 
 export default ({ socket }) => {
     const [user, setUser] = useState(undefined);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await axios.get("/api/auth/check");
+            setUser(response.data);
+        };
+        fetchData();
+    }, []);
 
     const openPopup = () => {
         const width = 600,
