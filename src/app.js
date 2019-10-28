@@ -58,6 +58,7 @@ import connectStore from "connect-mongo";
         app.use("/api/itemCategories", routes.itemCategories);
         app.use("/api/bundles", routes.bundles);
         app.use("/api/auth", routes.auth);
+        app.use("/api/items/:item_id/reviews", routes.items);
 
         app.get("/api", (req, res) => {
             res.send("Hello world");
