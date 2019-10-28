@@ -6,7 +6,8 @@ const itemSchema = new mongoose.Schema({
     description: { type: String, default: "" },
     price: { type: Number, default: 0 },
     featured: { type: Boolean, default: false },
-    category: { type: mongoose.Schema.Types.ObjectId, ref: "ItemCategory" }
+    category: { type: mongoose.Schema.Types.ObjectId, ref: "ItemCategory" },
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }]
 });
 
 const Item = mongoose.model("Item", itemSchema);
