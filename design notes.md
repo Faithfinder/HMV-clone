@@ -40,6 +40,7 @@
   - User
   - Cost
   - Fulfilled
+  - Labels
 
 ## Features
 
