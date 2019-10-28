@@ -2,7 +2,9 @@ import { Item } from "../models";
 
 export const getItems = async (req, res, next) => {
     try {
-        const items = await Item.find().populate("category", "title");
+        const items = await Item.find()
+            .populate("category", "title")
+            .populate("reviews");
         return res.status(200).json(items);
     } catch (err) {
         next(err);
@@ -19,7 +21,9 @@ export const createItem = async (req, res, next) => {
 };
 export const getItem = async (req, res, next) => {
     try {
-        const item = await Item.findById(req.params.item_id);
+        const item = await Item.findById(req.params.item_id)
+            .populate("category", "title")
+            .populate("reviews");
         return res.status(200).json(item);
     } catch (err) {
         next(err);
