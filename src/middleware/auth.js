@@ -4,6 +4,6 @@ export const loginRequired = (req, res, next) => {
 };
 
 export const adminRequired = (req, res, next) => {
-    if (req.user.isAdmin) return next();
+    if (req.user && req.user.isAdmin) return next();
     res.sendStatus(403);
 };
