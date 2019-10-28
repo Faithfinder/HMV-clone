@@ -2,9 +2,7 @@ import { Item } from "../models";
 
 export const getItems = async (req, res, next) => {
     try {
-        const items = await Item.find()
-            .populate("category", "title")
-            .populate("reviews");
+        const items = await Item.find().populate("category", "title");
         return res.status(200).json(items);
     } catch (err) {
         next(err);
