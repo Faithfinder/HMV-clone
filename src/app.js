@@ -7,7 +7,7 @@ import path from "path";
 import socketio from "socket.io";
 import passport from "passport";
 import session from "express-session";
-import passportInit from "./config/passport.init";
+import passportInit from "./config/passport";
 import errorHandler from "./handlers/error";
 import routes from "./routes/";
 
