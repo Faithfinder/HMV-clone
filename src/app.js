@@ -39,10 +39,11 @@ import connectStore from "connect-mongo";
                     mongooseConnection: mongoose.connection,
                     collection: "session"
                 }),
-                resave: true,
+                resave: false,
                 saveUninitialized: true,
                 cookie: {
-                    sameSite: true
+                    sameSite: true,
+                    secure: true
                 }
             })
         );
