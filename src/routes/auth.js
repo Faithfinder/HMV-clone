@@ -8,16 +8,16 @@ const facebookAuth = passport.authenticate("facebook", {
     failureRedirect: "/api/auth/facebook/failure"
 });
 
-router.get("/facebook", facebookAuth);
+const attachsocketIdToSession = (req, res, next) => {
+    req.session.socketId = req.query.socketId;
+    next();
+};
+
+router.get("/facebook", attachsocketIdToSession, facebookAuth);
 router.get("/facebook/callback", facebookAuth, facebook);
 router.get("/facebook/failure", facebookFailure);
 
 router.post("/logout", logout);
 router.get("/check", check);
-
-router.use((req, res, next) => {
-    req.session.socketId = req.query.socketId;
-    next();
-});
 
 export default router;
