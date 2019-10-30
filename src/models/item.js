@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import ItemCategory from "./itemCategory";
 
 const itemSchema = new mongoose.Schema({
     title: { type: String, required: true },
