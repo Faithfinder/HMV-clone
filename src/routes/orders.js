@@ -12,12 +12,12 @@ import {
 
 router
     .route("/")
-    .get(getOrders)
-    .post(createOrder);
+    .get(loginRequired, adminRequired, getOrders)
+    .post(loginRequired, createOrder);
 
 router
     .route("/:order_id")
-    .get(getOrder)
+    .get(loginRequired, adminRequired, getOrder)
     .patch(loginRequired, adminRequired, updateOrder);
 
 export default router;
