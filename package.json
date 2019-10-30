@@ -14,8 +14,7 @@
     },
     "scripts": {
         "build": "babel src -d lib --source-maps && cd client && yarn && yarn build",
-        "watch": "nodemon --exec node_modules/.bin/babel-node -r node_modules/dotenv/config src/app.js",
-        "start": "yarn build && yarn serve",
+        "start": "nodemon --exec node_modules/.bin/babel-node -r node_modules/dotenv/config src/app.js",
         "serve": "node -r dotenv/config lib/app"
     },
     "name": "shop-prototype-server",
