@@ -3,15 +3,22 @@
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "type": "shell",
-    "command": "yarn",
+
     "tasks": [
         {
-            "label": "build",
+            "command": "yarn",
+            "label": "build server",
             "args": ["build"],
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "command": "node_modules/.bin/babel",
+            "label": "build scripts",
+            "args": ["src/scripts", "-d", "lib/scripts", "--source-maps"],
+            "group": "build"
         }
     ]
 }

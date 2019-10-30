@@ -5,7 +5,23 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Debug",
+            "name": "Debug Script",
+            "cwd": "${workspaceFolder}",
+            "sourceMaps": true,
+            "program": "${file}",
+            "stopOnEntry": false,
+            "outFiles": ["${workspaceFolder}/lib/**"],
+            "runtimeArgs": ["--nolazy", "-r", "dotenv/config"],
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "<node_internals>/**/*.js"
+            ],
+            "preLaunchTask": "build scripts"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Server",
             "cwd": "${workspaceFolder}",
             "sourceMaps": true,
             "program": "${workspaceFolder}/src/app",
@@ -16,7 +32,7 @@
                 "${workspaceFolder}/node_modules/**/*.js",
                 "<node_internals>/**/*.js"
             ],
-            "preLaunchTask": "build"
+            "preLaunchTask": "build server"
         }
     ]
 }
