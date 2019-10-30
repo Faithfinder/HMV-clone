@@ -1,9 +1,6 @@
 import mongoose from "mongoose";
 import autoNumber from "mongoose-auto-number";
 
-import emailTemplate from "../util/email";
-import nodemailer from "../config/nodemailer";
-
 autoNumber.init(mongoose.connection);
 
 const orderSchema = new mongoose.Schema({
@@ -35,15 +32,6 @@ orderSchema.pre("save", function(next) {
         this.total += item.price * item.amount;
     });
     next();
-});
-
-orderSchema.post("save", async doc => {
-    const email = emailTemplate(doc);
-    try {
-        await nodemailer.sendMail(email);
-    } catch (error) {
-        console.log(error);
-    }
 });
 
 const Order = mongoose.model("Order", orderSchema);

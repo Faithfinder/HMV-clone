@@ -1,5 +1,8 @@
 import { Order } from "../models";
 
+import emailTemplate from "../util/email";
+import nodemailer from "../config/nodemailer";
+
 export const getOrders = async (req, res, next) => {
     try {
         const orders = await Order.find().populate("user", "email");
@@ -14,6 +17,8 @@ export const createOrder = async (req, res, next) => {
         const order = await Order.create(req.body.order);
 
         const savedOrder = await order.save();
+        const email = emailTemplate(savedOrder);
+        await nodemailer.sendMail(email);
         return res.status(200).json(savedOrder);
     } catch (err) {
         next(err);
