@@ -22,10 +22,8 @@ export const createOrder = async (req, res, next) => {
 
 export const getOrder = async (req, res, next) => {
     try {
-        const order = await Order.findById(req.params.order_id).populate(
-            "user",
-            "email"
-        );
+        const order = await Order.findById(req.params.order_id);
+        
         return res.status(200).json(order);
     } catch (err) {
         next(err);
