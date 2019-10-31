@@ -8,4 +8,6 @@ router
     .get(getCart)
     .put(setCart);
 
-export default router;
+export default routerCombiner => {
+    routerCombiner.use("/cart", router);
+};

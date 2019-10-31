@@ -7,6 +7,7 @@ import config from "../config";
 import passport from "passport";
 import passportInit from "./passport";
 import socketio from "socket.io";
+import routes from "../routes";
 
 export default (app, server) => {
     app.enable("trust proxy");
@@ -37,4 +38,6 @@ export default (app, server) => {
 
     const io = socketio(server);
     app.set("io", io);
+
+    app.use(config.api.prefix, routes());
 };

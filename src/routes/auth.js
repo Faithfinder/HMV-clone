@@ -20,4 +20,6 @@ router.get("/facebook/failure", facebookFailure);
 router.post("/logout", logout);
 router.get("/check", check);
 
-export default router;
+export default routerCombiner => {
+    routerCombiner.use("/auth", router);
+};

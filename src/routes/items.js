@@ -22,4 +22,6 @@ router
     .patch(loginRequired, adminRequired, updateItem)
     .delete(loginRequired, adminRequired, deleteItem);
 
-export default router;
+    export default routerCombiner => {
+        routerCombiner.use("/items", router);
+    };

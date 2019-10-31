@@ -25,4 +25,6 @@ router
 
 router.route("/:itemCategory_id/items").get(getCategoryItems);
 
-export default router;
+export default routerCombiner => {
+    routerCombiner.use("/itemCategories", router);
+};

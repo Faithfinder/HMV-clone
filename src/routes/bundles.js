@@ -22,4 +22,6 @@ router
     .patch(loginRequired, adminRequired, updateBundle)
     .delete(loginRequired, adminRequired, deleteBundle);
 
-export default router;
+export default routerCombiner => {
+    routerCombiner.use("/bundles", router);
+};

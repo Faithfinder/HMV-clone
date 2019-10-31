@@ -20,4 +20,6 @@ router
     .get(loginRequired, adminRequired, getOrder)
     .patch(loginRequired, adminRequired, updateOrder);
 
-export default router;
+    export default routerCombiner => {
+        routerCombiner.use("/orders", router);
+    };

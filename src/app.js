@@ -3,22 +3,13 @@ import express from "express";
 import path from "path";
 
 import errorHandler from "./handlers/error";
-import routes from "./routes/";
 import config from "./config";
 import load from "./loaders";
 
 (async () => {
     try {
         const app = express();
-        const server = await load(app);
-
-        app.use("/api/items", routes.items);
-        app.use("/api/itemCategories", routes.itemCategories);
-        app.use("/api/bundles", routes.bundles);
-        app.use("/api/auth", routes.auth);
-        app.use("/api/items/:item_id/reviews", routes.items);
-        app.use("/api/orders/", routes.orders);
-        app.use("/api/cart/", routes.cart);
+        const server = await load(app);        
 
         app.get("/api", (req, res) => {
             res.send("Hello world");
