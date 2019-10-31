@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import io from "socket.io-client";
 import axios from "axios";
-import OAuth from "./components/Facebook";
+import OAuth from "./Facebook";
 
 const socket = io();
 
@@ -11,7 +11,7 @@ function App() {
 
     return (
         <div>
-            Text is: {text}
+            Text is: {text} Not needed
             <OAuth socket={socket}></OAuth>
         </div>
     );
