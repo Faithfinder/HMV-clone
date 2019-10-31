@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router({ mergeParams: true });
 
-import { getCart, setCart } from "../handlers/cart";
+import { getCart, setCart } from "../handlers/routes/cart";
 
 router
     .route("/")

@@ -1,4 +1,4 @@
-import { ItemCategory, Item } from "../models";
+import { ItemCategory, Item } from "../../models";
 
 export const getItemCategories = async (req, res, next) => {
     try {

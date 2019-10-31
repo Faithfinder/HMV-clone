@@ -2,7 +2,7 @@ import express from "express";
 
 import path from "path";
 
-import errorHandler from "./handlers/error";
+import errorHandler from "./handlers/routes/error";
 import config from "./config";
 import load from "./loaders";
 

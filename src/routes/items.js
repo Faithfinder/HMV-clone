@@ -9,7 +9,7 @@ import {
     createItem,
     deleteItem,
     updateItem
-} from "../handlers/items";
+} from "../handlers/routes/items";
 
 router
     .route("/")

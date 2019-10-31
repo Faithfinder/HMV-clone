@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router({ mergeParams: true });
 import passport from "passport";
-import { facebook, facebookFailure, logout, check } from "../handlers/auth";
+import { facebook, facebookFailure, logout, check } from "../handlers/routes/auth";
 
 const facebookAuth = passport.authenticate("facebook", {
     scope: "email",

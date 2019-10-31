@@ -9,7 +9,7 @@ import {
     getBundle,
     updateBundle,
     deleteBundle
-} from "../handlers/bundles";
+} from "../handlers/routes/bundles";
 
 router
     .route("/")

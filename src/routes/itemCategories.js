@@ -10,7 +10,7 @@ import {
     deleteItemCategory,
     updateItemCategory,
     getCategoryItems
-} from "../handlers/itemCategories";
+} from "../handlers/routes/itemCategories";
 
 router
     .route("/")

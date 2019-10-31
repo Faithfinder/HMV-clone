@@ -1,7 +1,7 @@
-import { Order } from "../models";
+import { Order } from "../../models";
 
-import eventEmitter from "../loaders/eventemitter";
-import events from "../config/events";
+import eventEmitter from "../../loaders/eventemitter";
+import events from "../../config/events";
 
 export const getOrders = async (req, res, next) => {
     try {

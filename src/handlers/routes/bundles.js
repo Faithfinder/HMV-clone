@@ -1,4 +1,4 @@
-import { Bundle } from "../models";
+import { Bundle } from "../../models";
 
 export const getBundles = async (req, res, next) => {
     try {

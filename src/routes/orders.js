@@ -8,7 +8,7 @@ import {
     getOrders,
     createOrder,
     updateOrder
-} from "../handlers/orders";
+} from "../handlers/routes/orders";
 
 router
     .route("/")
