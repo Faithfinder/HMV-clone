@@ -4,7 +4,7 @@ import autoNumber from "mongoose-auto-number";
 import Item from "./item";
 import asyncForEach from "../util/asyncForEach";
 
-autoNumber.init(mongoose.connection);
+
 
 const orderSchema = new mongoose.Schema({
     number: {
