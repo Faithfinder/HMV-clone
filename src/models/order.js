@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import autoNumber from "mongoose-auto-number";
 
 import Item from "./item";
+import asyncForEach from "../util/asyncForEach";
 
 autoNumber.init(mongoose.connection);
 
@@ -29,9 +30,9 @@ const orderSchema = new mongoose.Schema({
 
 orderSchema.plugin(autoNumber.plugin, "Order");
 
-orderSchema.pre("save", function(next) {
+orderSchema.pre("save", async function(next) {
     if (this.isNew) {
-        this.items.forEach(async item => {
+        await asyncForEach(this.items, async item => {
             try {
                 const dbItem = await Item.findById(item.id);
                 // eslint-disable-next-line require-atomic-updates
