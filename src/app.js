@@ -1,61 +1,16 @@
 import express from "express";
-const app = express();
-import http from "http";
-import https from "https";
-import fs from "fs";
+
 import path from "path";
-import socketio from "socket.io";
-import passport from "passport";
-import session from "express-session";
-import passportInit from "./config/passport";
+
 import errorHandler from "./handlers/error";
 import routes from "./routes/";
 import config from "./config";
-
-import mongoose from "mongoose";
-import connectStore from "connect-mongo";
+import load from "./loaders";
 
 (async () => {
     try {
-        await mongoose.connect(config.databaseURL, {
-            keepAlive: true,
-            useNewUrlParser: true,
-            useFindAndModify: false,
-            useUnifiedTopology: true,
-            useCreateIndex: true
-        });
-
-        let server = createServerByEnvironment(app);
-
-        app.enable("trust proxy");
-        app.use(express.static(path.resolve("client/build")));
-
-        app.use(express.json());
-
-        const MongoStore = connectStore(session);
-        app.use(
-            session({
-                name: "sid",
-                secret: config.session.secret,
-                store: new MongoStore({
-                    mongooseConnection: mongoose.connection,
-                    collection: "session"
-                }),
-                resave: false,
-                saveUninitialized: true,
-                cookie: {
-                    sameSite: true,
-                    secure: true
-                }
-            })
-        );
-
-        app.use(passport.initialize());
-        app.use(passport.session());
-        passportInit();
-
-        const io = socketio(server);
-        app.set("io", io);
+        const app = express();
+        const server = await load(app);
 
         app.use("/api/items", routes.items);
         app.use("/api/itemCategories", routes.itemCategories);
@@ -88,19 +43,3 @@ import connectStore from "connect-mongo";
         console.log(err);
     }
 })();
-
-function createServerByEnvironment(app) {
-    let server;
-    if (config.environment === "production") {
-        server = http.createServer(app);
-    } else {
-        server = https.createServer(
-            {
-                pfx: fs.readFileSync(path.resolve("cert.pfx")),
-                passphrase: config.clientCert.password
-            },
-            app
-        );
-    }
-    return server;
-}

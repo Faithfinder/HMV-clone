@@ -1,7 +1,7 @@
 import passport from "passport";
 import { Strategy as FacebookStrategy } from "passport-facebook";
 import { User } from "../models";
-import config from ".";
+import config from "../config";
 
 export default () => {
     passport.serializeUser((user, cb) => cb(null, user));
