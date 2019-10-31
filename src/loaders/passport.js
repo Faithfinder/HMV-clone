@@ -8,7 +8,12 @@ export default () => {
     passport.deserializeUser((obj, cb) => cb(null, obj));
 
     const done = async (accessToken, refreshToken, profile, cb) => {
-        const user = await findOrCreateUser(profile);
+        const dbUser = await findOrCreateUser(profile);
+        const user = {
+            userid: dbUser._id,
+            email: dbUser.email,
+            isAdmin: dbUser.isAdmin
+        };
         return cb(null, user);
     };
 
