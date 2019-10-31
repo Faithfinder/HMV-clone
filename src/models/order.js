@@ -4,8 +4,6 @@ import autoNumber from "mongoose-auto-number";
 import Item from "./item";
 import asyncForEach from "../util/asyncForEach";
 
-
-
 const orderSchema = new mongoose.Schema({
     number: {
         type: Number,
@@ -32,21 +30,25 @@ orderSchema.plugin(autoNumber.plugin, "Order");
 
 orderSchema.pre("save", async function(next) {
     if (this.isNew) {
-        await asyncForEach(this.items, async item => {
-            try {
-                const dbItem = await Item.findById(item.id);
-                // eslint-disable-next-line require-atomic-updates
-                item.price = dbItem.price;
-                // eslint-disable-next-line require-atomic-updates
-                item.title = dbItem.title;
-                this.total += item.price * item.amount;
-            } catch (err) {
-                next(err);
-            }
-        });
+        await populateOrderfromDB(next);
     }
     next();
 });
+
+async function populateOrderfromDB(next) {
+    await asyncForEach(this.items, async item => {
+        try {
+            const dbItem = await Item.findById(item.id);
+            // eslint-disable-next-line require-atomic-updates
+            item.price = dbItem.price;
+            // eslint-disable-next-line require-atomic-updates
+            item.title = dbItem.title;
+            this.total += item.price * item.amount;
+        } catch (err) {
+            next(err);
+        }
+    });
+}
 
 const Order = mongoose.model("Order", orderSchema);
 module.exports = Order;
