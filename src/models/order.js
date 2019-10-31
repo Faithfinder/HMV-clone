@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import autoNumber from "mongoose-auto-number";
 
+import Item from "./item";
+
 autoNumber.init(mongoose.connection);
 
 const orderSchema = new mongoose.Schema({
@@ -28,9 +30,20 @@ const orderSchema = new mongoose.Schema({
 orderSchema.plugin(autoNumber.plugin, "Order");
 
 orderSchema.pre("save", function(next) {
-    this.items.forEach(item => {
-        this.total += item.price * item.amount;
-    });
+    if (this.isNew) {
+        this.items.forEach(async item => {
+            try {
+                const dbItem = await Item.findById(item.id);
+                // eslint-disable-next-line require-atomic-updates
+                item.price = dbItem.price;
+                // eslint-disable-next-line require-atomic-updates
+                item.title = dbItem.title;
+                this.total += item.price * item.amount;
+            } catch (err) {
+                next(err);
+            }
+        });
+    }
     next();
 });
 
