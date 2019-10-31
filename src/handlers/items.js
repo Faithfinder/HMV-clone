@@ -21,7 +21,11 @@ export const getItem = async (req, res, next) => {
     try {
         const item = await Item.findById(req.params.item_id)
             .populate("category", "title")
-            .populate("reviews");
+            .populate({
+                path: "reviews",
+                populate: { path: "author", model: "User", select: "email" }
+            })
+            .populate("reviews.author");
         return res.status(200).json(item);
     } catch (err) {
         next(err);
