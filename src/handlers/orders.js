@@ -1,7 +1,7 @@
 import { Order } from "../models";
 
 import emailTemplate from "../util/email";
-import nodemailer from "../config/nodemailer";
+import nodemailer from "../loaders/nodemailer";
 
 export const getOrders = async (req, res, next) => {
     try {
