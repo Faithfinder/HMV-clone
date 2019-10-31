@@ -8,10 +8,6 @@ import load from "./loaders";
         const app = express();
         const server = await load(app);
 
-        app.get("/api", (req, res) => {
-            res.send("Hello world");
-        });
-
         server.listen(config.port, () => {
             console.log(`Server is starting on port ${config.port}`);
         });
