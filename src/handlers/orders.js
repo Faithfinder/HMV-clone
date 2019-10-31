@@ -1,7 +1,7 @@
 import { Order } from "../models";
 
-import emailTemplate from "../util/email";
-import nodemailer from "../loaders/nodemailer";
+import eventEmitter from "../loaders/eventemitter";
+import events from "../config/events";
 
 export const getOrders = async (req, res, next) => {
     try {
@@ -15,10 +15,9 @@ export const getOrders = async (req, res, next) => {
 export const createOrder = async (req, res, next) => {
     try {
         const order = await Order.create(req.body.order);
-
         const savedOrder = await order.save();
-        const email = emailTemplate(savedOrder);
-        await nodemailer.sendMail(email);
+        eventEmitter.emit(events.orders.created, savedOrder);
+
         return res.status(200).json(savedOrder);
     } catch (err) {
         next(err);
@@ -28,7 +27,7 @@ export const createOrder = async (req, res, next) => {
 export const getOrder = async (req, res, next) => {
     try {
         const order = await Order.findById(req.params.order_id);
-        
+
         return res.status(200).json(order);
     } catch (err) {
         next(err);

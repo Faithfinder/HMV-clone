@@ -13,7 +13,7 @@ import {
 router
     .route("/")
     .get(loginRequired, adminRequired, getOrders)
-    .post(loginRequired, createOrder);
+    .post( createOrder);
 
 router
     .route("/:order_id")
