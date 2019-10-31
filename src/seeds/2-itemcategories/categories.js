@@ -1,6 +1,6 @@
 const { getObjectId } = require("../helper");
 
-const categories = ["Music", "Cinema", "TV Show"].map(name => {
+const categories = ["Music", "Cinema", "TV Show", "Bundled", "Reviewed"].map(name => {
     return { _id: getObjectId(name), title: name };
 });
 
