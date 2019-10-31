@@ -1,20 +1,22 @@
 import React, { useState } from "react";
+import { Router, Route, Switch } from "react-router-dom";
 import io from "socket.io-client";
 import axios from "axios";
-import OAuth from "./Facebook";
+import Facebook from "./Facebook";
+import history from "../history";
 
 const socket = io();
 
-function App() {
+const App = () => {
     const [text, setText] = useState("Meh");
     axios.get("/api").then(result => setText(result.data));
 
     return (
-        <div>
+        <Router history={history}>
             Text is: {text} Not needed
-            <OAuth socket={socket}></OAuth>
-        </div>
+            <Facebook socket={socket}></Facebook>
+        </Router>
     );
-}
+};
 
 export default App;

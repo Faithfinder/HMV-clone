@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import axios from "axios";
+import { logIn, logOut, checkLogIn } from "../actions";
 
 import Button from "react-bootstrap/Button";
 
 import "./Facebook.css";
 
 export default ({ socket }) => {
-    const [user, setUser] = useState(undefined);
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get("/api/auth/check");
-            setUser(response.data);
-        };
-        fetchData();
-    }, []);
+        dispatch(checkLogIn());
+    }, [dispatch]);
 
     const openPopup = () => {
         const width = 600,
@@ -43,16 +41,13 @@ export default ({ socket }) => {
     };
 
     const cancelAuth = async () => {
-        const response = await axios.post("api/auth/logout");
-        if (response.status === 204) {
-            setUser(undefined);
-        }
+        dispatch(logOut());
     };
 
     const attachOnAuthnticateToSocket = popup => {
-        socket.on("facebook", obj => {
+        socket.once("facebook", ({ user }) => {
             popup.close();
-            setUser(obj.user);
+            dispatch(logIn(user));
         });
     };
 
