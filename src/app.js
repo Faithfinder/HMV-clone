@@ -20,7 +20,8 @@ import connectStore from "connect-mongo";
             keepAlive: true,
             useNewUrlParser: true,
             useFindAndModify: false,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
+            useCreateIndex: true
         });
 
         let server = createServerByEnvironment(app);
