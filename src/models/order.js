@@ -30,20 +30,20 @@ orderSchema.plugin(autoNumber.plugin, "Order");
 
 orderSchema.pre("save", async function(next) {
     if (this.isNew) {
-        await populateOrderfromDB(next);
+        await populateOrderfromDB(this, next);
     }
     next();
 });
 
-async function populateOrderfromDB(next) {
-    await asyncForEach(this.items, async item => {
+async function populateOrderfromDB(order, next) {
+    await asyncForEach(order.items, async item => {
         try {
             const dbItem = await Item.findById(item.id);
             // eslint-disable-next-line require-atomic-updates
             item.price = dbItem.price;
             // eslint-disable-next-line require-atomic-updates
             item.title = dbItem.title;
-            this.total += item.price * item.amount;
+            order.total += item.price * item.amount;
         } catch (err) {
             next(err);
         }
