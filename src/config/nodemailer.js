@@ -1,11 +1,12 @@
 import nodemailer from "nodemailer";
+import config from "./index";
 
 var transport = nodemailer.createTransport({
-    host: process.env.MAIL_SERVER,
-    port: process.env.MAIL_PORT,
+    host: config.email.server,
+    port: config.email.port,
     auth: {
-        user: process.env.MAIL_USERNAME,
-        pass: process.env.MAIL_PASSWORD
+        user: config.email.username,
+        pass: config.email.password
     }
 });
 

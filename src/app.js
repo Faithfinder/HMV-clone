@@ -10,13 +10,14 @@ import session from "express-session";
 import passportInit from "./config/passport";
 import errorHandler from "./handlers/error";
 import routes from "./routes/";
+import config from "./config";
 
 import mongoose from "mongoose";
 import connectStore from "connect-mongo";
 
 (async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_URI, {
+        await mongoose.connect(config.databaseURL, {
             keepAlive: true,
             useNewUrlParser: true,
             useFindAndModify: false,
@@ -35,7 +36,7 @@ import connectStore from "connect-mongo";
         app.use(
             session({
                 name: "sid",
-                secret: process.env.SESSION_SECRET,
+                secret: config.session.secret,
                 store: new MongoStore({
                     mongooseConnection: mongoose.connection,
                     collection: "session"
@@ -80,8 +81,8 @@ import connectStore from "connect-mongo";
 
         app.use(errorHandler);
 
-        server.listen(process.env.PORT, () => {
-            console.log(`Server is starting on port ${process.env.PORT}`);
+        server.listen(config.port, () => {
+            console.log(`Server is starting on port ${config.port}`);
         });
     } catch (err) {
         console.log(err);
@@ -90,13 +91,13 @@ import connectStore from "connect-mongo";
 
 function createServerByEnvironment(app) {
     let server;
-    if (process.env.NODE_ENV === "production") {
+    if (config.environment === "production") {
         server = http.createServer(app);
     } else {
         server = https.createServer(
             {
                 pfx: fs.readFileSync(path.resolve("cert.pfx")),
-                passphrase: process.env.CERT_PASS
+                passphrase: config.clientCert.password
             },
             app
         );

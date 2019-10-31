@@ -1,6 +1,7 @@
 import passport from "passport";
 import { Strategy as FacebookStrategy } from "passport-facebook";
 import { User } from "../models";
+import config from ".";
 
 export default () => {
     passport.serializeUser((user, cb) => cb(null, user));
@@ -14,8 +15,8 @@ export default () => {
     passport.use(
         new FacebookStrategy(
             {
-                clientID: process.env.FACEBOOK_CLIENT,
-                clientSecret: process.env.FACEBOOK_SECRET,
+                clientID: config.facebook.client,
+                clientSecret: config.facebook.secret,
                 callbackURL: "/api/auth/facebook/callback",
                 profileFields: ["id", "emails"]
             },
