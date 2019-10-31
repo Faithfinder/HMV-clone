@@ -10,7 +10,7 @@ export default () => {
     const done = async (accessToken, refreshToken, profile, cb) => {
         const dbUser = await findOrCreateUser(profile);
         const user = {
-            userid: dbUser._id,
+            userId: dbUser._id,
             email: dbUser.email,
             isAdmin: dbUser.isAdmin
         };
