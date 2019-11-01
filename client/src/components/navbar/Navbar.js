@@ -1,13 +1,14 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
+
 import Facebook from "../Facebook";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import ShoppingCartButton from "./ShoppingCartButton";
 
 export default () => {
     return (
@@ -26,9 +27,7 @@ export default () => {
                         </InputGroup.Append>
                     </InputGroup>
                 </Form>
-                <Button className="mx-2" variant="success">
-                    <FontAwesomeIcon icon={faShoppingBasket} />
-                </Button>
+                <ShoppingCartButton />
             </Navbar.Collapse>
         </Navbar>
     );
