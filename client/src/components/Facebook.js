@@ -66,7 +66,9 @@ export default () => {
     const buttonText = getButtonText();
 
     return (
-        <Button className="facebook" onClick={user ? cancelAuth : startAuth}>
+        <Button
+            className="facebook mx-2"
+            onClick={user ? cancelAuth : startAuth}>
             <FontAwesomeIcon icon={faFacebookSquare} /> {buttonText}
         </Button>
     );
