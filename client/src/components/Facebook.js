@@ -11,9 +11,9 @@ import Button from "react-bootstrap/Button";
 
 import "./Facebook.css";
 
-export default ({ socket }) => {
+export default () => {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.user);
+    const [user, socket] = useSelector(state => [state.user, state.socket]);
 
     useEffect(() => {
         dispatch(checkLogIn());

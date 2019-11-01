@@ -1,3 +1,9 @@
 .facebook {
     background-color: #4267b2;
+    border-color: transparent;
+}
+
+.facebook:hover {
+    background-color: #4267b2;
+    color: rgb(219, 219, 219);
 }
