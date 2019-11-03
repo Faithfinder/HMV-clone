@@ -15,10 +15,9 @@ export const getOrders = async (req, res, next) => {
 export const createOrder = async (req, res, next) => {
     try {
         const order = await Order.create(req.body.order);
-        const savedOrder = await order.save();
-        eventEmitter.emit(events.orders.created, savedOrder);
+        eventEmitter.emit(events.orders.created, order);
 
-        return res.status(200).json(savedOrder);
+        return res.status(200).json(order);
     } catch (err) {
         next(err);
     }

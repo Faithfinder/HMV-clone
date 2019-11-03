@@ -4,10 +4,9 @@ export const createReview = async (req, res, next) => {
     try {
         const item = Item.findById(req.params.item_id);
         const review = await Review.create(req.body.review);
-        const savedReview = await review.save();
-        item.reviews.push(savedReview);
+        item.reviews.push(review);
         await item.save();
-        return res.status(200).json(savedReview);
+        return res.status(200).json(review);
     } catch (err) {
         next(err);
     }
