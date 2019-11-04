@@ -11,6 +11,7 @@ export default {
     api: {
         prefix: "/api"
     },
+    itemCategories: ["Music", "Video", "Games"],
     email: {
         server: process.env.MAIL_SERVER,
         port: process.env.MAIL_PORT,

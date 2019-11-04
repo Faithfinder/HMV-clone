@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
+import config from "../config";
 
 const itemSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, default: "" },
-    price: { type: Number, default: 0 },
-    featured: { type: Boolean, default: false },
-    category: { type: mongoose.Schema.Types.ObjectId, ref: "ItemCategory" },
+    image: String,
+    price: { type: Number, default: 0, min: 0 },
+    featured: { image: String, caption: String },
+    category: { type: String, enum: config.itemCategories, required: true },
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }]
 });
 
