@@ -2,7 +2,16 @@ import { Item } from "../../models";
 
 export const getItems = async ({ query }, res, next) => {
     try {
-        const items = await Item.find({ query });
+        const items = await Item.find(query);
+        return res.status(200).json(items);
+    } catch (err) {
+        next(err);
+    }
+};
+
+export const getFeatured = async (req, res, next) => {
+    try {
+        const items = await Item.find({ featured: { $ne: null } });
         return res.status(200).json(items);
     } catch (err) {
         next(err);
@@ -21,7 +30,6 @@ export const createItem = async (req, res, next) => {
 export const getItem = async (req, res, next) => {
     try {
         const item = await Item.findById(req.params.item_id)
-            .populate("category", "title")
             .populate({
                 path: "reviews",
                 populate: { path: "author", model: "User", select: "email" }
