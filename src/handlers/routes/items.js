@@ -11,8 +11,7 @@ export const getItems = async (req, res, next) => {
 export const createItem = async (req, res, next) => {
     try {
         const item = await Item.create(req.body.item);
-        const savedItem = await item.save();
-        return res.status(200).json(savedItem);
+        return res.status(200).json(item);
     } catch (err) {
         next(err);
     }
