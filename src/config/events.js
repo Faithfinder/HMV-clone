@@ -1,1 +1,4 @@
-export default { orders: { created: "orderCreated" } };
+export default {
+    orders: { created: "orderCreated" },
+    auth: { facebook: "facebook" }
+};

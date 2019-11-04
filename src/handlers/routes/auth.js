@@ -1,3 +1,5 @@
+import events from "../../config/events";
+
 export const facebook = async (req, res) => {
     emit(req, res, { user: req.user });
 };
@@ -27,6 +29,6 @@ export const check = (req, res) => {
 
 const emit = (req, res, obj) => {
     const io = req.app.get("io");
-    io.in(req.session.socketId).emit("facebook", obj);
+    io.in(req.session.socketId).emit(events.auth.facebook, obj);
     res.end();
 };
