@@ -3,7 +3,7 @@ const { getObjectIds } = require("../helper");
 
 module.exports = {
     title: "Half price!",
-    image: faker.image.imageUrl(250, 250),
+    image: faker.image.imageUrl(250, 250) + "?breaker=" + faker.random.number(),
     description: faker.lorem.paragraph(3),
     price: Number(faker.commerce.price()),
     category: "Games",
