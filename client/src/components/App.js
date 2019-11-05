@@ -3,13 +3,13 @@ import { Router, Route, Switch } from "react-router-dom";
 
 import history from "../history";
 import Navbar from "./navbar/Navbar";
-// import FeaturedItems from "./featuredItems/FeaturedItems";
+import FeaturedItems from "./featuredItems/FeaturedItems";
 
 const App = () => {
     return (
         <Router history={history}>
             <Navbar />
-                {/* <FeaturedItems /> */}
+                <FeaturedItems />
         </Router>
     );
 };
