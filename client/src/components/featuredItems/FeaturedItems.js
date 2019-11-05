@@ -43,9 +43,10 @@ const useStyles = makeStyles(theme => ({
     },
     dots: {
         position: "absolute",
-        bottom: "1em",
+        bottom: "0",
         width: "100%",
-        textAlign: "center"
+        textAlign: "center",
+        padding: "1em"
     },
     dot: {
         height: "0.5em",
@@ -61,7 +62,7 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         textAlign: "center",
         bottom: "0",
-        height: "25%",
+        height: "150px",
         color: "white",
         padding: "1em",
         backgroundColor: "rgba(0,0,0, 0.50)"
@@ -86,8 +87,8 @@ const FeaturedItems = () => {
 
     return (
         <CarouselProvider
-            naturalSlideWidth={900}
-            naturalSlideHeight={500}
+            naturalSlideWidth={16}
+            naturalSlideHeight={4}
             totalSlides={items.length}
             hasMasterSpinner
             infinite>
