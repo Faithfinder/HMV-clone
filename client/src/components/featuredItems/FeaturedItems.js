@@ -15,6 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 
 import axios from "axios";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     wrapper: {
@@ -64,6 +65,9 @@ const useStyles = makeStyles(theme => ({
         color: "white",
         padding: "1em",
         backgroundColor: "rgba(0,0,0, 0.50)"
+    },
+    addToCart: {
+        margin: "1em"
     }
 }));
 
@@ -83,7 +87,7 @@ const FeaturedItems = () => {
     return (
         <CarouselProvider
             naturalSlideWidth={900}
-            naturalSlideHeight={400}
+            naturalSlideHeight={500}
             totalSlides={items.length}
             hasMasterSpinner
             infinite>
@@ -109,6 +113,9 @@ const FeaturedItems = () => {
                                         gutterBottom>
                                         {item.featured.caption}
                                     </Typography>
+                                    <Button variant="contained" size="small" className={classes.addToCart}>
+                                        Add to cart
+                                    </Button>
                                 </div>
                             </Slide>
                         );
