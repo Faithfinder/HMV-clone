@@ -5,7 +5,7 @@ module.exports = [1, 2, 3, 4, 5].map(value => {
     return {
         _id: getObjectId("Reviewed" + value),
         title: "Reviewed " + faker.commerce.productName(),
-        image: faker.image.imageUrl(250, 250) + "?breaker=" + faker.random.number(),
+        image: faker.image.imageUrl(250, 250, "", true, true),
         description: faker.lorem.paragraph(3),
         price: Number(faker.commerce.price()),
         category: "Video",
