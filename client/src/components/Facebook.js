@@ -7,7 +7,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import { logIn, logOut, checkLogIn } from "../actions";
 
-import Button from "react-bootstrap/Button";
+import Button from "@material-ui/core/Button";
 
 import "./Facebook.css";
 
@@ -51,25 +51,26 @@ export default () => {
         });
     };
 
-    const getButtonText = () => {
-        if (user) {
-            return (
-                <>
-                    {user.email} <FontAwesomeIcon icon={faTimes} />
-                </>
-            );
-        } else {
-            return "Continue with Facebook";
-        }
-    };
-
-    const buttonText = getButtonText();
-
-    return (
-        <Button
-            className="facebook mx-2"
-            onClick={user ? cancelAuth : startAuth}>
-            <FontAwesomeIcon icon={faFacebookSquare} /> {buttonText}
-        </Button>
-    );
+    if (user) {
+        return (
+            <Button
+                color="primary"
+                variant="contained"
+                onClick={cancelAuth}
+                startIcon={<FontAwesomeIcon icon={faFacebookSquare} />}
+                endIcon={<FontAwesomeIcon icon={faTimes} />}>
+                {user.email}
+            </Button>
+        );
+    } else {
+        return (
+            <Button
+                color="primary"
+                variant="contained"
+                onClick={startAuth}
+                startIcon={<FontAwesomeIcon icon={faFacebookSquare} />}>
+                Continue with Facebook
+            </Button>
+        );
+    }
 };

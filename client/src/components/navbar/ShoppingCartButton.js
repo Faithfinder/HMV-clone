@@ -1,18 +1,25 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import Button from "react-bootstrap/Button";
-import Badge from "react-bootstrap/Badge";
+import IconButton from "@material-ui/core/IconButton";
+import Badge from "@material-ui/core/Badge";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
+import ShoppingCart from "@material-ui/icons/ShoppingCart";
 
 export default () => {
     const [shoppingCart] = useSelector(state => [state.shoppingCart]);
     return (
-        <Button className="mx-2" variant="success">
-            <FontAwesomeIcon icon={faShoppingBasket} />{" "}
-            <Badge variant="light">{shoppingCart.length}</Badge>
-        </Button>
+        <Badge
+            color="primary"
+            badgeContent={shoppingCart.length}
+            overlap="circle"
+            anchorOrigin={{
+                horizontal: "right",
+                vertical: "bottom"
+            }}>
+            <IconButton variant="contained">
+                <ShoppingCart />
+            </IconButton>
+        </Badge>
     );
 };
