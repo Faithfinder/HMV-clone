@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
         position: "absolute",
         top: 0,
         height: "100%",
+        boxSizing: "border-box",
         backgroundColor: "transparent",
         border: 0,
         padding: "0 1em",
@@ -45,6 +46,7 @@ const useStyles = makeStyles(theme => ({
         position: "absolute",
         bottom: "0",
         width: "100%",
+        boxSizing: "border-box",
         textAlign: "center",
         padding: "1em"
     },
@@ -60,6 +62,7 @@ const useStyles = makeStyles(theme => ({
     caption: {
         position: "absolute",
         width: "100%",
+        boxSizing: "border-box",
         textAlign: "center",
         bottom: "0",
         height: "150px",
@@ -114,7 +117,10 @@ const FeaturedItems = () => {
                                         gutterBottom>
                                         {item.featured.caption}
                                     </Typography>
-                                    <Button variant="contained" size="small" className={classes.addToCart}>
+                                    <Button
+                                        variant="contained"
+                                        size="small"
+                                        className={classes.addToCart}>
                                         Add to cart
                                     </Button>
                                 </div>
