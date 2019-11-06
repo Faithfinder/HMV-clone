@@ -29,11 +29,12 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: "transparent",
         border: 0,
         padding: "0 1em",
+        zIndex: "2",
         "&:hover": {
             backgroundColor: "rgba(0,0,0,0.65)",
             color: "white"
         },
-        "&:focus": { backgroundColor: "rgba(0,0,0,0.65)", outline: 0 },
+        "&:focus": { outline: 0, color: "white" },
         "&:active": { backgroundColor: "rgba(0,0,0,1)" }
     },
     backButton: {
@@ -48,7 +49,8 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         boxSizing: "border-box",
         textAlign: "center",
-        padding: "1em"
+        padding: "1em",
+        paddingTop: 0
     },
     dot: {
         height: "0.5em",
@@ -65,6 +67,7 @@ const useStyles = makeStyles(theme => ({
         boxSizing: "border-box",
         textAlign: "center",
         bottom: "0",
+        zIndex: "1",
         height: "150px",
         color: "white",
         padding: "1em",
