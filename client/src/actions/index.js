@@ -1,4 +1,4 @@
 import { logIn, logOut, checkLogIn } from "./user";
-import { addToCart } from "./shoppingCart";
+import { addToCart, checkCart } from "./shoppingCart";
 
-export { logIn, logOut, checkLogIn, addToCart };
+export { logIn, logOut, checkLogIn, addToCart, checkCart };

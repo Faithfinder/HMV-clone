@@ -1,6 +1,6 @@
 export const getCart = async ({ session: { cart } }, res, next) => {
     try {
-        if (!cart) cart = [];
+        if (!cart) cart = {};
         return res.status(200).json(cart);
     } catch (err) {
         next(err);
