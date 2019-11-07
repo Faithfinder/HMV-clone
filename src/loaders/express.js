@@ -27,7 +27,7 @@ export default (app, server) => {
 
     app.use(config.api.prefix, routes());
 
-    app.get("/", (req, res) => {
+    app.get("/*", (req, res) => {
         res.sendFile("client/build/index.html", { root: path.resolve("") });
     });
 
