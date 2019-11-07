@@ -7,19 +7,21 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 
 import { checkCart } from "../../actions";
+import { useCartCount } from "../../selectors/shoppingCart";
 
 export default () => {
     const dispatch = useDispatch();
 
-    const [shoppingCart, refreshing] = useSelector(({ shoppingCart }) => [
-        shoppingCart.contents,
+    const [refreshing] = useSelector(({ shoppingCart }) => [
         shoppingCart.refreshing
     ]);
+
+    const cartCount = useCartCount();
 
     const badgeContent = refreshing ? (
         <CircularProgress color="secondary" size={10} />
     ) : (
-        Object.keys(shoppingCart).length
+        cartCount
     );
 
     useEffect(() => {
