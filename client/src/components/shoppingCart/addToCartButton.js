@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -12,10 +12,8 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const addToCartButton = ({ item }) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+const AddToCartButton = ({ item }) => {
     const classes = useStyles();
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const dispatch = useDispatch();
     const handler = () => {
         dispatch(addToCart(item));
@@ -31,4 +29,4 @@ const addToCartButton = ({ item }) => {
     );
 };
 
-export default addToCartButton;
+export default AddToCartButton;

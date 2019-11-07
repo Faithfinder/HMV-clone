@@ -16,7 +16,7 @@ import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 
 import axios from "axios";
 
-import AddToCart from "../shoppingCart/addToCartButton";
+import AddToCartButton from "../shoppingCart/AddToCartButton";
 
 const useStyles = makeStyles(theme => ({
     wrapper: {
@@ -118,7 +118,7 @@ const FeaturedItems = () => {
                                         gutterBottom>
                                         {item.featured.caption}
                                     </Typography>
-                                    <AddToCart item={item} />
+                                    <AddToCartButton item={item} />
                                 </div>
                             </Slide>
                         );
