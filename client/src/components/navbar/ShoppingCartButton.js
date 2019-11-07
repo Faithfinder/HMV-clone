@@ -11,7 +11,7 @@ export default () => {
     return (
         <Badge
             color="primary"
-            badgeContent={shoppingCart.length}
+            badgeContent={Object.keys(shoppingCart).length}
             overlap="circle"
             anchorOrigin={{
                 horizontal: "right",

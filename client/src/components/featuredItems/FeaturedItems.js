@@ -15,7 +15,8 @@ import Typography from "@material-ui/core/Typography";
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 
 import axios from "axios";
-import { Button } from "@material-ui/core";
+
+import AddToCart from "../shoppingCart/addToCartButton";
 
 const useStyles = makeStyles(theme => ({
     wrapper: {
@@ -72,9 +73,6 @@ const useStyles = makeStyles(theme => ({
         color: "white",
         padding: "1em",
         backgroundColor: "rgba(0,0,0, 0.50)"
-    },
-    addToCart: {
-        margin: "1em"
     }
 }));
 
@@ -120,12 +118,7 @@ const FeaturedItems = () => {
                                         gutterBottom>
                                         {item.featured.caption}
                                     </Typography>
-                                    <Button
-                                        variant="contained"
-                                        size="small"
-                                        className={classes.addToCart}>
-                                        Add to cart
-                                    </Button>
+                                    <AddToCart item={item} />
                                 </div>
                             </Slide>
                         );
