@@ -27,7 +27,7 @@ export const addToCart = item => async (dispatch, getState) => {
 };
 
 function putItemIntoCart(getState, item) {
-    const currentCart = { ...getState().shoppingCart };
+    const currentCart = { ...getState().shoppingCart.contents };
     if (currentCart[item._id]) {
         currentCart[item._id].amount++;
     } else {
