@@ -32,7 +32,7 @@ export default (app, server) => {
     });
 
     app.use((req, res, next) => {
-        let err = new Error("Resource not found");
+        let err = new Error(`Resource ${req.originalUrl} not found`);
         err.status = 404;
         next(err);
     });
