@@ -15,7 +15,7 @@ import AddToCartButton from "../shoppingCart/AddToCartButton";
 const useStyles = makeStyles({
     card: {
         maxWidth: 250,
-        margin: "1em",
+        margin: "0.5em",
         display: "flex",
         flexDirection: "column"
     },

@@ -1,5 +1,6 @@
 import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
+import Container from "@material-ui/core/Container";
 
 import history from "../history";
 import Navbar from "./navbar/Navbar";
@@ -11,7 +12,9 @@ const App = () => {
         <Router history={history}>
             <Navbar />
             <FeaturedItems />
-            <ItemsByCategory category="Music" />
+            <Container>
+                <ItemsByCategory category="Music" />
+            </Container>
         </Router>
     );
 };
