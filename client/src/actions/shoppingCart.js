@@ -3,6 +3,7 @@ import {
     CART_ADD_RESPONSE,
     CART_CHECK_REQUEST,
     CART_CHECK_RESPONSE,
+    CART_EMPTY,
     ITEMS_FETCH_REQUEST,
     ITEMS_FETCH_RESPONSE
 } from "./types";
@@ -76,4 +77,10 @@ export const checkCart = () => async dispatch => {
         payload: cartPayload,
         error: errored
     });
+};
+
+export const emptyCart = () => {
+    return {
+        type: CART_EMPTY
+    };
 };

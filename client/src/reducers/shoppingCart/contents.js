@@ -1,4 +1,8 @@
-import { CART_ADD_RESPONSE, CART_CHECK_RESPONSE } from "../../actions/types";
+import {
+    CART_ADD_RESPONSE,
+    CART_CHECK_RESPONSE,
+    CART_EMPTY
+} from "../../actions/types";
 
 export default (state = {}, { type, payload, error }) => {
     switch (type) {
@@ -8,6 +12,8 @@ export default (state = {}, { type, payload, error }) => {
                 return payload;
             }
             return state;
+        case CART_EMPTY:
+            return {};
         default:
             return state;
     }
