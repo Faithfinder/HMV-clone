@@ -1,4 +1,5 @@
 import React from "react";
+import ellipsize from "ellipsize";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -21,18 +22,6 @@ const useStyles = makeStyles({
     cardActionArea: {
         flexDirection: "column",
         flex: 1
-    },
-    content: {
-        display: "flex",
-        flexFlow: "column nowrap",
-        justifyContent: "flex-end"
-    },
-    price: {
-        // alignSelf: "flex-end"
-    },
-    description: {
-        flexDirection: "column",
-        flexGrow: 1
     }
 });
 
@@ -54,19 +43,14 @@ export default ({ item }) => {
                     image={item.image}
                     title={item.title}
                 />
-                <CardContent className={classes.content}>
+                <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {item.title}
+                        {ellipsize(item.title, 50)}
                     </Typography>
-                    <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        className={classes.description}>
-                        {item.description}
+                    <Typography variant="body2" color="textSecondary">
+                        {ellipsize(item.description, 150)}
                     </Typography>
-                    <Typography variant="h6" className={classes.price}>
-                        Price: {item.price}
-                    </Typography>
+                    <Typography variant="h6">Price: {item.price}</Typography>
                 </CardContent>
             </CardActionArea>
             <CardActions>
