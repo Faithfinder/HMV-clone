@@ -15,8 +15,7 @@ export const useCartContents = () => {
     ]);
 
     return Object.values(cart).map(item => {
-        console.log(items);
-        const { title, price } = items[item.id];
-        return { ...item, title, price };
+        const { title, price, image } = items[item.id];
+        return { ...item, title, price, image };
     });
 };
