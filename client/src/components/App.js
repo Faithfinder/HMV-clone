@@ -3,13 +3,15 @@ import { Router, Route, Switch } from "react-router-dom";
 
 import history from "../history";
 import Navbar from "./navbar/Navbar";
-import FeaturedItems from "./featuredItems/FeaturedItems";
+import FeaturedItems from "./items/FeaturedItems";
+import { ItemsByCategory } from "./items/ItemsByCategory";
 
 const App = () => {
     return (
         <Router history={history}>
             <Navbar />
-                <FeaturedItems />
+            <FeaturedItems />
+            <ItemsByCategory category="Music" />
         </Router>
     );
 };
