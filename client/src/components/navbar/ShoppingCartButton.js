@@ -21,7 +21,7 @@ export default () => {
     const cartCount = useCartCount();
 
     const badgeContent = refreshing ? (
-        <CircularProgress color="secondary" size={10} />
+        <CircularProgress color="primary" size={10} />
     ) : (
         cartCount
     );
@@ -33,7 +33,7 @@ export default () => {
     return (
         <>
             <Badge
-                color="primary"
+                color="secondary"
                 badgeContent={badgeContent}
                 overlap="circle"
                 anchorOrigin={{
