@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import Drawer from "@material-ui/core/Drawer";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
 
 import { checkCart } from "../../actions";
 import { useCartCount, useCartContents } from "../../selectors/shoppingCart";
 
+const useStyles = makeStyles(theme => ({
+    drawerHeading: {
+        margin: "1em"
+    }
+}));
+
 export default () => {
+    const classes = useStyles();
     const dispatch = useDispatch();
 
     const [refreshing] = useSelector(({ shoppingCart }) => [
@@ -61,7 +71,10 @@ export default () => {
                 anchor="right"
                 open={drawerOpen}
                 onClose={toggleDrawer(false)}>
-                Hi! I need a longer text
+                <Typography variant="h4" className={classes.drawerHeading}>
+                    Shopping Cart
+                </Typography>
+                <Divider light />
             </Drawer>
         </>
     );
