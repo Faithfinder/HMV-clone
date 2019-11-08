@@ -14,6 +14,8 @@ const App = () => {
             <FeaturedItems />
             <Container>
                 <ItemsByCategory category="Music" />
+                <ItemsByCategory category="Video" />
+                <ItemsByCategory category="Games" />
             </Container>
         </Router>
     );
