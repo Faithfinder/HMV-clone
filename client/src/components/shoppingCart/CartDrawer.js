@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
+import Button from "@material-ui/core/Button";
 
 import { toggleDrawer } from "./helpers";
 import { useCartContents } from "../../selectors/shoppingCart";
@@ -27,6 +28,14 @@ export const CartDrawer = () => {
                 Shopping Cart
             </Typography>
             <Divider light />
+            <ul>
+                {cartContents.map(item => {
+                    return (
+                        <li>{`${item.title}, ${item.price}: ${item.amount}`}</li>
+                    );
+                })}
+            </ul>
+            <Button variant="contained">Proceed to checkout</Button>
         </Drawer>
     );
 };
