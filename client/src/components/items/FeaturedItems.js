@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import {
     CarouselProvider,
     Slider,
@@ -14,7 +16,8 @@ import Typography from "@material-ui/core/Typography";
 
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 
-import axios from "axios";
+import { fetchFeatured } from "../../actions/items";
+import { useFeaturedItems } from "../../selectors/items";
 
 import AddToCartButton from "../shoppingCart/AddToCartButton";
 
@@ -78,27 +81,26 @@ const useStyles = makeStyles(theme => ({
 
 const FeaturedItems = () => {
     const classes = useStyles();
-    const [items, setItems] = useState([]);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        (async () => {
-            const fetchedItems = await axios.get("/api/items/featured");
-            setItems(fetchedItems.data);
-        })();
-    }, []);
+        dispatch(fetchFeatured());
+    }, [dispatch]);
 
-    if (!items.length) return null;
+    const featuredItems = useFeaturedItems();
+
+    if (!featuredItems.length) return null;
 
     return (
         <CarouselProvider
             naturalSlideWidth={16}
             naturalSlideHeight={4}
-            totalSlides={items.length}
+            totalSlides={featuredItems.length}
             hasMasterSpinner
             infinite>
             <div className={classes.wrapper}>
                 <Slider>
-                    {items.map((item, index) => {
+                    {featuredItems.map((item, index) => {
                         return (
                             <Slide key={item._id} index={index}>
                                 <Image
@@ -134,7 +136,7 @@ const FeaturedItems = () => {
                     <ArrowForwardIos />
                 </ButtonNext>
                 <div className={classes.dots}>
-                    {items.map((item, index) => {
+                    {featuredItems.map((item, index) => {
                         return (
                             <Dot
                                 key={item._id}
