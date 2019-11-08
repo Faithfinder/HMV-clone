@@ -9,7 +9,7 @@ import ItemCard from "./ItemCard";
 
 export const ItemsByCategory = ({ category }) => {
     const dispatch = useDispatch();
-    const [items] = useSelector(state => [state.items]);
+    const [items] = useSelector(state => [Object.values(state.items)]);
 
     useEffect(() => {
         dispatch(fetchItems());
@@ -18,10 +18,7 @@ export const ItemsByCategory = ({ category }) => {
     return (
         <>
             <Typography variant="h4">{category}</Typography>
-            <Grid
-                container
-                justify="space-evenly"
-                spacing={0}>
+            <Grid container justify="space-evenly" spacing={0}>
                 {items.map(item => (
                     <ItemCard key={item._id} item={item} />
                 ))}
