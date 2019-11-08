@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 export default () => {
     const classes = useStyles();
     return (
-        <AppBar position="static">
+        <AppBar position="static" color="primary">
             <Toolbar>
                 <Typography variant="h6" className={classes.title}>
                     Media Store Prototype

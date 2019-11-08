@@ -21,6 +21,7 @@ const AddToCartButton = ({ item }) => {
     return (
         <Button
             variant="contained"
+            color="primary"
             size="small"
             className={classes.addToCart}
             onClick={handler}>

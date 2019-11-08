@@ -7,16 +7,26 @@ import Navbar from "./navbar/Navbar";
 import FeaturedItems from "./items/FeaturedItems";
 import { ItemsByCategory } from "./items/ItemsByCategory";
 
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import blueGrey from "@material-ui/core/colors/blueGrey";
+import lime from "@material-ui/core/colors/lime";
+
+const theme = createMuiTheme({
+    palette: { primary: blueGrey, secondary: lime }
+});
+
 const App = () => {
     return (
         <Router history={history}>
-            <Navbar />
-            <FeaturedItems />
-            <Container>
-                <ItemsByCategory category="Music" />
-                <ItemsByCategory category="Video" />
-                <ItemsByCategory category="Games" />
-            </Container>
+            <ThemeProvider theme={theme}>
+                <Navbar />
+                <FeaturedItems />
+                <Container>
+                    <ItemsByCategory category="Music" />
+                    <ItemsByCategory category="Video" />
+                    <ItemsByCategory category="Games" />
+                </Container>
+            </ThemeProvider>
         </Router>
     );
 };

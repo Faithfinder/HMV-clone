@@ -9,7 +9,15 @@ import { logIn, logOut, checkLogIn } from "../actions";
 
 import Button from "@material-ui/core/Button";
 
-import "./Facebook.css";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: "#4267b2"
+        }
+    }
+});
 
 export default () => {
     const dispatch = useDispatch();
@@ -53,24 +61,28 @@ export default () => {
 
     if (user) {
         return (
-            <Button
-                color="primary"
-                variant="contained"
-                onClick={cancelAuth}
-                startIcon={<FontAwesomeIcon icon={faFacebookSquare} />}
-                endIcon={<FontAwesomeIcon icon={faTimes} />}>
-                {user.email}
-            </Button>
+            <ThemeProvider theme={theme}>
+                <Button
+                    color="primary"
+                    variant="contained"
+                    onClick={cancelAuth}
+                    startIcon={<FontAwesomeIcon icon={faFacebookSquare} />}
+                    endIcon={<FontAwesomeIcon icon={faTimes} />}>
+                    {user.email}
+                </Button>
+            </ThemeProvider>
         );
     } else {
         return (
-            <Button
-                color="primary"
-                variant="contained"
-                onClick={startAuth}
-                startIcon={<FontAwesomeIcon icon={faFacebookSquare} />}>
-                Continue with Facebook
-            </Button>
+            <ThemeProvider theme={theme}>
+                <Button
+                    color="primary"
+                    variant="contained"
+                    onClick={startAuth}
+                    startIcon={<FontAwesomeIcon icon={faFacebookSquare} />}>
+                    Continue with Facebook
+                </Button>
+            </ThemeProvider>
         );
     }
 };

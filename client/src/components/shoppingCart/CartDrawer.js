@@ -35,7 +35,9 @@ export const CartDrawer = () => {
                     );
                 })}
             </ul>
-            <Button variant="contained">Proceed to checkout</Button>
+            <Button color="primary" variant="contained">
+                Proceed to checkout
+            </Button>
         </Drawer>
     );
 };
