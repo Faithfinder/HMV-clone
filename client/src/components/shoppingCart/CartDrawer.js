@@ -54,7 +54,10 @@ export const CartDrawer = () => {
             <Typography variant="h5" component="span">
                 Total: {total}
             </Typography>
-            <Button color="primary" variant="contained">
+            <Button
+                color="primary"
+                variant="contained"
+                disabled={!cartContents.length}>
                 Proceed to checkout
             </Button>
         </Drawer>
