@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center"
-    }
+    },
+    margin: { margin: "0.5em 2em" }
 }));
 
 export const CartDrawer = () => {
@@ -51,10 +52,14 @@ export const CartDrawer = () => {
                     <CartItem key={item.id} item={item} />
                 ))}
             </Grid>
-            <Typography variant="h5" component="span">
+            <Typography
+                variant="h5"
+                component="span"
+                className={classes.margin}>
                 Total: {total}
             </Typography>
             <Button
+                className={classes.margin}
                 color="primary"
                 variant="contained"
                 disabled={!cartContents.length}>
