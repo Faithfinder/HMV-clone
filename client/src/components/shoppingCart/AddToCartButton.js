@@ -16,7 +16,7 @@ const AddToCartButton = ({ item }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const handler = () => {
-        dispatch(addToCart(item));
+        dispatch(addToCart(item._id));
     };
     return (
         <Button

@@ -1,6 +1,6 @@
 import {
-    CART_ADD_REQUEST,
-    CART_ADD_RESPONSE,
+    CART_SET_REQUEST,
+    CART_SET_RESPONSE,
     CART_CHECK_REQUEST,
     CART_CHECK_RESPONSE,
     CART_EMPTY,
@@ -10,34 +10,55 @@ import {
 import axios from "axios";
 import { batch } from "react-redux";
 
-export const addToCart = item => async (dispatch, getState) => {
-    const updatedCart = putItemIntoCart(getState, item);
+export const addToCart = itemId => async (dispatch, getState) => {
+    const updatedCart = putItemIntoCart(getState, itemId);
+    await setCartOnServer(dispatch, updatedCart);
+};
+
+export const setCartAmount = (itemId, amount) => async (dispatch, getState) => {
+    const updatedCart = changeAmountInCart(getState, itemId, amount);
+    await setCartOnServer(dispatch, updatedCart);
+};
+
+const putItemIntoCart = (getState, itemId) => {
+    const currentCart = { ...getState().shoppingCart.contents };
+    if (currentCart[itemId]) {
+        currentCart[itemId].amount++;
+    } else {
+        currentCart[itemId] = { id: itemId, amount: 1 };
+    }
+    return currentCart;
+};
+
+const changeAmountInCart = (getState, itemId, amount) => {
+    const currentCart = { ...getState().shoppingCart.contents };
+    if (amount) {
+        currentCart[itemId] = { id: itemId, amount: amount };
+    } else {
+        delete currentCart[itemId];
+    }
+    return currentCart;
+};
+
+async function setCartOnServer(dispatch, updatedCart) {
     let errored = false;
     let payload;
     try {
-        dispatch({ type: CART_ADD_REQUEST });
+        dispatch({ type: CART_SET_REQUEST });
         const response = await axios.put("/api/cart", { cart: updatedCart });
         if (response.status === 200) {
             payload = response.data;
         } else {
             errored = true;
-            payload = new Error(`Couldn't add to cart: ${response.statusText}`);
+            payload = new Error(
+                `Couldn't sync cart with server: ${response.statusText}`
+            );
         }
     } catch (error) {
         errored = true;
         payload = error;
     }
-    dispatch({ type: CART_ADD_RESPONSE, payload, error: errored });
-};
-
-function putItemIntoCart(getState, item) {
-    const currentCart = { ...getState().shoppingCart.contents };
-    if (currentCart[item._id]) {
-        currentCart[item._id].amount++;
-    } else {
-        currentCart[item._id] = { id: item._id, amount: 1 };
-    }
-    return currentCart;
+    dispatch({ type: CART_SET_RESPONSE, payload, error: errored });
 }
 
 export const checkCart = () => async dispatch => {
