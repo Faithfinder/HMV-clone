@@ -7,12 +7,12 @@ import {
     Slide,
     ButtonBack,
     ButtonNext,
-    Dot,
-    Image
+    Dot
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import Image from "material-ui-image";
 
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 
@@ -96,7 +96,6 @@ const FeaturedItems = () => {
             naturalSlideWidth={16}
             naturalSlideHeight={4}
             totalSlides={featuredItems.length}
-            hasMasterSpinner
             infinite>
             <div className={classes.wrapper}>
                 <Slider>
@@ -104,9 +103,9 @@ const FeaturedItems = () => {
                         return (
                             <Slide key={item._id} index={index}>
                                 <Image
-                                    hasMasterSpinner={true}
                                     src={item.featured.image}
                                     alt={item.title}
+                                    aspectRatio={4 / 1}
                                 />
                                 <div className={classes.caption}>
                                     <Typography
