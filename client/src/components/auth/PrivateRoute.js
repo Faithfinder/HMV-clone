@@ -12,9 +12,13 @@ export default ({ children, ...props }) => {
 
     if (authRefresh) {
         return <CircularProgress />;
-    } else if (isAuthenticated) {
-        return <Route {...props}>{children}</Route>;
-    } else {
-        return <Redirect to="/login" />;
+    } else if (!isAuthenticated) {
+        return (
+            <Redirect
+                to={{ pathname: "/login", state: { redirectTo: props.path } }}
+            />
+        );
     }
+
+    return <Route {...props}>{children}</Route>;
 };
