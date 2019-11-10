@@ -1,22 +1,42 @@
-import { LOG_IN, LOG_OUT, CHECK_LOG_IN } from "../actions/types";
+import { user as userTypes } from "./types";
 import { emptyCart } from "./shoppingCart";
 import axios from "axios";
 import { batch } from "react-redux";
 
-export const logIn = user => ({ type: LOG_IN, payload: user });
+export const authRequest = () => {
+    return {
+        type: userTypes.authRequest
+    };
+};
+
+export const logIn = user => ({ type: userTypes.logInResponse, payload: user });
 
 export const logOut = user => async dispatch => {
-    const { status } = await axios.post("api/auth/logout");
-    if (status === 204) {
-        batch(() => {
-            dispatch({ type: LOG_OUT, payload: null });
-            dispatch(emptyCart());
-        });
+    let errored = false;
+    let payload;
+    try {
+        dispatch(authRequest());
+        const response = await axios.post("api/auth/logout");
+        if (response.status === 204) {
+            batch(() => {
+                dispatch({ type: userTypes.logOutResponse, payload: null });
+                dispatch(emptyCart());
+            });
+        } else {
+            errored = true;
+            payload = new Error(`Couldn't log out: ${response.statusText}`);
+        }
+    } catch (error) {
+        errored = true;
+        payload = error;
     }
+    if (errored)
+        dispatch({ type: userTypes.logOutResponse, payload, error: errored });
 };
 
 export const checkLogIn = () => async dispatch => {
+    dispatch(authRequest());
     const { data: payload } = await axios.get("/api/auth/check");
 
-    dispatch({ type: CHECK_LOG_IN, payload });
+    dispatch({ type: userTypes.checkResponse, payload });
 };

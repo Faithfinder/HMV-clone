@@ -1,12 +1,12 @@
-import { LOG_IN, LOG_OUT, CHECK_LOG_IN } from "../actions/types";
+import { user } from "../../actions/types";
 
 const initialState = null;
 
 export default (state = initialState, { type, payload }) => {
     switch (type) {
-        case LOG_IN:
-        case LOG_OUT:
-        case CHECK_LOG_IN:
+        case user.logInResponse:
+        case user.logOutResponse:
+        case user.checkResponse:
             return payload;
 
         default:

@@ -5,9 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import { logIn, logOut, checkLogIn } from "../../actions";
+import { logIn, logOut, checkLogIn, authRequest } from "../../actions/user";
 
 import Button from "@material-ui/core/Button";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
@@ -21,7 +22,11 @@ const theme = createMuiTheme({
 
 export default () => {
     const dispatch = useDispatch();
-    const [user, socket] = useSelector(state => [state.user, state.socket]);
+    const [user, authRefresh, socket] = useSelector(state => [
+        state.authentication.user,
+        state.authentication.refreshing,
+        state.socket
+    ]);
 
     useEffect(() => {
         dispatch(checkLogIn());
@@ -44,6 +49,7 @@ export default () => {
     };
 
     const startAuth = () => {
+        dispatch(authRequest());
         const popup = openPopup();
         attachOnAuthnticateToSocket(popup);
     };
@@ -59,7 +65,9 @@ export default () => {
         });
     };
 
-    if (user) {
+    if (authRefresh) {
+        return <CircularProgress color="secondary" />;
+    } else if (user) {
         return (
             <ThemeProvider theme={theme}>
                 <Button
