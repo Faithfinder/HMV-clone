@@ -15,6 +15,8 @@ import IconButton from "@material-ui/core/IconButton";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 import Tooltip from "@material-ui/core/Tooltip";
 
+import Image from "material-ui-image";
+
 import { setCartAmount } from "../../actions/shoppingCart";
 
 const useStyles = makeStyles(theme => ({
@@ -41,7 +43,8 @@ const useStyles = makeStyles(theme => ({
         margin: "1em"
     },
     image: {
-        maxWidth: "50px"
+        width: "150px",
+        height: "auto"
     },
     quantityInput: {
         maxWidth: "5em"
@@ -90,12 +93,9 @@ export const CartItem = ({ item }) => {
 
     return (
         <Grid item component={Card} className={classes.card}>
-            <CardMedia
-                component="img"
-                image={item.image}
-                title={item.title}
-                className={classes.image}
-            />
+            <div className={classes.image}>
+                <Image src={item.image} title={item.title} alt={item.title} />
+            </div>
             <div className={classes.details}>
                 <CardContent className={classes.content}>
                     <Typography variant="h6">{item.title}</Typography>
