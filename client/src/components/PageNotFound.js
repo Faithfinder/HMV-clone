@@ -24,13 +24,18 @@ export const PageNotFound = () => {
             </Typography>
             <Divider />
             <Typography variant="body1" className={classes.margin}>
-                Sorry, but it seems the page you were looking for is no longer here. <br />
-                You can start again from <Link to="/">the main page</Link> or
-                return to the{" "}
+                Sorry, but it seems the page you were looking for is no longer
+                here. <br />
+                You can start again from{" "}
+                <Link to="/" color="secondary">
+                    the main page
+                </Link>{" "}
+                or return to the{" "}
                 <UILink
                     component="button"
                     onClick={history.goBack}
-                    variant="body1">
+                    variant="body1"
+                    color="secondary">
                     previous page
                 </UILink>
             </Typography>

@@ -13,7 +13,7 @@ import lime from "@material-ui/core/colors/lime";
 import { PageNotFound } from "./PageNotFound";
 
 const theme = createMuiTheme({
-    palette: { primary: blueGrey, secondary: lime }
+    palette: { primary: blueGrey, secondary: { main: "#7cb342" } }
 });
 
 const App = () => {
