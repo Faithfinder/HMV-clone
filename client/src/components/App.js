@@ -4,13 +4,13 @@ import { Router, Route, Switch } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import blueGrey from "@material-ui/core/colors/blueGrey";
 
-import history from "../history";
-import Navbar from "./navbar/Navbar";
-import { PageNotFound } from "./PageNotFound";
-import PrivateRoute from "./auth/PrivateRoute";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Checkout from "./pages/Checkout";
+import history from "src/history";
+import Navbar from "src/components/navbar/Navbar";
+import { PageNotFound } from "src/components/PageNotFound";
+import PrivateRoute from "src/components/auth/PrivateRoute";
+import Home from "src/components/pages/Home";
+import Login from "src/components/pages/Login";
+import Checkout from "src/components/pages/Checkout";
 
 const theme = createMuiTheme({
     palette: { primary: blueGrey, secondary: { main: "#7cb342" } }

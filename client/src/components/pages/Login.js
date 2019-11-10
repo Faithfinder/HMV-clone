@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-import Facebook from "../auth/Facebook";
+import Facebook from "src/components/auth/Facebook";
 
 const useStyles = makeStyles(theme => ({
     paper: {

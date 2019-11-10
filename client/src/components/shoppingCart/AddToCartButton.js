@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { addToCart } from "../../actions";
+import { addToCart } from "src/actions";
 
 const useStyles = makeStyles(theme => ({
     addToCart: {

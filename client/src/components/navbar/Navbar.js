@@ -4,9 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 
-import Facebook from "../auth/Facebook";
-import ShoppingCartButton from "./ShoppingCartButton";
-import Link from "../common/CombinedLink";
+import Facebook from "src/components/auth/Facebook";
+import ShoppingCartButton from "src/components/navbar/ShoppingCartButton";
+import Link from "src/components/common/CombinedLink";
 
 const useStyles = makeStyles(theme => ({
     space: {

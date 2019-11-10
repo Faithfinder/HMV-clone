@@ -1,5 +1,5 @@
-import { logIn, logOut, checkLogIn } from "./user";
-import { addToCart, checkCart, setCartAmount, emptyCart } from "./shoppingCart";
+import { logIn, logOut, checkLogIn } from "src/actions/user";
+import { addToCart, checkCart, setCartAmount, emptyCart } from "src/actions/shoppingCart";
 
 export {
     logIn,

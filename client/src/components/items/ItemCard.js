@@ -10,7 +10,7 @@ import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import Image from "material-ui-image";
 
-import AddToCartButton from "../shoppingCart/AddToCartButton";
+import AddToCartButton from "src/components/shoppingCart/AddToCartButton";
 
 const useStyles = makeStyles({
     card: {

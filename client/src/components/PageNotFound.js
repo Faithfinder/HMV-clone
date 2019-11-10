@@ -7,7 +7,7 @@ import UILink from "@material-ui/core/Link";
 import Container from "@material-ui/core/Container";
 import Divider from "@material-ui/core/Divider";
 
-import Link from "./common/CombinedLink";
+import Link from "src/components/common/CombinedLink";
 
 const useStyles = makeStyles(theme => ({
     margin: { margin: "1em" }

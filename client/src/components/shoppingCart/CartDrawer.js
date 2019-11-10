@@ -11,9 +11,9 @@ import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import Close from "@material-ui/icons/Close";
 
-import { toggleDrawer } from "./helpers";
-import { useCartContents } from "../../selectors/shoppingCart";
-import { CartItem } from "./CartItem";
+import { toggleDrawer } from "src/components/shoppingCart/helpers";
+import { useCartContents } from "src/selectors/shoppingCart";
+import { CartItem } from "src/components/shoppingCart/CartItem";
 
 const useStyles = makeStyles(theme => ({
     drawerHeading: {

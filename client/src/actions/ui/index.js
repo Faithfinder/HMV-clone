@@ -1,3 +1,3 @@
-import { toggleCartDrawer } from "./toggleCartDrawer";
+import { toggleCartDrawer } from "src/actions/ui/toggleCartDrawer";
 
 export { toggleCartDrawer };

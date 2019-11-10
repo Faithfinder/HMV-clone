@@ -1,4 +1,4 @@
-import { cart } from "../../actions/types";
+import { cart } from "src/actions/types";
 
 export default (state = true, { type }) => {
     switch (type) {

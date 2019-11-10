@@ -5,9 +5,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
-import { fetchItems } from "../../actions/items";
-import { useItemsByCategory } from "../../selectors/items";
-import ItemCard from "./ItemCard";
+import { fetchItems } from "src/actions/items";
+import { useItemsByCategory } from "src/selectors/items";
+import ItemCard from "src/components/items/ItemCard";
 
 const useStyles = makeStyles(theme => ({
     title: {

@@ -1,4 +1,4 @@
-import { user } from "../../actions/types";
+import { user } from "src/actions/types";
 
 export default (state = true, { type }) => {
     switch (type) {

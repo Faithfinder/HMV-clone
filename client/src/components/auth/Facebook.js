@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import { logIn, logOut, checkLogIn, authRequest } from "../../actions/user";
+import { logIn, logOut, checkLogIn, authRequest } from "src/actions/user";
 
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";

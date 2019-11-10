@@ -1,4 +1,4 @@
 import { combineReducers } from "redux";
-import cartDrawerOpen from "./cartDrawerOpen";
+import cartDrawerOpen from "src/reducers/ui/cartDrawerOpen";
 
 export default combineReducers({ cartDrawerOpen });

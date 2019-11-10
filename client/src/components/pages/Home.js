@@ -2,8 +2,8 @@ import React from "react";
 
 import Container from "@material-ui/core/Container";
 
-import FeaturedItems from "../items/FeaturedItems";
-import { ItemsByCategory } from "../items/ItemsByCategory";
+import FeaturedItems from "src/components/items/FeaturedItems";
+import { ItemsByCategory } from "src/components/items/ItemsByCategory";
 
 export default () => {
     return (

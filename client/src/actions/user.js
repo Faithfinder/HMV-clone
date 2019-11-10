@@ -1,5 +1,5 @@
-import { user as userTypes } from "./types";
-import { emptyCart } from "./shoppingCart";
+import { user as userTypes } from "src/actions/types";
+import { emptyCart } from "src/actions/shoppingCart";
 import axios from "axios";
 import { batch } from "react-redux";
 

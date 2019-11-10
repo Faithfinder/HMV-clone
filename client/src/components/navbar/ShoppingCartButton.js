@@ -6,10 +6,10 @@ import Badge from "@material-ui/core/Badge";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 
-import { checkCart } from "../../actions";
-import { useCartCount } from "../../selectors/shoppingCart";
-import { CartDrawer } from "../shoppingCart/CartDrawer";
-import { toggleDrawer } from "../shoppingCart/helpers";
+import { checkCart } from "src/actions";
+import { useCartCount } from "src/selectors/shoppingCart";
+import { CartDrawer } from "src/components/shoppingCart/CartDrawer";
+import { toggleDrawer } from "src/components/shoppingCart/helpers";
 
 export default () => {
     const dispatch = useDispatch();

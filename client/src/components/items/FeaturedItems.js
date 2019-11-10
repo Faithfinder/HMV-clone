@@ -16,10 +16,10 @@ import Image from "material-ui-image";
 
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 
-import { fetchFeatured } from "../../actions/items";
-import { useFeaturedItems } from "../../selectors/items";
+import { fetchFeatured } from "src/actions/items";
+import { useFeaturedItems } from "src/selectors/items";
 
-import AddToCartButton from "../shoppingCart/AddToCartButton";
+import AddToCartButton from "src/components/shoppingCart/AddToCartButton";
 
 const useStyles = makeStyles(theme => ({
     wrapper: {
