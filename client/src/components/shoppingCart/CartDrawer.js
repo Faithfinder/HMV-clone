@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -27,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 export const CartDrawer = () => {
     const classes = useStyles();
     const [drawerOpen] = useSelector(({ ui }) => [ui.cartDrawerOpen]);
+    const history = useHistory();
 
     const cartContents = useCartContents();
 
@@ -35,6 +37,11 @@ export const CartDrawer = () => {
             (result += currentItem.price * currentItem.amount),
         0
     );
+
+    const proceedToCheckoutHandler = () => {
+        history.push("/checkout");
+        toggleDrawer(false)();
+    };
 
     return (
         <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
@@ -62,7 +69,8 @@ export const CartDrawer = () => {
                 className={classes.margin}
                 color="primary"
                 variant="contained"
-                disabled={!cartContents.length}>
+                disabled={!cartContents.length}
+                onClick={proceedToCheckoutHandler}>
                 Proceed to checkout
             </Button>
         </Drawer>

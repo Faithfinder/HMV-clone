@@ -27,7 +27,7 @@ export default () => {
         redirectTo = location.state.redirectTo || "/";
     }
 
-    const [isAuthenticated, authRefresh] = useSelector(({ authentication }) => [
+    const [isAuthenticated] = useSelector(({ authentication }) => [
         authentication.user,
         authentication.refreshing
     ]);
@@ -46,8 +46,8 @@ export default () => {
                         variant="subtitle1"
                         color="textSecondary"
                         align="center">
-                        There is no need to register separately, we'll just get your email
-                        from Facebook
+                        There is no need to register separately, we'll just get
+                        your email from Facebook
                     </Typography>
                 </div>
 

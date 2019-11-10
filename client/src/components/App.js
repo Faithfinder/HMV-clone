@@ -10,6 +10,7 @@ import { PageNotFound } from "./PageNotFound";
 import PrivateRoute from "./auth/PrivateRoute";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Checkout from "./pages/Checkout";
 
 const theme = createMuiTheme({
     palette: { primary: blueGrey, secondary: { main: "#7cb342" } }
@@ -21,6 +22,9 @@ const App = () => {
             <ThemeProvider theme={theme}>
                 <Navbar />
                 <Switch>
+                    <Route path="/checkout" exact>
+                        <Checkout />
+                    </Route>
                     <Route path="/login" exact>
                         <Login />
                     </Route>
