@@ -7,23 +7,25 @@ import Typography from "@material-ui/core/Typography";
 
 import Facebook from "../auth/Facebook";
 import ShoppingCartButton from "./ShoppingCartButton";
+import Link from "../common/CombinedLink";
 
 const useStyles = makeStyles(theme => ({
-    title: {
-        flexGrow: 1
+    space: {
+        flex: 1
     }
 }));
 
 export default () => {
     const classes = useStyles();
+
     return (
         <AppBar position="static" color="primary">
             <Toolbar>
-                <Typography variant="h6" className={classes.title}>
+                <Link variant="h6" to="/" color="inherit" underline="none">
                     Media Store Prototype
-                </Typography>
+                </Link>
+                <div className={classes.space} />
                 <Facebook />
-
                 <ShoppingCartButton />
             </Toolbar>
         </AppBar>
