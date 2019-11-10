@@ -1,11 +1,16 @@
 export const LOG_IN = "LOG_IN",
     LOG_OUT = "LOG_OUT",
-    CHECK_LOG_IN = "CHECK_LOG_IN",
-    CART_SET_REQUEST = "CART_SET_REQUEST",
-    CART_SET_RESPONSE = "CART_SET_RESPONSE",
-    CART_CHECK_REQUEST = "CART_CHECK_REQUEST",
-    CART_CHECK_RESPONSE = "CART_CHECK_RESPONSE",
-    CART_EMPTY = "CART_EMPTY",
-    ITEMS_FETCH_REQUEST = "ITEMS_FETCH_REQUEST",
-    ITEMS_FETCH_RESPONSE = "ITEMS_FETCH_RESPONSE",
-    TOGGLE_CART_DRAWER = "TOGGLE_CART_DRAWER";
+    CHECK_LOG_IN = "CHECK_LOG_IN";
+
+export const cart = {
+        setRequest: "CART_SET_REQUEST",
+        setResponse: "CART_SET_RESPONSE",
+        checkRequest: "CART_CHECK_REQUEST",
+        checkResponse: "CART_CHECK_RESPONSE",
+        empty: "CART_EMPTY",
+        toggleDrawer: "TOGGLE_CART_DRAWER"
+    },
+    items = {
+        fetchRequest: "ITEMS_FETCH_REQUEST",
+        fetchResponse: "ITEMS_FETCH_RESPONSE"
+    };

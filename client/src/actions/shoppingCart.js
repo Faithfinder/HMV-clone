@@ -1,12 +1,4 @@
-import {
-    CART_SET_REQUEST,
-    CART_SET_RESPONSE,
-    CART_CHECK_REQUEST,
-    CART_CHECK_RESPONSE,
-    CART_EMPTY,
-    ITEMS_FETCH_REQUEST,
-    ITEMS_FETCH_RESPONSE
-} from "./types";
+import { cart, items } from "./types";
 import axios from "axios";
 import { batch } from "react-redux";
 
@@ -44,7 +36,7 @@ async function setCartOnServer(dispatch, updatedCart) {
     let errored = false;
     let payload;
     try {
-        dispatch({ type: CART_SET_REQUEST });
+        dispatch({ type: cart.setRequest });
         const response = await axios.put("/api/cart", { cart: updatedCart });
         if (response.status === 200) {
             payload = response.data;
@@ -58,7 +50,7 @@ async function setCartOnServer(dispatch, updatedCart) {
         errored = true;
         payload = error;
     }
-    dispatch({ type: CART_SET_RESPONSE, payload, error: errored });
+    dispatch({ type: cart.setResponse, payload, error: errored });
 }
 
 export const checkCart = () => async dispatch => {
@@ -67,8 +59,8 @@ export const checkCart = () => async dispatch => {
     let itemsPayload;
     try {
         batch(() => {
-            dispatch({ type: CART_CHECK_REQUEST });
-            dispatch({ type: ITEMS_FETCH_REQUEST });
+            dispatch({ type: cart.checkRequest });
+            dispatch({ type: items.fetchRequest });
         });
 
         const response = await axios.get("/api/cart");
@@ -89,12 +81,12 @@ export const checkCart = () => async dispatch => {
         cartPayload = error;
     }
     dispatch({
-        type: ITEMS_FETCH_RESPONSE,
+        type: items.fetchResponse,
         payload: itemsPayload,
         error: errored
     });
     dispatch({
-        type: CART_CHECK_RESPONSE,
+        type: cart.checkResponse,
         payload: cartPayload,
         error: errored
     });
@@ -102,6 +94,6 @@ export const checkCart = () => async dispatch => {
 
 export const emptyCart = () => {
     return {
-        type: CART_EMPTY
+        type: cart.empty
     };
 };

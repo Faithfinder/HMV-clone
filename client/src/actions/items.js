@@ -1,11 +1,11 @@
-import { ITEMS_FETCH_REQUEST, ITEMS_FETCH_RESPONSE } from "./types";
+import { items } from "./types";
 import axios from "axios";
 
 export const fetchItems = filter => async dispatch => {
     let errored = false;
     let payload;
     try {
-        dispatch({ type: ITEMS_FETCH_REQUEST });
+        dispatch({ type: items.fetchRequest });
         const response = await axios.get("/api/items", {
             params: filter
         });
@@ -19,14 +19,14 @@ export const fetchItems = filter => async dispatch => {
         errored = true;
         payload = error;
     }
-    dispatch({ type: ITEMS_FETCH_RESPONSE, payload, error: errored });
+    dispatch({ type: items.fetchResponse, payload, error: errored });
 };
 
 export const fetchFeatured = () => async dispatch => {
     let errored = false;
     let payload;
     try {
-        dispatch({ type: ITEMS_FETCH_REQUEST });
+        dispatch({ type: items.fetchRequest });
         const response = await axios.get("/api/items/featured");
         if (response.status === 200) {
             payload = response.data;
@@ -40,5 +40,5 @@ export const fetchFeatured = () => async dispatch => {
         errored = true;
         payload = error;
     }
-    dispatch({ type: ITEMS_FETCH_RESPONSE, payload, error: errored });
+    dispatch({ type: items.fetchResponse, payload, error: errored });
 };

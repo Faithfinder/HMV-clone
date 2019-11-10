@@ -1,10 +1,10 @@
-import { ITEMS_FETCH_REQUEST, ITEMS_FETCH_RESPONSE } from "../actions/types";
+import { items } from "../actions/types";
 
 const initialState = {};
 
 export default (state = initialState, { type, payload }) => {
     switch (type) {
-        case ITEMS_FETCH_RESPONSE:
+        case items.fetchResponse:
             const newState = { ...state };
             payload.forEach(element => {
                 newState[element._id] = element;

@@ -1,8 +1,8 @@
-import { TOGGLE_CART_DRAWER } from "../types";
+import { cart } from "../types";
 
 export const toggleCartDrawer = drawerOpen => {
     return {
-        type: TOGGLE_CART_DRAWER,
+        type: cart.toggleDrawer,
         payload: drawerOpen
     };
 };

@@ -1,18 +1,14 @@
-import {
-    CART_SET_RESPONSE,
-    CART_CHECK_RESPONSE,
-    CART_EMPTY
-} from "../../actions/types";
+import { cart } from "../../actions/types";
 
 export default (state = {}, { type, payload, error }) => {
     switch (type) {
-        case CART_SET_RESPONSE:
-        case CART_CHECK_RESPONSE:
+        case cart.setResponse:
+        case cart.checkResponse:
             if (!error) {
                 return payload;
             }
             return state;
-        case CART_EMPTY:
+        case cart.empty:
             return {};
         default:
             return state;
