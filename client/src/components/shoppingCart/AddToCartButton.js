@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -18,13 +18,19 @@ const AddToCartButton = ({ item }) => {
     const handler = () => {
         dispatch(addToCart(item._id));
     };
+
+    const [refreshing] = useSelector(({ shoppingCart }) => [
+        shoppingCart.refreshing
+    ]);
+
     return (
         <Button
             variant="contained"
             color="primary"
             size="small"
             className={classes.addToCart}
-            onClick={handler}>
+            onClick={handler}
+            disabled={refreshing}>
             Add to cart
         </Button>
     );
