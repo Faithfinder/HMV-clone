@@ -10,6 +10,7 @@ import { ItemsByCategory } from "./items/ItemsByCategory";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import blueGrey from "@material-ui/core/colors/blueGrey";
 import lime from "@material-ui/core/colors/lime";
+import { PageNotFound } from "./PageNotFound";
 
 const theme = createMuiTheme({
     palette: { primary: blueGrey, secondary: lime }
@@ -20,12 +21,19 @@ const App = () => {
         <Router history={history}>
             <ThemeProvider theme={theme}>
                 <Navbar />
-                <FeaturedItems />
-                <Container>
-                    <ItemsByCategory category="Music" />
-                    <ItemsByCategory category="Video" />
-                    <ItemsByCategory category="Games" />
-                </Container>
+                <Switch>
+                    <Route path="/" exact>
+                        <FeaturedItems />
+                        <Container>
+                            <ItemsByCategory category="Music" />
+                            <ItemsByCategory category="Video" />
+                            <ItemsByCategory category="Games" />
+                        </Container>
+                    </Route>
+                    <Route>
+                        <PageNotFound />
+                    </Route>
+                </Switch>
             </ThemeProvider>
         </Router>
     );
