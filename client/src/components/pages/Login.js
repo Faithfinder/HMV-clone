@@ -21,11 +21,8 @@ const useStyles = makeStyles(theme => ({
 
 export default () => {
     const classes = useStyles();
-    const location = useLocation();
-    let redirectTo;
-    if (location.state) {
-        redirectTo = location.state.redirectTo || "/";
-    }
+    const { state: locationState = {} } = useLocation();
+    const { redirectTo = "/", redirectedProps } = locationState;
 
     const [isAuthenticated] = useSelector(({ authentication }) => [
         authentication.user,
@@ -33,7 +30,7 @@ export default () => {
     ]);
 
     if (isAuthenticated) {
-        return <Redirect to={redirectTo} />;
+        return <Redirect to={{ to: redirectTo, state: { redirectedProps } }} />;
     }
     return (
         <Container>

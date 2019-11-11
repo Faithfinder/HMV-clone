@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-export default ({ children, ...props }) => {
+export default ({ children, path, ...props }) => {
     const [isAuthenticated, authRefresh] = useSelector(({ authentication }) => [
         authentication.user,
         authentication.refreshing
@@ -15,7 +15,7 @@ export default ({ children, ...props }) => {
     } else if (!isAuthenticated) {
         return (
             <Redirect
-                to={{ pathname: "/login", state: { redirectTo: props.path } }}
+                to={{ pathname: "/login", state: { redirectTo: path, redirectedProps: props } }}
             />
         );
     }
