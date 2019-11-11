@@ -30,7 +30,7 @@ export default () => {
     ]);
 
     if (isAuthenticated) {
-        return <Redirect to={{ to: redirectTo, state: { redirectedProps } }} />;
+        return <Redirect to={{ pathname: redirectTo, state: { redirectedProps } }} />;
     }
     return (
         <Container>
