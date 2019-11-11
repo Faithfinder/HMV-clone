@@ -13,6 +13,7 @@ import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 import IconButton from "@material-ui/core/IconButton";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 import Tooltip from "@material-ui/core/Tooltip";
+import Hidden from "@material-ui/core/Hidden";
 
 import Image from "material-ui-image";
 
@@ -43,7 +44,8 @@ const useStyles = makeStyles(theme => ({
     },
     image: {
         width: "150px",
-        height: "auto"
+        height: "auto",
+        minWidth: "150px"
     },
     quantityInput: {
         maxWidth: "5em"
@@ -92,12 +94,20 @@ export const CartItem = ({ item }) => {
 
     return (
         <Grid item component={Card} className={classes.card}>
-            <div className={classes.image}>
-                <Image src={item.image} title={item.title} alt={item.title} />
-            </div>
+            <Hidden smDown>
+                <div className={classes.image}>
+                    <Image
+                        src={item.image}
+                        title={item.title}
+                        alt={item.title}
+                    />
+                </div>
+            </Hidden>
             <div className={classes.details}>
                 <CardContent className={classes.content}>
-                    <Typography variant="h6">{item.title}</Typography>
+                    <Typography variant="h6" noWrap>
+                        {item.title}
+                    </Typography>
                     <div className={classes.cardItemDetails}>
                         <TextField
                             label="Quantity"
