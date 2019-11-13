@@ -1,4 +1,4 @@
-import { items } from "src/actions/types";
+import { items } from "src/types/actions";
 import axios from "axios";
 
 export const fetchItems = filter => async dispatch => {

@@ -1,4 +1,4 @@
-import { cart } from "src/actions/types";
+import { cart } from "src/types/actions";
 
 const initialState = false;
 

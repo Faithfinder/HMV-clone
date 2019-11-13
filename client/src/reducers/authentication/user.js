@@ -1,4 +1,4 @@
-import { user } from "src/actions/types";
+import { user } from "src/types/actions";
 
 const initialState = null;
 

@@ -1,4 +1,4 @@
-import { items } from "src/actions/types";
+import { items } from "src/types/actions";
 
 const initialState = {};
 
