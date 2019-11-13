@@ -17,10 +17,8 @@ const orderSchema = new mongoose.Schema({
             amount: { type: Number, default: 1, min: 1 }
         }
     ],
-    user: {
-        id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-        email: { type: String }
-    },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    email: { type: String },
     total: { type: Number, default: 0 },
     fulfilled: { type: Boolean, default: false },
     labels: [{ type: String }]

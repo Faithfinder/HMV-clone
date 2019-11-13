@@ -29,10 +29,8 @@ module.exports = [
     {
         number: faker.random.number(),
         items: reviewdItems,
-        user: {
-            id: getObjectId("User1"),
-            email: faker.internet.email()
-        },
+        user: getObjectId("User1"),
+        email: faker.internet.email(),
         total: reviewedTotal,
         fulfilled: false,
         labels: []
@@ -40,10 +38,8 @@ module.exports = [
     {
         number: faker.random.number(),
         items: bundledItems,
-        user: {
-            id: getObjectId("User1"),
-            email: faker.internet.email()
-        },
+        user: getObjectId("User1"),
+        email: faker.internet.email(),
         total: bundledTotal,
         fulfilled: true,
         labels: ["tagged"]
