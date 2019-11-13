@@ -1,4 +1,4 @@
-import { cart } from "src/types/actions";
+import { cart } from "src/types/state/actions";
 
 export const toggleCartDrawer = drawerOpen => {
     return {

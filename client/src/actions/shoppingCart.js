@@ -1,4 +1,4 @@
-import { cart, items } from "src/types/actions";
+import { cart, items } from "src/types/state/actions";
 import axios from "axios";
 import { batch } from "react-redux";
 
