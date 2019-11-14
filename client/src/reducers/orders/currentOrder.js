@@ -1,19 +1,17 @@
+import produce from "immer";
+import store from "src/store";
+
 import { orders } from "src/types/state/actions";
 import Order from "src/types/state/Order";
 
 const initialState = new Order();
 
-export default (state = initialState, { type, payload, error }) => {
+export default produce((draft, { type, payload, error }) => {
     switch (type) {
-        // case cart.setResponse:
-        // case cart.checkResponse:
-        //     if (!error) {
-        //         return payload;
-        //     }
-        //     return state;
-        // case cart.empty:
-        //     return {};
+        case orders.setCurrentOrderItems:
+            draft.items = payload;
+            return;
         default:
-            return state;
+            return draft;
     }
-};
+}, initialState);

@@ -19,12 +19,16 @@ export default () => {
         setActiveStep(currentStep);
     }, [currentStep]);
 
+    const incrementStep = () => {
+        setActiveStep(activeStep + 1);
+    };
+
     const renderActiveStep = () => {
         switch (activeStep) {
             case 0:
-                return <ChangeCartStep />;
+                return <ChangeCartStep incrementStep={incrementStep} />;
             case 1:
-                return <EnterCustomerDataStep />;
+                return <EnterCustomerDataStep currentStep={activeStep} />;
             case 2:
                 return "Finished!";
             default:
@@ -47,14 +51,11 @@ export default () => {
             </Stepper>
             <Button
                 onClick={() => setActiveStep(activeStep - 1)}
-                disabled={activeStep === 0}>
+                disabled={activeStep === 0}
+            >
                 Previous
             </Button>
-            <Button
-                onClick={() => setActiveStep(activeStep + 1)}
-                disabled={activeStep === 2}>
-                Next
-            </Button>
+            
             {renderActiveStep()}
         </Container>
     );

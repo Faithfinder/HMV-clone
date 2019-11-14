@@ -15,4 +15,6 @@ export const cart = {
         logOutResponse: "LOG_OUT_RESPONSE",
         checkResponse: "AUTH_CHECK_RESPONSE"
     },
-    orders = {};
+    orders = {
+        setCurrentOrderItems: "SET_CURRENT_ORDER_ITEMS"
+    };
