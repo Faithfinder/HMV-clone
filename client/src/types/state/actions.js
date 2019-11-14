@@ -16,5 +16,6 @@ export const cart = {
         checkResponse: "AUTH_CHECK_RESPONSE"
     },
     orders = {
-        setCurrentOrderItems: "SET_CURRENT_ORDER_ITEMS"
+        setCurrentOrderItems: "SET_CURRENT_ORDER_ITEMS",
+        setCurrentOrderEmail: "SET_CURRENT_ORDER_EMAIL"
     };

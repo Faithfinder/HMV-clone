@@ -11,6 +11,9 @@ export default produce((draft, { type, payload, error }) => {
         case orders.setCurrentOrderItems:
             draft.items = payload;
             return;
+        case orders.setCurrentOrderEmail:
+            draft.email = payload;
+            return;
         default:
             return draft;
     }

@@ -8,3 +8,10 @@ export const setCurrentOrderItems = () => {
         payload: currentCart
     };
 };
+
+export const setCurrentOrderEmail = email => {
+    return {
+        type: orders.setCurrentOrderEmail,
+        payload: email
+    };
+};
