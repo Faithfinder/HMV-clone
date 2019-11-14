@@ -1,4 +1,4 @@
-import { cart } from "src/types/state/actions";
+import { cart, user } from "src/types/state/actions";
 
 export default (state = {}, { type, payload, error }) => {
     switch (type) {
@@ -8,7 +8,7 @@ export default (state = {}, { type, payload, error }) => {
                 return payload;
             }
             return state;
-        case cart.empty:
+        case user.logOutResponse:
             return {};
         default:
             return state;

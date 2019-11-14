@@ -1,7 +1,5 @@
 import { user as userTypes } from "src/types/state/actions";
-import { emptyCart } from "src/actions/shoppingCart";
 import axios from "axios";
-import { batch } from "react-redux";
 
 export const authRequest = () => {
     return {
@@ -18,10 +16,7 @@ export const logOut = user => async dispatch => {
         dispatch(authRequest());
         const response = await axios.post("api/auth/logout");
         if (response.status === 204) {
-            batch(() => {
-                dispatch({ type: userTypes.logOutResponse, payload: null });
-                dispatch(emptyCart());
-            });
+            dispatch({ type: userTypes.logOutResponse, payload: null });
         } else {
             errored = true;
             payload = new Error(`Couldn't log out: ${response.statusText}`);

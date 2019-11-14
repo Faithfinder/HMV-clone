@@ -3,7 +3,6 @@ export const cart = {
         setResponse: "CART_SET_RESPONSE",
         checkRequest: "CART_CHECK_REQUEST",
         checkResponse: "CART_CHECK_RESPONSE",
-        empty: "CART_EMPTY",
         toggleDrawer: "TOGGLE_CART_DRAWER"
     },
     items = {
