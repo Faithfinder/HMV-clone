@@ -1,17 +1,17 @@
 import { items } from "src/types/state/actions";
 
+import produce from "immer";
+
 const initialState = {};
 
-export default (state = initialState, { type, payload }) => {
+export default produce((draft, { type, payload }) => {
     switch (type) {
         case items.fetchResponse:
-            const newState = { ...state };
             payload.forEach(element => {
-                newState[element._id] = element;
+                draft[element._id] = element;
             });
-            return newState;
-
+            return;
         default:
-            return state;
+            return draft;
     }
-};
+}, initialState);
