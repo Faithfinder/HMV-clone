@@ -23,12 +23,13 @@ const useStyles = makeStyles(theme => ({
     card: {
         display: "flex",
         margin: "5px",
-        minWidth: "400px"
+        minWidth: "400px",
+        minHeight: "fit-content"
     },
     content: {
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-betwwen",
+        justifyContent: "space-between",
         paddingTop: 0
     },
     details: {
