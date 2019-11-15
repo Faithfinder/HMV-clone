@@ -1,8 +1,8 @@
 class Order {
     number = undefined;
     items = [];
-    user = undefined;
-    email = undefined;
+    user = "";
+    email = "";
     total = 0;
     fulfilled = false;
     labels = [];

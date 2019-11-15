@@ -5,10 +5,10 @@ import Container from "@material-ui/core/Container";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
-import Button from "@material-ui/core/Button";
 
 import ChangeCartStep from "src/components/checkout/ChangeCartStep";
 import EnterCustomerDataStep from "../checkout/EnterCustomerDataStep";
+import StepButtons from "src/components/checkout/StepButtons";
 
 export default () => {
     const [activeStep, setActiveStep] = useState(0);
@@ -23,14 +23,29 @@ export default () => {
         setActiveStep(activeStep + 1);
     };
 
+    const decrementStep = () => {
+        setActiveStep(activeStep - 1);
+    };
+
     const renderActiveStep = () => {
         switch (activeStep) {
             case 0:
                 return <ChangeCartStep incrementStep={incrementStep} />;
             case 1:
-                return <EnterCustomerDataStep currentStep={activeStep} />;
+                return (
+                    <EnterCustomerDataStep
+                        currentStep={activeStep}
+                        incrementStep={incrementStep}
+                        decrementStep={decrementStep}
+                    />
+                );
             case 2:
-                return "Finished!";
+                return (
+                    <StepButtons
+                        previousHandler={decrementStep}
+                        proceedHandler={incrementStep}
+                    />
+                );
             default:
                 break;
         }
@@ -43,19 +58,13 @@ export default () => {
                     <StepLabel>Checkout</StepLabel>
                 </Step>
                 <Step>
-                    <StepLabel>Client data</StepLabel>
+                    <StepLabel>Customer data</StepLabel>
                 </Step>
                 <Step>
                     <StepLabel>Review</StepLabel>
                 </Step>
             </Stepper>
-            <Button
-                onClick={() => setActiveStep(activeStep - 1)}
-                disabled={activeStep === 0}
-            >
-                Previous
-            </Button>
-            
+
             {renderActiveStep()}
         </Container>
     );
