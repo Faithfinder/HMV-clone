@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import UILink from "@material-ui/core/Link";
-import Container from "@material-ui/core/Container";
 import Divider from "@material-ui/core/Divider";
 
 import Link from "src/components/common/CombinedLink";
@@ -18,7 +17,7 @@ export const PageNotFound = () => {
     const history = useHistory();
 
     return (
-        <Container>
+        <>
             <Typography variant="h3" className={classes.margin}>
                 404: Page Not Found
             </Typography>
@@ -35,10 +34,11 @@ export const PageNotFound = () => {
                     component="button"
                     onClick={history.goBack}
                     variant="body1"
-                    color="secondary">
+                    color="secondary"
+                >
                     previous page
                 </UILink>
             </Typography>
-        </Container>
+        </>
     );
 };

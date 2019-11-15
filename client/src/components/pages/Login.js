@@ -3,7 +3,6 @@ import { useLocation, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Facebook from "src/components/auth/Facebook";
@@ -30,26 +29,29 @@ export default () => {
     ]);
 
     if (isAuthenticated) {
-        return <Redirect to={{ pathname: redirectTo, state: { redirectedProps } }} />;
+        return (
+            <Redirect
+                to={{ pathname: redirectTo, state: { redirectedProps } }}
+            />
+        );
     }
     return (
-        <Container>
-            <Paper className={classes.paper}>
-                <div>
-                    <Typography variant="h3" align="center">
-                        Please log in below
-                    </Typography>
-                    <Typography
-                        variant="subtitle1"
-                        color="textSecondary"
-                        align="center">
-                        There is no need to register separately, we'll just get
-                        your email from Facebook
-                    </Typography>
-                </div>
+        <Paper className={classes.paper}>
+            <div>
+                <Typography variant="h3" align="center">
+                    Please log in below
+                </Typography>
+                <Typography
+                    variant="subtitle1"
+                    color="textSecondary"
+                    align="center"
+                >
+                    There is no need to register separately, we'll just get your
+                    email from Facebook
+                </Typography>
+            </div>
 
-                <Facebook />
-            </Paper>
-        </Container>
+            <Facebook />
+        </Paper>
     );
 };

@@ -3,6 +3,7 @@ import { Router, Route, Switch } from "react-router-dom";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import blueGrey from "@material-ui/core/colors/blueGrey";
+import Container from "@material-ui/core/Container";
 
 import history from "src/history";
 import Navbar from "src/components/navbar/Navbar";
@@ -21,21 +22,23 @@ const App = () => {
         <Router history={history}>
             <ThemeProvider theme={theme}>
                 <Navbar />
-                <Switch>
-                    <Route path="/checkout" exact>
-                        <Checkout />
-                    </Route>
-                    <Route path="/login" exact>
-                        <Login />
-                    </Route>
-                    <Route path="/" exact>
-                        <Home />
-                    </Route>
+                <Container>
+                    <Switch>
+                        <Route path="/checkout" exact>
+                            <Checkout />
+                        </Route>
+                        <Route path="/login" exact>
+                            <Login />
+                        </Route>
+                        <Route path="/" exact>
+                            <Home />
+                        </Route>
 
-                    <Route>
-                        <PageNotFound />
-                    </Route>
-                </Switch>
+                        <Route>
+                            <PageNotFound />
+                        </Route>
+                    </Switch>
+                </Container>
             </ThemeProvider>
         </Router>
     );
