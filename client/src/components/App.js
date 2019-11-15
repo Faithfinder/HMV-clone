@@ -1,9 +1,14 @@
 import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import {
+    createMuiTheme,
+    ThemeProvider,
+    makeStyles
+} from "@material-ui/core/styles";
 import blueGrey from "@material-ui/core/colors/blueGrey";
 import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
 
 import history from "src/history";
 import Navbar from "src/components/navbar/Navbar";
@@ -17,12 +22,20 @@ const theme = createMuiTheme({
     palette: { primary: blueGrey, secondary: { main: "#7cb342" } }
 });
 
+const useStyles = makeStyles(() => ({
+    mainContent: {
+        flex: "1 0 auto"
+    }
+}));
+
 const App = () => {
+    const classes = useStyles();
+
     return (
         <Router history={history}>
             <ThemeProvider theme={theme}>
                 <Navbar />
-                <Container>
+                <Container className={classes.mainContent}>
                     <Switch>
                         <Route path="/checkout" exact>
                             <Checkout />
