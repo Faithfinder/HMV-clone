@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         margin: "5px",
         minWidth: "400px",
-        minHeight: "fit-content"
+        flex: "0 0 auto"
     },
     content: {
         display: "flex",
