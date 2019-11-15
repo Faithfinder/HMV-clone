@@ -96,55 +96,56 @@ const FeaturedItems = () => {
             naturalSlideWidth={16}
             naturalSlideHeight={4}
             totalSlides={featuredItems.length}
-            infinite>
-            <div className={classes.wrapper}>
-                <Slider>
-                    {featuredItems.map((item, index) => {
-                        return (
-                            <Slide key={item._id} index={index}>
-                                <Image
-                                    src={item.featured.image}
-                                    alt={item.title}
-                                    aspectRatio={4 / 1}
-                                />
-                                <div className={classes.caption}>
-                                    <Typography
-                                        variant="subtitle1"
-                                        gutterBottom>
-                                        {item.title}
-                                    </Typography>
-                                    <Typography
-                                        variant="caption"
-                                        display="block"
-                                        gutterBottom>
-                                        {item.featured.caption}
-                                    </Typography>
-                                    <AddToCartButton item={item} />
-                                </div>
-                            </Slide>
-                        );
-                    })}
-                </Slider>
-
-                <ButtonBack
-                    className={classes.backButton + " " + classes.navButton}>
-                    <ArrowBackIos />
-                </ButtonBack>
-                <ButtonNext
-                    className={classes.nextButton + " " + classes.navButton}>
-                    <ArrowForwardIos />
-                </ButtonNext>
-                <div className={classes.dots}>
-                    {featuredItems.map((item, index) => {
-                        return (
-                            <Dot
-                                key={item._id}
-                                slide={index}
-                                className={classes.dot}
+            infinite
+            className={classes.wrapper}
+        >
+            <Slider>
+                {featuredItems.map((item, index) => {
+                    return (
+                        <Slide key={item._id} index={index}>
+                            <Image
+                                src={item.featured.image}
+                                alt={item.title}
+                                aspectRatio={4 / 1}
                             />
-                        );
-                    })}
-                </div>
+                            <div className={classes.caption}>
+                                <Typography variant="subtitle1" gutterBottom>
+                                    {item.title}
+                                </Typography>
+                                <Typography
+                                    variant="caption"
+                                    display="block"
+                                    gutterBottom
+                                >
+                                    {item.featured.caption}
+                                </Typography>
+                                <AddToCartButton item={item} />
+                            </div>
+                        </Slide>
+                    );
+                })}
+            </Slider>
+
+            <ButtonBack
+                className={classes.backButton + " " + classes.navButton}
+            >
+                <ArrowBackIos />
+            </ButtonBack>
+            <ButtonNext
+                className={classes.nextButton + " " + classes.navButton}
+            >
+                <ArrowForwardIos />
+            </ButtonNext>
+            <div className={classes.dots}>
+                {featuredItems.map((item, index) => {
+                    return (
+                        <Dot
+                            key={item._id}
+                            slide={index}
+                            className={classes.dot}
+                        />
+                    );
+                })}
             </div>
         </CarouselProvider>
     );
