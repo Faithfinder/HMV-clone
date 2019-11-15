@@ -11,10 +11,18 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const StepButtons = ({ proceedHandler, previousHandler }) => {
+const StepButtons = ({
+    proceedHandler,
+    previousHandler,
+    proceedLabel = "Proceed"
+}) => {
     const classes = useStyles();
     return (
-        <Grid container justify="space-around" className={classes.buttonWrapper}>
+        <Grid
+            container
+            justify="space-around"
+            className={classes.buttonWrapper}
+        >
             <Button
                 variant="outlined"
                 onClick={previousHandler}
@@ -22,8 +30,8 @@ const StepButtons = ({ proceedHandler, previousHandler }) => {
             >
                 Back
             </Button>
-            <Button variant="outlined" onClick={proceedHandler}>
-                Proceed
+            <Button variant="outlined" onClick={proceedHandler} color="secondary">
+                {proceedLabel}
             </Button>
         </Grid>
     );
