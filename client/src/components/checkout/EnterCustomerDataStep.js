@@ -49,7 +49,7 @@ export default ({ currentStep, incrementStep, decrementStep }) => {
                         component="div"
                         className={classes.margin}
                     >
-                        Customer data
+                        Enter your data
                     </Typography>
                     <TextField
                         label="E-mail"
