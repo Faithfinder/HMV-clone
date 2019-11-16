@@ -1,44 +1,26 @@
+import { createAction } from "redux-actions";
+
 import { items } from "src/types/state/actions";
-import axios from "axios";
+import backend from "src/services/backend/items";
 
 export const fetchItems = filter => async dispatch => {
-    let errored = false;
     let payload;
+    dispatch({ type: items.fetchRequest });
     try {
-        dispatch({ type: items.fetchRequest });
-        const response = await axios.get("/api/items", {
-            params: filter
-        });
-        if (response.status === 200) {
-            payload = response.data;
-        } else {
-            errored = true;
-            payload = new Error(`Couldn't fetch items: ${response.statusText}`);
-        }
+        payload = await backend.fetchFiltered(filter);
     } catch (error) {
-        errored = true;
         payload = error;
     }
-    dispatch({ type: items.fetchResponse, payload, error: errored });
+    dispatch(createAction(items.fetchResponse)(payload));
 };
 
 export const fetchFeatured = () => async dispatch => {
-    let errored = false;
     let payload;
     try {
         dispatch({ type: items.fetchRequest });
-        const response = await axios.get("/api/items/featured");
-        if (response.status === 200) {
-            payload = response.data;
-        } else {
-            errored = true;
-            payload = new Error(
-                `Couldn't fetch featured items: ${response.statusText}`
-            );
-        }
+        payload = await backend.fetchFeatured();
     } catch (error) {
-        errored = true;
         payload = error;
     }
-    dispatch({ type: items.fetchResponse, payload, error: errored });
+    dispatch(createAction(items.fetchResponse)(payload));
 };
