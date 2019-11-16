@@ -7,9 +7,9 @@ export const setCurrentOrderItems = cartContents => {
     };
 };
 
-export const setCurrentOrderPersonalData = (email, userId) => {
+export const setCurrentOrderPersonalDetails = (email, userId) => {
     return {
-        type: orders.setCurrentOrderPersonalData,
+        type: orders.setCurrentOrderPersonalDetails,
         payload: { email, userId }
     };
 };

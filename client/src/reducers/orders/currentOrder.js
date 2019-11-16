@@ -14,7 +14,7 @@ export default produce((draft, { type, payload, error }) => {
                 0
             );
             return;
-        case orders.setCurrentOrderPersonalData:
+        case orders.setCurrentOrderPersonalDetails:
             draft.email = payload.email;
             draft.user = payload.userId;
             return;

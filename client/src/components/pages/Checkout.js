@@ -7,7 +7,7 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 
 import ChangeCartStep from "src/components/checkout/ChangeCartStep";
-import EnterCustomerDataStep from "../checkout/EnterCustomerDataStep";
+import EnterCustomerDataStep from "../checkout/EnterCustomerDetailsStep";
 import ReviewOrderStep from "src/components/checkout/ReviewOrderStep";
 
 export default () => {
@@ -58,7 +58,7 @@ export default () => {
                     <StepLabel>Checkout</StepLabel>
                 </Step>
                 <Step>
-                    <StepLabel>Customer data</StepLabel>
+                    <StepLabel>Personal details</StepLabel>
                 </Step>
                 <Step>
                     <StepLabel>Review</StepLabel>

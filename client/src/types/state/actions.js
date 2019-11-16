@@ -17,5 +17,5 @@ export const cart = {
     },
     orders = {
         setCurrentOrderItems: "SET_CURRENT_ORDER_ITEMS",
-        setCurrentOrderPersonalData: "SET_CURRENT_ORDER_PERSONAL_DATA"
+        setCurrentOrderPersonalDetails: "SET_CURRENT_ORDER_PERSONAL_DETAILS"
     };

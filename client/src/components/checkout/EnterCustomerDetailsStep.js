@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import PrivateRoute from "src/components/auth/PrivateRoute";
 import Message from "src/components/common/Message";
 import StepButtons from "src/components/checkout/StepButtons";
-import { setCurrentOrderPersonalData } from "src/actions/orders";
+import { setCurrentOrderPersonalDetails } from "src/actions/orders";
 
 const useStyles = makeStyles(() => ({
     form: {
@@ -36,7 +36,7 @@ export default ({ currentStep, incrementStep, decrementStep }) => {
     }, [orderEmail, userEmail]);
 
     const confirmPersonalDetails = () => {
-        dispatch(setCurrentOrderPersonalData(emailField, userId));
+        dispatch(setCurrentOrderPersonalDetails(emailField, userId));
         incrementStep();
     };
 
@@ -56,7 +56,7 @@ export default ({ currentStep, incrementStep, decrementStep }) => {
                         component="div"
                         className={classes.margin}
                     >
-                        Enter your data
+                        Enter your personal details
                     </Typography>
                     <TextField
                         label="E-mail"
