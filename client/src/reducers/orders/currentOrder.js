@@ -6,6 +6,7 @@ import Order from "src/types/state/Order";
 const initialState = new Order();
 
 export default produce((draft, { type, payload, error }) => {
+    if (error) return;
     switch (type) {
         case orders.setCurrentOrderItems:
             draft.items = payload;

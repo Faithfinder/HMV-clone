@@ -4,7 +4,8 @@ import produce from "immer";
 
 const initialState = {};
 
-export default produce((draft, { type, payload }) => {
+export default produce((draft, { type, payload, error }) => {
+    if (error) return;
     switch (type) {
         case items.fetchResponse:
             payload.forEach(element => {
