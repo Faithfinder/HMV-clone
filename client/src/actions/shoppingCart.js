@@ -1,15 +1,17 @@
-import { cart, items } from "src/types/state/actions";
-import axios from "axios";
 import { batch } from "react-redux";
+import { createAction } from "redux-actions";
+
+import { cart, items } from "src/types/state/actions";
+import cartBackend from "src/services/backend/shoppingCart";
 
 export const addToCart = itemId => async (dispatch, getState) => {
     const updatedCart = putItemIntoCart(getState, itemId);
-    await setCartOnServer(dispatch, updatedCart);
+    await setCart(dispatch, updatedCart);
 };
 
 export const setCartAmount = (itemId, amount) => async (dispatch, getState) => {
     const updatedCart = changeAmountInCart(getState, itemId, amount);
-    await setCartOnServer(dispatch, updatedCart);
+    await setCart(dispatch, updatedCart);
 };
 
 const putItemIntoCart = (getState, itemId) => {
@@ -32,64 +34,35 @@ const changeAmountInCart = (getState, itemId, amount) => {
     return currentCart;
 };
 
-async function setCartOnServer(dispatch, updatedCart) {
-    let errored = false;
+async function setCart(dispatch, updatedCart) {
     let payload;
+    dispatch({ type: cart.setRequest });
     try {
-        dispatch({ type: cart.setRequest });
-        const response = await axios.put("/api/cart", { cart: updatedCart });
-        if (response.status === 200) {
-            payload = response.data;
-        } else {
-            errored = true;
-            payload = new Error(
-                `Couldn't sync cart with server: ${response.statusText}`
-            );
-        }
+        payload = await cartBackend.setCart(updatedCart);
     } catch (error) {
-        errored = true;
         payload = error;
     }
-    dispatch({ type: cart.setResponse, payload, error: errored });
+    dispatch(createAction(cart.setResponse)(payload));
 }
 
 export const checkCart = () => async dispatch => {
-    let errored = false;
     let cartPayload;
     let itemsPayload;
-    try {
-        batch(() => {
-            dispatch({ type: cart.checkRequest });
-            dispatch({ type: items.fetchRequest });
-        });
 
-        const response = await axios.get("/api/cart");
-        if (response.status === 200) {
-            cartPayload = response.data.cart;
-            itemsPayload = response.data.items;
-        } else {
-            errored = true;
-            const error = new Error(
-                `Couldn't get cart from server: ${response.statusText}`
-            );
-            cartPayload = error;
-            itemsPayload = error;
-            cartPayload = error;
-        }
+    batch(() => {
+        dispatch({ type: cart.checkRequest });
+        dispatch({ type: items.fetchRequest });
+    });
+    try {
+        const data = await cartBackend.checkCart();
+        cartPayload = data.cart;
+        itemsPayload = data.items;
     } catch (error) {
-        errored = true;
         cartPayload = error;
+        itemsPayload = error;
     }
-    dispatch({
-        type: items.fetchResponse,
-        payload: itemsPayload,
-        error: errored
-    });
-    dispatch({
-        type: cart.checkResponse,
-        payload: cartPayload,
-        error: errored
-    });
+    dispatch(createAction(items.fetchResponse)(itemsPayload));
+    dispatch(createAction(cart.checkResponse)(cartPayload));
 };
 
 export const emptyCart = () => {
