@@ -1,5 +1,6 @@
 import { createAction } from "redux-actions";
 
+import { emptyCart } from "src/actions/shoppingCart";
 import { orders } from "src/types/state/actions";
 import oredersBackend from "src/services/backend/orders";
 
@@ -26,4 +27,5 @@ export const createOrder = order => async dispatch => {
         payload = error;
     }
     dispatch(createAction(orders.createOrderResponse)(payload));
+    dispatch(emptyCart());
 };

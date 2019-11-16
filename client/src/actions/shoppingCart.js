@@ -14,6 +14,10 @@ export const setCartAmount = (itemId, amount) => async (dispatch, getState) => {
     await setCart(dispatch, updatedCart);
 };
 
+export const emptyCart = () => async dispatch => {
+    await setCart(dispatch, {});
+};
+
 const putItemIntoCart = (getState, itemId) => {
     const currentCart = { ...getState().shoppingCart.contents };
     if (currentCart[itemId]) {
@@ -63,10 +67,4 @@ export const checkCart = () => async dispatch => {
     }
     dispatch(createAction(items.fetchResponse)(itemsPayload));
     dispatch(createAction(cart.checkResponse)(cartPayload));
-};
-
-export const emptyCart = () => {
-    return {
-        type: cart.empty
-    };
 };

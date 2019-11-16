@@ -19,6 +19,8 @@ export default produce((draft, { type, payload, error }) => {
             draft.email = payload.email;
             draft.user = payload.userId;
             return;
+        case orders.createOrderResponse:
+            return payload;
         default:
             return draft;
     }
