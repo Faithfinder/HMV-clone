@@ -6,7 +6,7 @@ import Badge from "@material-ui/core/Badge";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 
-import { checkCart } from "src/actions";
+import { checkCart } from "src/actions/shoppingCart";
 import { useCartCount } from "src/selectors/shoppingCart";
 import { CartDrawer } from "src/components/shoppingCart/CartDrawer";
 import { toggleDrawer } from "src/components/shoppingCart/helpers";
