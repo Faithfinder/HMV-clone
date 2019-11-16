@@ -25,7 +25,7 @@ export const checkLogIn = () => async dispatch => {
     let payload;
     dispatch(authRequest());
     try {
-        payload = await authBackend.logOut();
+        payload = await authBackend.checkLogIn();
     } catch (error) {
         payload = error;
     }
