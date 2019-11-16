@@ -13,13 +13,13 @@ import {
 router
     .route("/")
     .get(loginRequired, adminRequired, getOrders)
-    .post( createOrder);
+    .post(createOrder);
 
 router
     .route("/:order_id")
     .get(loginRequired, adminRequired, getOrder)
     .patch(loginRequired, adminRequired, updateOrder);
 
-    export default routerCombiner => {
-        routerCombiner.use("/orders", router);
-    };
+export default routerCombiner => {
+    routerCombiner.use("/orders", router);
+};

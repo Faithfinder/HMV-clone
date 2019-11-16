@@ -73,7 +73,7 @@ const getEmailHTML = order => {
 export default order => {
     return {
         from: "noreply@example.com",
-        to: order.user.email,
+        to: order.email,
         subject: `Thank you for your order #${order.number}`,
         html: getEmailHTML(order)
     };

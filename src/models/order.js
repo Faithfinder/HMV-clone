@@ -34,6 +34,7 @@ orderSchema.pre("save", async function(next) {
 });
 
 async function populateOrderfromDB(order, next) {
+    order.total = 0;
     await asyncForEach(order.items, async item => {
         try {
             const dbItem = await Item.findById(item.id);

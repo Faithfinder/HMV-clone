@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const setCart = async updatedCart => {
-    const response = await axios.put("/api/cart", { cart: updatedCart });
+const setCart = async cart => {
+    const response = await axios.put("/api/cart", { cart });
     if (response.status === 200) {
         return response.data;
     } else {

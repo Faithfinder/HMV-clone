@@ -15,6 +15,7 @@ import TableFooter from "@material-ui/core/TableFooter";
 
 import StepButtons from "src/components/checkout/StepButtons";
 import Message from "src/components/common/Message";
+import { createOrder } from "src/actions/orders";
 
 const useStyles = makeStyles(() => ({ table: { width: "100%" } }));
 
@@ -25,6 +26,7 @@ export default ({ incrementStep, decrementStep }) => {
     const currentOrder = useSelector(({ orders }) => orders.currentOrder);
 
     const confirmOrder = () => {
+        dispatch(createOrder(currentOrder));
         incrementStep();
     };
 
