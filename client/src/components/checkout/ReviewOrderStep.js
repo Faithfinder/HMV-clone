@@ -28,9 +28,9 @@ export default ({ incrementStep, decrementStep }) => {
         incrementStep();
     };
 
-    const renderRow = ({ title, price, amount }) => {
+    const renderRow = ({ id, title, price, amount }) => {
         return (
-            <TableRow>
+            <TableRow key={id}>
                 <TableCell>{title}</TableCell>
                 <TableCell align="right">{price}</TableCell>
                 <TableCell align="right">{amount}</TableCell>
