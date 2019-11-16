@@ -1,11 +1,9 @@
 import { orders } from "src/types/state/actions";
-import store from "src/store";
 
-export const setCurrentOrderItems = () => {
-    const currentCart = Object.values(store.getState().shoppingCart.contents);
+export const setCurrentOrderItems = cartContents => {
     return {
         type: orders.setCurrentOrderItems,
-        payload: currentCart
+        payload: cartContents.map(({ image, ...item }) => item)
     };
 };
 

@@ -38,7 +38,7 @@ export default ({ incrementStep }) => {
     const dispatch = useDispatch();
 
     const moveToNextStep = () => {
-        dispatch(setCurrentOrderItems());
+        dispatch(setCurrentOrderItems(cartContents));
         incrementStep();
     };
 
@@ -57,7 +57,11 @@ export default ({ incrementStep }) => {
                     <CartItem key={item.id} item={item} />
                 ))}
             </Grid>
-            <Typography variant="h5" component="div" className={classes.margin + " " + classes.alignLeft}>
+            <Typography
+                variant="h5"
+                component="div"
+                className={classes.margin + " " + classes.alignLeft}
+            >
                 Total: {total}
             </Typography>
             <StepButtons proceedHandler={moveToNextStep} />
