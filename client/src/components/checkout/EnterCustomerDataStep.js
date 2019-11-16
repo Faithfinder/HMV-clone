@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import PrivateRoute from "src/components/auth/PrivateRoute";
 import Message from "src/components/common/Message";
 import StepButtons from "src/components/checkout/StepButtons";
-import { setCurrentOrderEmail } from "src/actions/orders";
+import { setCurrentOrderPersonalData } from "src/actions/orders";
 
 const useStyles = makeStyles(() => ({
     form: {
@@ -24,14 +24,21 @@ const useStyles = makeStyles(() => ({
 export default ({ currentStep, incrementStep, decrementStep }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const [userEmail, orderEmail] = useSelector(state => [
+    const [emailField, setEmailField] = useState("");
+    const [userEmail, userId, orderEmail] = useSelector(state => [
         state.authentication.user.email,
+        state.authentication.user.userId,
         state.orders.currentOrder.email
     ]);
 
     useEffect(() => {
-        dispatch(setCurrentOrderEmail(userEmail));
-    }, [dispatch, userEmail]);
+        setEmailField(orderEmail || userEmail);
+    }, [orderEmail, userEmail]);
+
+    const confirmPersonalDetails = () => {
+        dispatch(setCurrentOrderPersonalData(emailField, userId));
+        incrementStep();
+    };
 
     return (
         <PrivateRoute path="/checkout" currentStep={currentStep}>
@@ -54,17 +61,15 @@ export default ({ currentStep, incrementStep, decrementStep }) => {
                     <TextField
                         label="E-mail"
                         placeholder="example@example.com"
-                        value={orderEmail}
+                        value={emailField}
                         required
                         className={classes.margin}
-                        onChange={event =>
-                            dispatch(setCurrentOrderEmail(event.target.value))
-                        }
+                        onChange={event => setEmailField(event.target.value)}
                     />
                 </Grid>
                 <StepButtons
                     previousHandler={decrementStep}
-                    proceedHandler={incrementStep}
+                    proceedHandler={confirmPersonalDetails}
                 />
                 <Message>
                     Since this is only a protoype and no actual transactions

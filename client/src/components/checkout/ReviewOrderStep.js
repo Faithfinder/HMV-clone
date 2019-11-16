@@ -24,7 +24,7 @@ export default ({ incrementStep, decrementStep }) => {
 
     const currentOrder = useSelector(({ orders }) => orders.currentOrder);
 
-    const moveToNextStep = () => {
+    const confirmOrder = () => {
         incrementStep();
     };
 
@@ -74,7 +74,7 @@ export default ({ incrementStep, decrementStep }) => {
             </Paper>
             <StepButtons
                 previousHandler={decrementStep}
-                proceedHandler={moveToNextStep}
+                proceedHandler={confirmOrder}
                 proceedLabel="Confirm"
             />
             <Message>

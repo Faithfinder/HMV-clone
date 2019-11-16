@@ -37,7 +37,7 @@ export default ({ incrementStep }) => {
 
     const dispatch = useDispatch();
 
-    const moveToNextStep = () => {
+    const confirmItems = () => {
         dispatch(setCurrentOrderItems(cartContents));
         incrementStep();
     };
@@ -64,7 +64,7 @@ export default ({ incrementStep }) => {
             >
                 Total: {total}
             </Typography>
-            <StepButtons proceedHandler={moveToNextStep} />
+            <StepButtons proceedHandler={confirmItems} />
         </Grid>
     );
 };
