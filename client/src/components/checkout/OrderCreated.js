@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import Button from "@material-ui/core/Button";
 import history from "src/history";
+import CenteredCircularProgress from "src/components/common/CenteredCircularProgress";
 
 const useStyles = makeStyles(() => ({
     margin: {
@@ -21,7 +21,7 @@ export default () => {
         orders.refreshing
     ]);
     if (refreshing) {
-        return <CircularProgress />;
+        return <CenteredCircularProgress />;
     }
     return (
         <Grid

@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import CircularProgress from "@material-ui/core/CircularProgress";
+import CenteredCircularProgress from "src/components/common/CenteredCircularProgress";
 
 export default ({ children, path, ...props }) => {
     const [isAuthenticated, authRefresh] = useSelector(({ authentication }) => [
@@ -11,7 +11,7 @@ export default ({ children, path, ...props }) => {
     ]);
 
     if (authRefresh) {
-        return <CircularProgress />;
+        return <CenteredCircularProgress />;
     } else if (!isAuthenticated) {
         return (
             <Redirect
