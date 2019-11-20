@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import ellipsize from "ellipsize";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -25,19 +26,21 @@ const useStyles = makeStyles({
     }
 });
 
-const openItem = item => {
-    return () => {
-        alert(item.title);
-    };
-};
-
 export default ({ item }) => {
     const classes = useStyles();
+    const history = useHistory();
+    const openItem = item => {
+        return () => {
+            history.push(`/items/${item._id}`);
+        };
+    };
+
     return (
         <Grid item component={Card} className={classes.card}>
             <CardActionArea
                 onClick={openItem(item)}
-                className={classes.cardActionArea}>
+                className={classes.cardActionArea}
+            >
                 <Image src={item.image} title={item.title} alt={item.title} />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">

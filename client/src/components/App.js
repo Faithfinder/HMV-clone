@@ -15,7 +15,8 @@ import { PageNotFound } from "src/components/pages/PageNotFound";
 import Home from "src/components/pages/Home";
 import Login from "src/components/pages/Login";
 import Checkout from "src/components/pages/Checkout";
-import FullCategory from "src/components//pages/FullCategory";
+import FullCategory from "src/components/pages/FullCategory";
+import Item from "src/components/pages/Item";
 
 const theme = createMuiTheme({
     palette: { primary: blueGrey, secondary: { main: "#7cb342" } }
@@ -38,6 +39,9 @@ const App = () => {
                 <Navbar />
                 <Container className={classes.mainContent}>
                     <Switch>
+                        <Route path="/items/:itemId" exact>
+                            <Item />
+                        </Route>
                         <Route path="/categories/:categoryName" exact>
                             <FullCategory />
                         </Route>
