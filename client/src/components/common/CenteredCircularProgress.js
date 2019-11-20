@@ -2,7 +2,6 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { flexbox } from "@material-ui/system";
 
 const useStyles = makeStyles(theme => ({
     expand: {
