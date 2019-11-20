@@ -11,7 +11,7 @@ export const useCartCount = () => {
 export const useCartContents = () => {
     const [cart, items] = useSelector(({ shoppingCart, items }) => [
         shoppingCart.contents,
-        items
+        items.byId
     ]);
 
     return Object.values(cart).map(item => {
