@@ -24,7 +24,8 @@ const theme = createMuiTheme({
 const useStyles = makeStyles(() => ({
     mainContent: {
         flex: "1 0 auto",
-        display: "flex"
+        display: "flex",
+        flexFlow: "column nowrap"
     }
 }));
 
