@@ -26,8 +26,6 @@ const FullCategory = () => {
         dispatch(fetchItems({ category: categoryName }));
     }, [dispatch, categoryName]);
 
-    console.log(items);
-
     return (
         <>
             <Typography variant="h4" className={classes.title}>

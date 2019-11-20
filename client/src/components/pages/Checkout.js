@@ -7,7 +7,7 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 
 import ChangeCartStep from "src/components/checkout/ChangeCartStep";
-import EnterCustomerDataStep from "../checkout/EnterCustomerDetailsStep";
+import EnterCustomerDataStep from "src/components/checkout/EnterCustomerDetailsStep";
 import ReviewOrderStep from "src/components/checkout/ReviewOrderStep";
 import OrderCreated from "src/components/checkout/OrderCreated";
 

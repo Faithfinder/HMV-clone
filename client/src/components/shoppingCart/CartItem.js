@@ -17,7 +17,7 @@ import Hidden from "@material-ui/core/Hidden";
 
 import Image from "material-ui-image";
 
-import { setCartAmount } from "../../actions/shoppingCart";
+import { setCartAmount } from "src/actions/shoppingCart";
 
 const useStyles = makeStyles(theme => ({
     card: {
