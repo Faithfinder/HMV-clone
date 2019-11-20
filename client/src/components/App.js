@@ -23,7 +23,8 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles(() => ({
     mainContent: {
-        flex: "1 0 auto"
+        flex: "1 0 auto",
+        display: "flex"
     }
 }));
 
