@@ -22,7 +22,17 @@ const fetchFeatured = async () => {
     }
 };
 
+const fetchItem = async itemId => {
+    const response = await axios.get(`/api/items/${itemId}`);
+    if (response.status === 200) {
+        return response.data;
+    } else {
+        throw new Error(`Couldn't fetch item: ${response.statusText}`);
+    }
+};
+
 export default {
     fetchFiltered,
-    fetchFeatured
+    fetchFeatured,
+    fetchItem
 };

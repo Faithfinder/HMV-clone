@@ -12,6 +12,9 @@ export default produce((draft, { type, payload, error }) => {
                 draft[element._id] = element;
             });
             return;
+        case items.fetchSpecificResponse:
+            draft[payload._id] = payload;
+            return;
         default:
             return draft;
     }

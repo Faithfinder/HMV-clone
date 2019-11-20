@@ -7,7 +7,9 @@ export const cart = {
     },
     items = {
         fetchRequest: "ITEMS_FETCH_REQUEST",
-        fetchResponse: "ITEMS_FETCH_RESPONSE"
+        fetchResponse: "ITEMS_FETCH_RESPONSE",
+        fetchSpecificRequest: "ITEM_FETCH_REQUEST",
+        fetchSpecificResponse: "ITEM_FETCH_RESPONSE"
     },
     user = {
         authRequest: "AUTH_REQUEST",
