@@ -96,7 +96,7 @@ const FeaturedItems = () => {
             naturalSlideWidth={16}
             naturalSlideHeight={4}
             totalSlides={featuredItems.length}
-            infinite
+            infinite={1}
             className={classes.wrapper}
         >
             <Slider>
