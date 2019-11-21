@@ -37,11 +37,14 @@ export default () => {
             height = 600;
         const left = window.innerWidth / 2 - width / 2;
         const top = window.innerHeight / 2 - height / 2;
-        const url = `/api/auth/facebook?socketId=${socket.id}`;
+        const url =
+            window.location.origin + `/api/auth/facebook?socketId=${socket.id}`;
+
+        console.log(url);
 
         return window.open(
             url,
-            "",
+            "auth",
             `toolbar=no, location=no, directories=no, status=no, menubar=no, 
       scrollbars=no, resizable=no, copyhistory=no, width=${width}, 
       height=${height}, top=${top}, left=${left}`
@@ -75,7 +78,8 @@ export default () => {
                     variant="contained"
                     onClick={cancelAuth}
                     startIcon={<FontAwesomeIcon icon={faFacebookSquare} />}
-                    endIcon={<FontAwesomeIcon icon={faTimes} />}>
+                    endIcon={<FontAwesomeIcon icon={faTimes} />}
+                >
                     {user.email}
                 </Button>
             </ThemeProvider>
@@ -87,7 +91,8 @@ export default () => {
                     color="primary"
                     variant="contained"
                     onClick={startAuth}
-                    startIcon={<FontAwesomeIcon icon={faFacebookSquare} />}>
+                    startIcon={<FontAwesomeIcon icon={faFacebookSquare} />}
+                >
                     Continue with Facebook
                 </Button>
             </ThemeProvider>
