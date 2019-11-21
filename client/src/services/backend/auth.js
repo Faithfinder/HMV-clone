@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const logOut = async () => {
-    const response = await axios.post("api/auth/logout");
+    const response = await axios.post("/api/auth/logout");
     if (response.status === 204) {
         return null;
     } else {
