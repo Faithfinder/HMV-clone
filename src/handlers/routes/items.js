@@ -30,6 +30,7 @@ export const createItem = async (req, res, next) => {
 export const getItem = async (req, res, next) => {
     try {
         const item = await Item.findById(req.params.item_id)
+            .populate({ path: "items" })
             .populate({
                 path: "reviews",
                 populate: { path: "author", model: "User", select: "email" }

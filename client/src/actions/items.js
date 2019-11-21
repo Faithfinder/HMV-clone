@@ -16,13 +16,19 @@ export const fetchItems = filter => async dispatch => {
 
 export const fetchItem = itemId => async dispatch => {
     let payload;
+    let bundledItems;
     dispatch({ type: itemsTypes.fetchSpecificRequest });
     try {
         payload = await itemsBackend.fetchItem(itemId);
+        bundledItems = payload.items;
     } catch (error) {
         payload = error;
+        bundledItems = error;
     }
     dispatch(createAction(itemsTypes.fetchSpecificResponse)(payload));
+    if (bundledItems) {
+        dispatch(createAction(itemsTypes.fetchResponse)(bundledItems));
+    }
 };
 
 export const fetchFeatured = () => async dispatch => {
