@@ -6,6 +6,10 @@ import Image from "material-ui-image";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import { fetchItem } from "src/actions/items";
 import { useItem } from "src/selectors/items";
@@ -35,18 +39,21 @@ const FullCategory = () => {
 
     const renderBundle = () => {
         if (item.items) {
-            console.log(item.items);
             return (
-                <>
-                    <Typography variant="h5" className={classes.title}>
-                        There are following items in this bundle:
-                    </Typography>
-                    <Grid container justify="space-evenly" spacing={0}>
-                        {item.items.map(item => (
-                            <ItemCard key={item._id} item={item} />
-                        ))}
-                    </Grid>
-                </>
+                <ExpansionPanel>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography variant="h5" className={classes.title}>
+                            In this bundle:
+                        </Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <Grid container justify="space-evenly" spacing={0}>
+                            {item.items.map(item => (
+                                <ItemCard key={item._id} item={item} />
+                            ))}
+                        </Grid>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
             );
         }
     };
