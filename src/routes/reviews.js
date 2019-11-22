@@ -12,6 +12,6 @@ router
     .patch(loginRequired, adminRequired, updateReview)
     .delete(loginRequired, adminRequired, deleteReview);
 
-    export default routerCombiner => {
-        routerCombiner.use("/items/:item_id/reviews", router);
-    };
+export default routerCombiner => {
+    routerCombiner.use("/items/:item_id/reviews", router);
+};
