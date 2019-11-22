@@ -21,9 +21,9 @@ const useStyles = makeStyles(theme => ({
     container: {
         marginTop: "1em"
     },
-    title: {},
     image: {
-        flex: "0 1 250px"
+        flex: "0 1 250px",
+        margin: "1em"
     }
 }));
 
@@ -62,7 +62,7 @@ const FullCategory = () => {
 
     return (
         <>
-            <Grid container className={classes.container} spacing={2}>
+            <Grid container item className={classes.container}>
                 <Grid item className={classes.image}>
                     <Image src={item.image} />
                 </Grid>
@@ -71,7 +71,7 @@ const FullCategory = () => {
                     item
                     container
                     direction="column"
-                    spacing={3}
+                    spacing={1}
                     alignItems="flex-start"
                     xs
                 >
