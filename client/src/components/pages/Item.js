@@ -16,6 +16,7 @@ import { useItem } from "src/selectors/items";
 import CenteredCircularProgress from "src/components/common/CenteredCircularProgress";
 import AddToCartButton from "../shoppingCart/AddToCartButton";
 import ItemCard from "src/components/items/ItemCard";
+import ReviewList from "../reviews/ReviewList";
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -97,6 +98,7 @@ const FullCategory = () => {
                 </Grid>
             </Grid>
             {renderBundle()}
+            <ReviewList reviews={item.reviews} />
         </>
     );
 };
