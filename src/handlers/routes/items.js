@@ -2,7 +2,7 @@ import { Item } from "../../models";
 
 export const getItems = async ({ query }, res, next) => {
     try {
-        const items = await Item.find(query).select("-items");
+        const items = await Item.find(query).select("-items -reviews");
         return res.status(200).json(items);
     } catch (err) {
         next(err);
