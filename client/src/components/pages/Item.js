@@ -19,12 +19,12 @@ import ItemCard from "src/components/items/ItemCard";
 import ReviewList from "../reviews/ReviewList";
 
 const useStyles = makeStyles(theme => ({
-    container: {
-        marginTop: "1em"
+    verticalSpacing: {
+        margin: theme.spacing(2, 0)
     },
     image: {
         flex: "0 1 250px",
-        margin: "1em"
+        margin: theme.spacing(2)
     }
 }));
 
@@ -41,7 +41,7 @@ const FullCategory = () => {
     const renderBundle = () => {
         if (item.items) {
             return (
-                <ExpansionPanel>
+                <ExpansionPanel className={classes.verticalSpacing}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                         <Typography variant="h5" className={classes.title}>
                             In this bundle:
@@ -63,7 +63,7 @@ const FullCategory = () => {
 
     return (
         <>
-            <Grid container item className={classes.container}>
+            <Grid container item className={classes.verticalSpacing}>
                 <Grid item className={classes.image}>
                     <Image src={item.image} />
                 </Grid>
