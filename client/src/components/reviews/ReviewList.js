@@ -5,10 +5,11 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
 const ReviewList = ({ reviews }) => {
+    const displayedReviews = reviews || [];
     return (
         <Grid container item direction="column" spacing={2}>
             <Typography variant="h6">Reviews:</Typography>
-            {reviews.map(review => (
+            {displayedReviews.map(review => (
                 <ReviewItem review={review} key={review._id} />
             ))}
         </Grid>
