@@ -38,8 +38,6 @@ export default () => {
         const url =
             window.location.origin + `/api/auth/facebook?socketId=${socket.id}`;
 
-        console.log(url);
-
         return window.open(
             url,
             "auth",
