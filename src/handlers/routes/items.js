@@ -33,7 +33,12 @@ export const getItem = async (req, res, next) => {
             .populate({ path: "items" })
             .populate({
                 path: "reviews",
-                populate: { path: "author", model: "User", select: "email" }
+                populate: {
+                    path: "author",
+                    model: "User",
+                    select: "email"
+                },
+                options: { sort: "-createdAt" }
             })
             .populate("reviews.author");
         return res.status(200).json(item);
