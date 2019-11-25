@@ -2,7 +2,7 @@ import { Review, Item } from "../../models";
 
 export const createReview = async (req, res, next) => {
     try {
-        const item = Item.findById(req.params.item_id);
+        const item = await Item.findById(req.params.item_id);
         const review = await Review.create(req.body.review);
         item.reviews.push(review);
         await item.save();
