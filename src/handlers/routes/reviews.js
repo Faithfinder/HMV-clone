@@ -10,7 +10,6 @@ export const createReview = async (req, res, next) => {
         const populatedReview = await review
             .populate("author", "email")
             .execPopulate();
-        console.log(populatedReview);
         return res.status(200).json(populatedReview);
     } catch (err) {
         next(err);
