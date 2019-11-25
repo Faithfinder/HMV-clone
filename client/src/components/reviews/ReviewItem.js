@@ -13,6 +13,9 @@ const useStyles = makeStyles(theme => ({
     grow: {
         flex: "1 0 auto"
     },
+    button: {
+        margin: theme.spacing(1),
+    },
     padding: {
         padding: theme.spacing(1)
     }
@@ -32,7 +35,7 @@ const ReviewItem = ({ review }) => {
                 <Rating value={review.rating} readOnly />
             </Grid>
             <Collapse
-                collapsedHeight="100px"
+                collapsedHeight="90px"
                 in={expanded}
                 className={classes.padding}
             >
@@ -40,7 +43,7 @@ const ReviewItem = ({ review }) => {
                     {review.content}
                 </Typography>
             </Collapse>
-            <Button onClick={() => setExpanded(!expanded)}>
+            <Button onClick={() => setExpanded(!expanded)} variant="outlined" className={classes.button}>
                 {expanded ? "Read less" : "Read more"}
             </Button>
             <Divider variant="middle" />

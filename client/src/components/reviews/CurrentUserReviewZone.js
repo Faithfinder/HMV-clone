@@ -19,7 +19,7 @@ const CurrentUserReviewZone = ({ currentUserReview }) => {
     } else if (currentUserReview) {
         return (
             <>
-                Your review:
+                <Typography variant="h6">Your review:</Typography>
                 <ReviewItem
                     review={currentUserReview}
                     key={currentUserReview._id}

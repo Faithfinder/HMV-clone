@@ -64,7 +64,7 @@ const NewReviewForm = () => {
 
     return (
         <Paper className={classes.container}>
-            <Typography variant="subtitle1">Post your review:</Typography>
+            <Typography variant="h6">Post your review:</Typography>
             <Formik
                 initialValues={{
                     review: {
@@ -101,7 +101,11 @@ const NewReviewForm = () => {
                         component={TextField}
                         className={classes.fields}
                     />
-                    <Button type="submit" className={classes.submitButton}>
+                    <Button
+                        type="submit"
+                        variant="outlined"
+                        className={classes.submitButton}
+                    >
                         Submit
                     </Button>
                 </Grid>
