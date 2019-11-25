@@ -2,7 +2,7 @@ import { createAction } from "redux-actions";
 
 import { emptyCart } from "src/actions/shoppingCart";
 import { orders } from "src/types/state/actions";
-import oredersBackend from "src/services/backend/orders";
+import ordersBackend from "src/services/backend/orders";
 
 export const setCurrentOrderItems = cartContents => {
     return {
@@ -22,7 +22,7 @@ export const createOrder = order => async dispatch => {
     let payload;
     dispatch({ type: orders.createOrderRequest });
     try {
-        payload = await oredersBackend.createOrder(order);
+        payload = await ordersBackend.createOrder(order);
     } catch (error) {
         payload = error;
     }
