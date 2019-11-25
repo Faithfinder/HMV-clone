@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -18,23 +18,19 @@ const ReviewList = ({ reviews }) => {
     const classes = useStyles();
     const [currentUser] = useCurrentUser();
 
-    const [currentUserReview, setCurrentUserReview] = useState(null);
-    const [otherReviews, setOtherReviews] = useState([]);
-
-    useEffect(() => {
-        const otherReviews = [];
-        console.log(reviews);
-        (reviews || []).forEach(review => {
+    const [currentUserReview, otherReviews] = (reviews || []).reduce(
+        (result, review) => {
             const currentUserIsAuthor =
                 review.author._id === (currentUser ? currentUser.userId : "");
             if (currentUserIsAuthor) {
-                setCurrentUserReview(review);
+                result[0] = review;
             } else {
-                otherReviews.push(review);
+                result[1].push(review);
             }
-        });
-        setOtherReviews(otherReviews);
-    }, [reviews, currentUser]);
+            return result;
+        },
+        [null, []]
+    );
 
     const renderNoReviews = () => {
         if (!(reviews && reviews.length)) {
@@ -54,8 +50,8 @@ const ReviewList = ({ reviews }) => {
             spacing={2}
             className={classes.verticalSpacing}
         >
-            <Typography variant="h6">Reviews:</Typography>
             <CurrentUserReviewZone currentUserReview={currentUserReview} />
+            <Typography variant="h6">Reviews:</Typography>
             {renderNoReviews()}
             {otherReviews.map(review => (
                 <ReviewItem review={review} key={review._id} />
