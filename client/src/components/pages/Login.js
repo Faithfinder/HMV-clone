@@ -1,11 +1,11 @@
 import React from "react";
 import { useLocation, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Facebook from "src/components/auth/Facebook";
+import { useCurrentUser } from "src/selectors/auth";
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -23,10 +23,7 @@ export default () => {
     const { state: locationState = {} } = useLocation();
     const { redirectTo = "/", redirectedProps } = locationState;
 
-    const [isAuthenticated] = useSelector(({ authentication }) => [
-        authentication.user,
-        authentication.refreshing
-    ]);
+    const [isAuthenticated] = useCurrentUser();
 
     if (isAuthenticated) {
         return (

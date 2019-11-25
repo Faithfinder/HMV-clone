@@ -5,12 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import { logIn, logOut, checkLogIn, authRequest } from "src/actions/auth";
-
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { logIn, logOut, checkLogIn, authRequest } from "src/actions/auth";
+import { useCurrentUser } from "src/selectors/auth";
 
 const theme = createMuiTheme({
     palette: {
@@ -22,11 +22,9 @@ const theme = createMuiTheme({
 
 export default () => {
     const dispatch = useDispatch();
-    const [user, authRefresh, socket] = useSelector(state => [
-        state.authentication.user,
-        state.authentication.refreshing,
-        state.socket
-    ]);
+    const [user, authRefresh] = useCurrentUser();
+
+    const socket = useSelector(state => state.socket);
 
     useEffect(() => {
         dispatch(checkLogIn());

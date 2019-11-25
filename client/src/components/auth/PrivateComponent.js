@@ -1,11 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useCurrentUser } from "src/selectors/auth";
 
 export default ({ children, adminOnly }) => {
-    const [isAuthenticated, isAdmin] = useSelector(({ authentication }) => [
-        authentication.user,
-        authentication.user.isAdmin
-    ]);
+    const [{ userId: isAuthenticated, isAdmin }] = useCurrentUser();
 
     if (isAuthenticated && (adminOnly ? isAdmin : true)) return <>{children}</>;
 };

@@ -10,6 +10,7 @@ import PrivateRoute from "src/components/auth/PrivateRoute";
 import Message from "src/components/common/Message";
 import StepButtons from "src/components/checkout/StepButtons";
 import { setCurrentOrderPersonalDetails } from "src/actions/orders";
+import { useCurrentUser } from "src/selectors/auth";
 
 const useStyles = makeStyles(() => ({
     form: {
@@ -25,11 +26,9 @@ export default ({ currentStep, incrementStep, decrementStep }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [emailField, setEmailField] = useState("");
-    const [userEmail, userId, orderEmail] = useSelector(state => [
-        state.authentication.user.email,
-        state.authentication.user.userId,
-        state.orders.currentOrder.email
-    ]);
+    const [{ email: userEmail, userId }] = useCurrentUser();
+
+    const orderEmail = useSelector(state => [state.orders.currentOrder.email]);
 
     useEffect(() => {
         setEmailField(orderEmail || userEmail);
