@@ -1,4 +1,6 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -7,11 +9,13 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
-import Rating from "src/components/reviews/Rating";
-
 import { Formik, Field, Form } from "formik";
 import { TextField } from "formik-material-ui";
 import * as yup from "yup";
+
+import Rating from "src/components/reviews/Rating";
+import { useCurrentUser } from "src/selectors/auth";
+import { createReview } from "src/actions/reviews";
 
 const useStyles = makeStyles(theme => ({
     grow: {
@@ -32,6 +36,8 @@ const useStyles = makeStyles(theme => ({
 
 const NewReviewForm = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+
     const validationSchema = yup.object({
         review: yup.object({
             title: yup
@@ -39,30 +45,37 @@ const NewReviewForm = () => {
                 .min(5, "Please provide a longer title")
                 .max(150, "Please provide a shorter title")
                 .required("Please provide a title"),
-            content: yup
-                .string()
-                .required("Please write your review"),
+            content: yup.string().required("Please write your review"),
             rating: yup
                 .number()
                 .min(1, "Please choose a rating")
                 .required("Required")
         })
     });
+
+    const [currentUser] = useCurrentUser();
+    const { itemId } = useParams();
+
+    const handleSubmit = (values, actions) => {
+        dispatch(createReview(itemId, values));
+        actions.setSubmitting(false);
+        actions.resetForm();
+    };
+
     return (
         <Paper className={classes.container}>
             <Typography variant="subtitle1">Post your review:</Typography>
             <Formik
                 initialValues={{
-                    review: { rating: 0, title: "", content: "" }
+                    review: {
+                        rating: 0,
+                        title: "",
+                        content: "",
+                        author: currentUser.userId
+                    }
                 }}
                 validationSchema={validationSchema}
-                onSubmit={(values, actions) => {
-                    setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
-                        actions.setSubmitting(false);
-                        actions.resetForm();
-                    }, 1000);
-                }}
+                onSubmit={handleSubmit}
             >
                 <Grid container direction="column" component={Form}>
                     <Box display="flex" className={classes.fields}>

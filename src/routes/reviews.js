@@ -3,7 +3,11 @@ const router = express.Router({ mergeParams: true });
 
 import { loginRequired, adminRequired } from "../middleware/auth";
 
-import { createReview, deleteReview, updateReview } from "../handlers/reviews";
+import {
+    createReview,
+    deleteReview,
+    updateReview
+} from "../handlers/routes/reviews";
 
 router.route("/").post(loginRequired, createReview);
 

@@ -6,7 +6,12 @@ export const createReview = async (req, res, next) => {
         const review = await Review.create(req.body.review);
         item.reviews.push(review);
         await item.save();
-        return res.status(200).json(review);
+
+        const populatedReview = await review
+            .populate("author", "email")
+            .execPopulate();
+        console.log(populatedReview);
+        return res.status(200).json(populatedReview);
     } catch (err) {
         next(err);
     }

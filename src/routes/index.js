@@ -5,6 +5,7 @@ import bundles from "./bundles";
 import auth from "./auth";
 import orders from "./orders";
 import cart from "./cart";
+import reviews from "./reviews";
 
 export default () => {
     const routerCombiner = Router();
@@ -14,6 +15,7 @@ export default () => {
     auth(routerCombiner);
     orders(routerCombiner);
     cart(routerCombiner);
+    reviews(routerCombiner);
 
     return routerCombiner;
 };

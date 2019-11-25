@@ -22,4 +22,8 @@ export const cart = {
         setCurrentOrderPersonalDetails: "SET_CURRENT_ORDER_PERSONAL_DETAILS",
         createOrderRequest: "CREATE_ORDER_REQUEST",
         createOrderResponse: "CREATE_ORDER_RESPONSE"
+    },
+    reviews = {
+        createReviewRequest: "CREATE_REVIEW_REQUEST",
+        createReviewResponse: "CREATE_REVIEW_RESPONSE"
     };

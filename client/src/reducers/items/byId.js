@@ -1,4 +1,4 @@
-import { items } from "src/types/state/actions";
+import { items, reviews } from "src/types/state/actions";
 
 import produce from "immer";
 
@@ -14,6 +14,9 @@ export default produce((draft, { type, payload, error }) => {
             return;
         case items.fetchSpecificResponse:
             draft[payload._id] = payload;
+            return;
+        case reviews.createReviewResponse:
+            draft[payload.itemId].reviews.push(payload.review);
             return;
         default:
             return draft;

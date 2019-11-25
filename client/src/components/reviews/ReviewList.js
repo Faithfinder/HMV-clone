@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
 import ReviewItem from "src/components/reviews/ReviewItem";
-import NewReviewForm from "src/components/reviews/NewReviewForm";
 import { useCurrentUser } from "src/selectors/auth";
+import CurrentUserReviewZone from "src/components/reviews/CurrentUserReviewZone";
 
 const useStyles = makeStyles(theme => ({
     verticalSpacing: {
@@ -16,43 +16,33 @@ const useStyles = makeStyles(theme => ({
 
 const ReviewList = ({ reviews }) => {
     const classes = useStyles();
-    const [currentUser, refreshing] = useCurrentUser();
-    const displayedReviews = reviews || [];
-    const [currentUserReview, otherReviews] = displayedReviews.reduce(
-        (result, review) => {
-            if (review.author._id === currentUser ? currentUser.userId : "") {
-                result[0] = review;
+    const [currentUser] = useCurrentUser();
+
+    const [currentUserReview, setCurrentUserReview] = useState(null);
+    const [otherReviews, setOtherReviews] = useState([]);
+
+    useEffect(() => {
+        const otherReviews = [];
+        console.log(reviews);
+        (reviews || []).forEach(review => {
+            const currentUserIsAuthor =
+                review.author._id === (currentUser ? currentUser.userId : "");
+            if (currentUserIsAuthor) {
+                setCurrentUserReview(review);
             } else {
-                result[1].push(review);
+                otherReviews.push(review);
             }
-            return result;
-        },
-        [null, []]
-    );
+        });
+        setOtherReviews(otherReviews);
+    }, [reviews, currentUser]);
 
     const renderNoReviews = () => {
-        if (!displayedReviews.length) {
+        if (!(reviews && reviews.length)) {
             return (
                 <Typography variant="subtitle1">
                     It seems no one has reviewed this title yet. Be first!
                 </Typography>
             );
-        }
-    };
-
-    const renderPostOrEditReview = () => {
-        if (refreshing) {
-            return "Wait";
-        } else if (!currentUser) {
-            return (
-                <Typography variant="subtitle1">
-                    Please log in to leave a review
-                </Typography>
-            );
-        } else if (currentUserReview) {
-            return "Edit form";
-        } else {
-            return <NewReviewForm />;
         }
     };
 
@@ -65,7 +55,7 @@ const ReviewList = ({ reviews }) => {
             className={classes.verticalSpacing}
         >
             <Typography variant="h6">Reviews:</Typography>
-            {renderPostOrEditReview()}
+            <CurrentUserReviewZone currentUserReview={currentUserReview} />
             {renderNoReviews()}
             {otherReviews.map(review => (
                 <ReviewItem review={review} key={review._id} />
