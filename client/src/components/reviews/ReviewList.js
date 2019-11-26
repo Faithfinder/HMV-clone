@@ -39,6 +39,12 @@ const ReviewList = ({ reviews }) => {
                     It seems no one has reviewed this title yet. Be first!
                 </Typography>
             );
+        } else if (!otherReviews.length) {
+            return (
+                <Typography variant="subtitle1">
+                    There are no other reviews
+                </Typography>
+            );
         }
     };
 
