@@ -20,6 +20,7 @@ export const deleteReview = (itemId, reviewId) => async dispatch => {
     dispatch({ type: reviews.deleteReviewRequest });
     try {
         await reviewsBackend.deleteReview(itemId, reviewId);
+        payload = { reviewId, itemId };
     } catch (error) {
         payload = error;
     }

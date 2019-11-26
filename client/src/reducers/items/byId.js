@@ -18,6 +18,11 @@ export default produce((draft, { type, payload, error }) => {
         case reviews.createReviewResponse:
             draft[payload.itemId].reviews.push(payload.review);
             return;
+        case reviews.deleteReviewResponse:
+            draft[payload.itemId].reviews = draft[
+                payload.itemId
+            ].reviews.filter(review => review._id !== payload.reviewId);
+            return;
         default:
             return draft;
     }
