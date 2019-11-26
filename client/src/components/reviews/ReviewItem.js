@@ -8,13 +8,17 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import PrivateComponent from "../auth/PrivateComponent";
 
 const useStyles = makeStyles(theme => ({
     grow: {
         flex: "1 0 auto"
     },
     button: {
-        margin: theme.spacing(1),
+        margin: theme.spacing(1)
     },
     padding: {
         padding: theme.spacing(1)
@@ -27,12 +31,22 @@ const ReviewItem = ({ review }) => {
 
     return (
         <Grid item component={Paper} elevation={0}>
-            <Grid container>
-                <Typography variant="subtitle2">
-                    {review.author.email}
-                </Typography>
+            <Grid container alignItems="center">
+                <div>
+                    <Typography variant="subtitle2">{review.title}</Typography>
+                    <Typography variant="subtitle1">
+                        {review.author.email}
+                    </Typography>
+                </div>
                 <div className={classes.grow} />
                 <Rating value={review.rating} readOnly />
+                <PrivateComponent adminOnly>
+                    <Tooltip title="Delete review">
+                        <IconButton size="small">
+                            <DeleteForeverIcon />
+                        </IconButton>
+                    </Tooltip>
+                </PrivateComponent>
             </Grid>
             <Collapse
                 collapsedHeight="90px"
@@ -43,7 +57,11 @@ const ReviewItem = ({ review }) => {
                     {review.content}
                 </Typography>
             </Collapse>
-            <Button onClick={() => setExpanded(!expanded)} variant="outlined" className={classes.button}>
+            <Button
+                onClick={() => setExpanded(!expanded)}
+                variant="outlined"
+                className={classes.button}
+            >
                 {expanded ? "Read less" : "Read more"}
             </Button>
             <Divider variant="middle" />

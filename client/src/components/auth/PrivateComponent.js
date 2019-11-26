@@ -1,8 +1,13 @@
 import React from "react";
 import { useCurrentUser } from "src/selectors/auth";
 
-export default ({ children, adminOnly }) => {
-    const [{ userId: isAuthenticated, isAdmin }] = useCurrentUser();
+const PrivateComponent = ({ children, adminOnly }) => {
+    const [currentUser] = useCurrentUser();
+    const { userId: isAuthenticated, isAdmin } = currentUser || {};
 
-    if (isAuthenticated && (adminOnly ? isAdmin : true)) return <>{children}</>;
+    const shouldSeeComponent = isAuthenticated && (adminOnly ? isAdmin : true);
+    if (shouldSeeComponent) return <>{children}</>;
+    return null;
 };
+
+export default PrivateComponent;
