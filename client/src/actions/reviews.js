@@ -14,3 +14,14 @@ export const createReview = (itemId, review) => async dispatch => {
     }
     dispatch(createAction(reviews.createReviewResponse)(payload));
 };
+
+export const deleteReview = (itemId, reviewId) => async dispatch => {
+    let payload;
+    dispatch({ type: reviews.deleteReviewRequest });
+    try {
+        await reviewsBackend.deleteReview(itemId, reviewId);
+    } catch (error) {
+        payload = error;
+    }
+    dispatch(createAction(reviews.deleteReviewResponse)(payload));
+};
