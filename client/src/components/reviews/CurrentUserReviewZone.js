@@ -9,6 +9,7 @@ import CenteredCircularProgress from "../common/CenteredCircularProgress";
 
 const CurrentUserReviewZone = ({ currentUserReview }) => {
     const [currentUser, refreshing] = useCurrentUser();
+    
     if (refreshing) {
         return <CenteredCircularProgress />;
     } else if (!currentUser) {
