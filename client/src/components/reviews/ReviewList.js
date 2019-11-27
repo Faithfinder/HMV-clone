@@ -18,19 +18,20 @@ const ReviewList = ({ reviews }) => {
     const classes = useStyles();
     const [currentUser] = useCurrentUser();
 
-    const [currentUserReview, otherReviews] = (reviews || []).reduce(
-        (result, review) => {
-            const currentUserIsAuthor =
-                review.author._id === (currentUser ? currentUser.userId : "");
-            if (currentUserIsAuthor) {
-                result[0] = review;
-            } else {
-                result[1].push(review);
-            }
-            return result;
-        },
-        [null, []]
-    );
+    const extractCurrentUserReview = (result, review) => {
+        const currentUserIsAuthor =
+            review.author._id === (currentUser ? currentUser.userId : "");
+        if (currentUserIsAuthor) {
+            result[0] = review;
+        } else {
+            result[1].push(review);
+        }
+        return result;
+    };
+
+    const [currentUserReview, otherReviews] = (
+        reviews || []
+    ).reduce(extractCurrentUserReview, [null, []]);
 
     const renderNoReviews = () => {
         if (!(reviews && reviews.length)) {
