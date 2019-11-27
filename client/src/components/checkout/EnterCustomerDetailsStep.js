@@ -28,7 +28,7 @@ export default ({ currentStep, incrementStep, decrementStep }) => {
     const [emailField, setEmailField] = useState("");
     const [{ email: userEmail, userId }] = useCurrentUser();
 
-    const orderEmail = useSelector(state => [state.orders.currentOrder.email]);
+    const orderEmail = useSelector(state => state.orders.currentOrder.email);
 
     useEffect(() => {
         setEmailField(orderEmail || userEmail);
