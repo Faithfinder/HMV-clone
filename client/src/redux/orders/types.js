@@ -1,4 +1,4 @@
-export const orders = {
+export default {
     setCurrentOrderItems: "SET_CURRENT_ORDER_ITEMS",
     setCurrentOrderPersonalDetails: "SET_CURRENT_ORDER_PERSONAL_DETAILS",
     createOrderRequest: "CREATE_ORDER_REQUEST",

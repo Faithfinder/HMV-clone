@@ -1,6 +1,6 @@
 import produce from "immer";
 
-import { orders } from "src/types/state/actions";
+import orders from "src/redux/orders/types";
 
 const initialState = {};
 

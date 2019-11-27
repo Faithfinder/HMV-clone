@@ -1,4 +1,4 @@
-import { orders } from "src/types/state/actions";
+import orders from "src/redux/orders/types";
 import cart from "src/redux/shoppingCart/types";
 import auth from "src/redux/auth/types";
 

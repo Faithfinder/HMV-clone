@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { useCartContents } from "src/redux/shoppingCart/selectors";
 import { CartItem } from "src/components/shoppingCart/CartItem";
 import StepButtons from "src/components/checkout/StepButtons";
-import { setCurrentOrderItems } from "src/actions/orders";
+import { setCurrentOrderItems } from "src/redux/orders/actions";
 
 const useStyles = makeStyles(() => ({
     grid: {

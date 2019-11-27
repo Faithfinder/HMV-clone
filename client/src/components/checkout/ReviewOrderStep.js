@@ -15,7 +15,7 @@ import TableFooter from "@material-ui/core/TableFooter";
 
 import StepButtons from "src/components/checkout/StepButtons";
 import Message from "src/components/common/Message";
-import { createOrder } from "src/actions/orders";
+import { createOrder } from "src/redux/orders/actions";
 
 const useStyles = makeStyles(() => ({ table: { width: "100%" } }));
 

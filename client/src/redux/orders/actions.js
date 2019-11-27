@@ -1,7 +1,7 @@
 import { createAction } from "redux-actions";
 
 import { emptyCart } from "src/redux/shoppingCart/actions";
-import { orders } from "src/types/state/actions";
+import orders from "src/redux/orders/types";
 import ordersBackend from "src/services/backend/orders";
 
 export const setCurrentOrderItems = cartContents => {

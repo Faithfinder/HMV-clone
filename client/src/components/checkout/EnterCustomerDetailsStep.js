@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import PrivateRoute from "src/components/auth/PrivateRoute";
 import Message from "src/components/common/Message";
 import StepButtons from "src/components/checkout/StepButtons";
-import { setCurrentOrderPersonalDetails } from "src/actions/orders";
+import { setCurrentOrderPersonalDetails } from "src/redux/orders/actions";
 import { useCurrentUser } from "src/redux/auth/selectors";
 
 const useStyles = makeStyles(() => ({

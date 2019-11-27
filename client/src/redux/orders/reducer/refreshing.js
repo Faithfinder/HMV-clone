@@ -1,4 +1,4 @@
-import { orders } from "src/types/state/actions";
+import orders from "src/redux/orders/types";
 
 export default (state = false, { type }) => {
     switch (type) {
