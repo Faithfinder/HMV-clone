@@ -15,7 +15,7 @@ import * as yup from "yup";
 
 import Rating from "src/components/reviews/Rating";
 import { useCurrentUser } from "src/selectors/auth";
-import { createReview } from "src/actions/reviews";
+import { createReview } from "src/redux/reviews/actions";
 
 const useStyles = makeStyles(theme => ({
     grow: {

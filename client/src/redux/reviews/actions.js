@@ -1,6 +1,6 @@
 import { createAction } from "redux-actions";
 
-import { reviews } from "src/types/state/actions";
+import reviews from "src/redux/reviews/types";
 import reviewsBackend from "src/services/backend/reviews";
 
 export const createReview = (itemId, review) => async dispatch => {

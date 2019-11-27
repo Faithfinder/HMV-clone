@@ -1,5 +1,5 @@
-import { reviews } from "src/types/state/actions";
 import items from "src/redux/items/types";
+import reviews from "src/redux/reviews/types";
 
 import produce from "immer";
 

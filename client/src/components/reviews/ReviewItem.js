@@ -15,7 +15,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 import PrivateComponent from "src/components/auth/PrivateComponent";
-import { deleteReview } from "src/actions/reviews";
+import { deleteReview } from "src/redux/reviews/actions";
 import useConfirmationDialog from "src/components/common/useConfirmationDIalog";
 
 const useStyles = makeStyles(theme => ({
