@@ -7,7 +7,7 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 
 import ChangeCartStep from "src/components/checkout/ChangeCartStep";
-import EnterCustomerDataStep from "src/components/checkout/EnterCustomerDetailsStep";
+import EnterCustomerDetailsStep from "src/components/checkout/EnterCustomerDetailsStep";
 import ReviewOrderStep from "src/components/checkout/ReviewOrderStep";
 import OrderCreated from "src/components/checkout/OrderCreated";
 
@@ -34,7 +34,7 @@ export default () => {
                 return <ChangeCartStep incrementStep={incrementStep} />;
             case 1:
                 return (
-                    <EnterCustomerDataStep
+                    <EnterCustomerDetailsStep
                         currentStep={activeStep}
                         incrementStep={incrementStep}
                         decrementStep={decrementStep}
