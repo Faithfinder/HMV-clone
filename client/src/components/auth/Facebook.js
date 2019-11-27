@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
@@ -11,6 +11,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { logIn, logOut, checkLogIn, authRequest } from "src/redux/auth/actions";
 import { useCurrentUser } from "src/redux/auth/selectors";
+import socket from "src/services/socket";
 
 const theme = createMuiTheme({
     palette: {
@@ -23,8 +24,6 @@ const theme = createMuiTheme({
 export default () => {
     const dispatch = useDispatch();
     const [user, authRefresh] = useCurrentUser();
-
-    const socket = useSelector(state => state.socket);
 
     useEffect(() => {
         dispatch(checkLogIn());
