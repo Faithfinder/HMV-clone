@@ -11,8 +11,8 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import { fetchItem } from "src/actions/items";
-import { useItem } from "src/selectors/items";
+import { fetchItem } from "src/redux/items/actions";
+import { useItem } from "src/redux/items/selectors";
 import CenteredCircularProgress from "src/components/common/CenteredCircularProgress";
 import AddToCartButton from "../shoppingCart/AddToCartButton";
 import ItemCard from "src/components/items/ItemCard";

@@ -1,6 +1,6 @@
 import { createAction } from "redux-actions";
 
-import { items as itemsTypes } from "src/types/state/actions";
+import itemsTypes from "src/redux/items/types";
 import itemsBackend from "src/services/backend/items";
 
 export const fetchItems = filter => async dispatch => {

@@ -1,7 +1,8 @@
 import { batch } from "react-redux";
 import { createAction } from "redux-actions";
 
-import { cart, items } from "src/types/state/actions";
+import { cart } from "src/types/state/actions";
+import items from "src/redux/items/types";
 import cartBackend from "src/services/backend/shoppingCart";
 
 export const addToCart = itemId => async (dispatch, getState) => {

@@ -5,12 +5,6 @@ export const cart = {
         checkResponse: "CART_CHECK_RESPONSE",
         toggleDrawer: "TOGGLE_CART_DRAWER"
     },
-    items = {
-        fetchRequest: "ITEMS_FETCH_REQUEST",
-        fetchResponse: "ITEMS_FETCH_RESPONSE",
-        fetchSpecificRequest: "ITEM_FETCH_REQUEST",
-        fetchSpecificResponse: "ITEM_FETCH_RESPONSE"
-    },
     user = {
         authRequest: "AUTH_REQUEST",
         logInResponse: "LOG_IN_RESPONSE",

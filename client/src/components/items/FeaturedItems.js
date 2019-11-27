@@ -16,8 +16,8 @@ import Image from "material-ui-image";
 
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 
-import { fetchFeatured } from "src/actions/items";
-import { useFeaturedItems } from "src/selectors/items";
+import { fetchFeatured } from "src/redux/items/actions";
+import { useFeaturedItems } from "src/redux/items/selectors";
 
 import AddToCartButton from "src/components/shoppingCart/AddToCartButton";
 
