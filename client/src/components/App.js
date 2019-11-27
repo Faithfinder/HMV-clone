@@ -1,5 +1,6 @@
 import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
+import ErrorBoundary from "react-error-boundary";
 
 import {
     createMuiTheme,
@@ -37,29 +38,31 @@ const App = () => {
         <Router history={history}>
             <ThemeProvider theme={theme}>
                 <Navbar />
-                <Container className={classes.mainContent}>
-                    <Switch>
-                        <Route path="/items/:itemId" exact>
-                            <Item />
-                        </Route>
-                        <Route path="/categories/:categoryName" exact>
-                            <FullCategory />
-                        </Route>
-                        <Route path="/checkout" exact>
-                            <Checkout />
-                        </Route>
-                        <Route path="/login" exact>
-                            <Login />
-                        </Route>
-                        <Route path="/" exact>
-                            <Home />
-                        </Route>
+                <ErrorBoundary>
+                    <Container className={classes.mainContent}>
+                        <Switch>
+                            <Route path="/items/:itemId" exact>
+                                <Item />
+                            </Route>
+                            <Route path="/categories/:categoryName" exact>
+                                <FullCategory />
+                            </Route>
+                            <Route path="/checkout" exact>
+                                <Checkout />
+                            </Route>
+                            <Route path="/login" exact>
+                                <Login />
+                            </Route>
+                            <Route path="/" exact>
+                                <Home />
+                            </Route>
 
-                        <Route>
-                            <PageNotFound />
-                        </Route>
-                    </Switch>
-                </Container>
+                            <Route>
+                                <PageNotFound />
+                            </Route>
+                        </Switch>
+                    </Container>
+                </ErrorBoundary>
             </ThemeProvider>
         </Router>
     );
