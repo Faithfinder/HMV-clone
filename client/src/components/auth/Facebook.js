@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,7 +9,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { logIn, logOut, checkLogIn, authRequest } from "src/redux/auth/actions";
+import { logIn, logOut, authRequest } from "src/redux/auth/actions";
 import { useCurrentUser } from "src/redux/auth/selectors";
 import socket from "src/services/socket";
 
@@ -24,10 +24,6 @@ const theme = createMuiTheme({
 export default () => {
     const dispatch = useDispatch();
     const [user, authRefresh] = useCurrentUser();
-
-    useEffect(() => {
-        dispatch(checkLogIn());
-    }, [dispatch]);
 
     const openPopup = () => {
         const width = 600,

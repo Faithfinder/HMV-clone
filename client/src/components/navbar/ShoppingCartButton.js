@@ -1,19 +1,16 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 
-import { checkCart } from "src/redux/shoppingCart/actions";
 import { useCartCount } from "src/redux/shoppingCart/selectors";
 import { CartDrawer } from "src/components/shoppingCart/CartDrawer";
 import { toggleDrawer } from "src/components/shoppingCart/helpers";
 
 export default () => {
-    const dispatch = useDispatch();
-
     const [refreshing] = useSelector(({ shoppingCart }) => [
         shoppingCart.refreshing
     ]);
@@ -26,10 +23,6 @@ export default () => {
         cartCount
     );
 
-    useEffect(() => {
-        dispatch(checkCart());
-    }, [dispatch]);
-
     return (
         <>
             <Badge
@@ -39,7 +32,8 @@ export default () => {
                 anchorOrigin={{
                     horizontal: "right",
                     vertical: "bottom"
-                }}>
+                }}
+            >
                 <IconButton variant="contained" onClick={toggleDrawer(true)}>
                     <ShoppingCart />
                 </IconButton>
