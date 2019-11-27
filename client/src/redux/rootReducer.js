@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import authentication from "src/reducers/authentication";
+import authentication from "src/redux/auth/reducer";
 import socket from "src/reducers/socket";
 import shoppingCart from "src/redux/shoppingCart/reducer";
 import items from "src/redux/items/reducer";

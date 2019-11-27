@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { useCurrentUser } from "src/selectors/auth";
+import { useCurrentUser } from "src/redux/auth/selectors";
 
 import CenteredCircularProgress from "src/components/common/CenteredCircularProgress";
 

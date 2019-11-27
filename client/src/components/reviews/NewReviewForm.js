@@ -14,7 +14,7 @@ import { TextField } from "formik-material-ui";
 import * as yup from "yup";
 
 import Rating from "src/components/reviews/Rating";
-import { useCurrentUser } from "src/selectors/auth";
+import { useCurrentUser } from "src/redux/auth/selectors";
 import { createReview } from "src/redux/reviews/actions";
 
 const useStyles = makeStyles(theme => ({

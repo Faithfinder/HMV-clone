@@ -1,5 +1,5 @@
 import React from "react";
-import { useCurrentUser } from "src/selectors/auth";
+import { useCurrentUser } from "src/redux/auth/selectors";
 
 const PrivateComponent = ({ children, adminOnly }) => {
     const [currentUser] = useCurrentUser();

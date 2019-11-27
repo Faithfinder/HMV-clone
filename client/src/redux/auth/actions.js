@@ -1,14 +1,14 @@
-import { user as userTypes } from "src/types/state/actions";
+import authTypes from "src/redux/auth/types";
 import { createAction } from "redux-actions";
 import authBackend from "src/services/backend/auth";
 
 export const authRequest = () => {
     return {
-        type: userTypes.authRequest
+        type: authTypes.authRequest
     };
 };
 
-export const logIn = user => ({ type: userTypes.logInResponse, payload: user });
+export const logIn = user => ({ type: authTypes.logInResponse, payload: user });
 
 export const logOut = user => async dispatch => {
     let payload;
@@ -18,7 +18,7 @@ export const logOut = user => async dispatch => {
     } catch (error) {
         payload = error;
     }
-    dispatch(createAction(userTypes.logOutResponse)(payload));
+    dispatch(createAction(authTypes.logOutResponse)(payload));
 };
 
 export const checkLogIn = () => async dispatch => {
@@ -29,5 +29,5 @@ export const checkLogIn = () => async dispatch => {
     } catch (error) {
         payload = error;
     }
-    dispatch(createAction(userTypes.checkResponse)(payload));
+    dispatch(createAction(authTypes.checkResponse)(payload));
 };

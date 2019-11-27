@@ -10,7 +10,7 @@ import PrivateRoute from "src/components/auth/PrivateRoute";
 import Message from "src/components/common/Message";
 import StepButtons from "src/components/checkout/StepButtons";
 import { setCurrentOrderPersonalDetails } from "src/actions/orders";
-import { useCurrentUser } from "src/selectors/auth";
+import { useCurrentUser } from "src/redux/auth/selectors";
 
 const useStyles = makeStyles(() => ({
     form: {

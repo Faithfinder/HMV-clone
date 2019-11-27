@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
 import ReviewItem from "src/components/reviews/ReviewItem";
-import { useCurrentUser } from "src/selectors/auth";
+import { useCurrentUser } from "src/redux/auth/selectors";
 import CurrentUserReviewZone from "src/components/reviews/CurrentUserReviewZone";
 
 const useStyles = makeStyles(theme => ({

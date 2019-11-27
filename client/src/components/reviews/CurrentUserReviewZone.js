@@ -3,7 +3,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 
 import NewReviewForm from "src/components/reviews/NewReviewForm";
-import { useCurrentUser } from "src/selectors/auth";
+import { useCurrentUser } from "src/redux/auth/selectors";
 import ReviewItem from "src/components/reviews/ReviewItem";
 import CenteredCircularProgress from "../common/CenteredCircularProgress";
 

@@ -1,12 +1,12 @@
-import { user } from "src/types/state/actions";
+import auth from "src/redux/auth/types";
 
 const initialState = null;
 
 export default (state = initialState, { type, payload }) => {
     switch (type) {
-        case user.logInResponse:
-        case user.logOutResponse:
-        case user.checkResponse:
+        case auth.logInResponse:
+        case auth.logOutResponse:
+        case auth.checkResponse:
             return payload;
 
         default:
