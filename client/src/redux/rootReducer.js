@@ -3,7 +3,7 @@ import authentication from "src/reducers/authentication";
 import socket from "src/reducers/socket";
 import shoppingCart from "src/redux/shoppingCart/reducer";
 import items from "src/redux/items/reducer";
-import ui from "src/reducers/ui";
+import ui from "src/redux/ui/reducer";
 import orders from "src/reducers/orders";
 
 export default combineReducers({
