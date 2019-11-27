@@ -31,12 +31,6 @@ export default (app, server) => {
         res.sendFile("client/build/index.html", { root: path.resolve("") });
     });
 
-    app.use((req, res, next) => {
-        let err = new Error(`Resource ${req.originalUrl} not found`);
-        err.status = 404;
-        next(err);
-    });
-
     app.use(errorHandler);
 };
 
