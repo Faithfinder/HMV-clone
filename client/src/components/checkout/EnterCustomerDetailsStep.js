@@ -26,7 +26,8 @@ export default ({ currentStep, incrementStep, decrementStep }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [emailField, setEmailField] = useState("");
-    const [{ email: userEmail, userId }] = useCurrentUser();
+    const [currentUser] = useCurrentUser();
+    const { email: userEmail, userId } = currentUser || {};
 
     const orderEmail = useSelector(state => state.orders.currentOrder.email);
 

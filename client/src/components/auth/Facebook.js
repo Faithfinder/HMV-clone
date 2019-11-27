@@ -11,7 +11,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { useCurrentUser } from "src/redux/auth/selectors";
 import { logOut } from "src/redux/auth/actions";
-import { startAuth } from "src/components/auth/authorizationPopup";
+import { startAuth } from "src/util/authorizationPopup";
 
 const theme = createMuiTheme({
     palette: {

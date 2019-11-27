@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 
 import Container from "@material-ui/core/Container";
 import Stepper from "@material-ui/core/Stepper";
@@ -10,11 +9,11 @@ import ChangeCartStep from "src/components/checkout/ChangeCartStep";
 import EnterCustomerDetailsStep from "src/components/checkout/EnterCustomerDetailsStep";
 import ReviewOrderStep from "src/components/checkout/ReviewOrderStep";
 import OrderCreated from "src/components/checkout/OrderCreated";
+import useRedirectedProps from "src/util/useRedirectedProps";
 
 export default () => {
     const [activeStep, setActiveStep] = useState(0);
-    const { state: locationState = { redirectedProps: {} } } = useLocation();
-    const { currentStep = 0 } = locationState.redirectedProps;
+    const { currentStep = 0 } = useRedirectedProps();
 
     useEffect(() => {
         setActiveStep(currentStep);
