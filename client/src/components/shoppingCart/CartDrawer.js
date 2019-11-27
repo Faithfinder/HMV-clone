@@ -12,7 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Close from "@material-ui/icons/Close";
 
 import { toggleDrawer } from "src/components/shoppingCart/helpers";
-import { useCartContents } from "src/selectors/shoppingCart";
+import { useCartContents } from "src/redux/shoppingCart/selectors";
 import { CartItem } from "src/components/shoppingCart/CartItem";
 
 const useStyles = makeStyles(theme => ({

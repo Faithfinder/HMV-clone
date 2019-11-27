@@ -1,6 +1,6 @@
 import { createAction } from "redux-actions";
 
-import { emptyCart } from "src/actions/shoppingCart";
+import { emptyCart } from "src/redux/shoppingCart/actions";
 import { orders } from "src/types/state/actions";
 import ordersBackend from "src/services/backend/orders";
 

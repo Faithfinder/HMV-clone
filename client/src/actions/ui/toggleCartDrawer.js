@@ -1,4 +1,4 @@
-import { cart } from "src/types/state/actions";
+import cart from "src/redux/shoppingCart/types";
 
 export const toggleCartDrawer = drawerOpen => {
     return {

@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
-import { useCartContents } from "src/selectors/shoppingCart";
+import { useCartContents } from "src/redux/shoppingCart/selectors";
 import { CartItem } from "src/components/shoppingCart/CartItem";
 import StepButtons from "src/components/checkout/StepButtons";
 import { setCurrentOrderItems } from "src/actions/orders";

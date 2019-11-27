@@ -1,7 +1,7 @@
 import { batch } from "react-redux";
 import { createAction } from "redux-actions";
 
-import { cart } from "src/types/state/actions";
+import cart from "src/redux/shoppingCart/types";
 import items from "src/redux/items/types";
 import cartBackend from "src/services/backend/shoppingCart";
 

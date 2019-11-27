@@ -1,11 +1,4 @@
-export const cart = {
-        setRequest: "CART_SET_REQUEST",
-        setResponse: "CART_SET_RESPONSE",
-        checkRequest: "CART_CHECK_REQUEST",
-        checkResponse: "CART_CHECK_RESPONSE",
-        toggleDrawer: "TOGGLE_CART_DRAWER"
-    },
-    user = {
+export const user = {
         authRequest: "AUTH_REQUEST",
         logInResponse: "LOG_IN_RESPONSE",
         logOutResponse: "LOG_OUT_RESPONSE",

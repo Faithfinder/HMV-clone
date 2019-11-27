@@ -1,4 +1,4 @@
-import { cart } from "src/types/state/actions";
+import cart from "src/redux/shoppingCart/types";
 
 const initialState = false;
 
