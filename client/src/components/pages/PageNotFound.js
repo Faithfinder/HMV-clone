@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     margin: { margin: "1em" }
 }));
 
-export const PageNotFound = () => {
+export default () => {
     const classes = useStyles();
     const history = useHistory();
 
