@@ -5,7 +5,7 @@ export const getCart = async ({ session: { cart } }, res, next) => {
         if (!cart) cart = {};
         const items = await Item.find({
             _id: { $in: Object.keys(cart) }
-        });
+        }).select("-items -reviews");
         return res.status(200).json({ cart, items });
     } catch (err) {
         next(err);
