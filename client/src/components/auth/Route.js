@@ -5,14 +5,14 @@ import { useCurrentUser } from "src/redux/auth/selectors";
 import CenteredCircularProgress from "src/components/common/CenteredCircularProgress";
 import Unauthorized from "src/components/auth/Unauthorized";
 
-export default ({ children, path, mode, ...props }) => {
-    const [isAuthenticated, authRefresh] = useCurrentUser();
+export default ({ children, path, mode, component, ...props }) => {
+    const [currentUser, authRefresh] = useCurrentUser();
 
     if (authRefresh && mode) {
         return <CenteredCircularProgress />;
     }
 
-    if (!isAuthenticated && mode) {
+    if (!currentUser && mode) {
         return (
             <Redirect
                 to={{
@@ -23,9 +23,13 @@ export default ({ children, path, mode, ...props }) => {
         );
     }
 
-    if (mode === "admin") {
+    if (mode === "admin" && !currentUser.isAdmin) {
         return <Unauthorized />;
     }
 
-    return <Route {...props}>{children}</Route>;
+    return (
+        <Route {...props} component={component}>
+            {children}
+        </Route>
+    );
 };
