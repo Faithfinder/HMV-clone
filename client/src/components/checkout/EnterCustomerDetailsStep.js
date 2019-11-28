@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
-import PrivateRoute from "src/components/auth/PrivateRoute";
+import Route from "src/components/auth/Route";
 import Message from "src/components/common/Message";
 import StepButtons from "src/components/checkout/StepButtons";
 import { setCurrentOrderPersonalDetails } from "src/redux/orders/actions";
@@ -27,7 +27,7 @@ export default ({ currentStep, incrementStep, decrementStep }) => {
     const dispatch = useDispatch();
     const [emailField, setEmailField] = useState("");
     const [currentUser] = useCurrentUser();
-    const { email: userEmail, userId } = currentUser || {};
+    const { email: userEmail, userId } = currentUser || { email: null };
 
     const orderEmail = useSelector(state => state.orders.currentOrder.email);
 
@@ -41,7 +41,7 @@ export default ({ currentStep, incrementStep, decrementStep }) => {
     };
 
     return (
-        <PrivateRoute path="/checkout" currentStep={currentStep}>
+        <Route path="/checkout" currentStep={currentStep} mode="private">
             <Grid container direction="column" alignItems="center">
                 <Grid
                     container
@@ -77,6 +77,6 @@ export default ({ currentStep, incrementStep, decrementStep }) => {
                     your email
                 </Message>
             </Grid>
-        </PrivateRoute>
+        </Route>
     );
 };

@@ -3,13 +3,16 @@ import { Route, Redirect } from "react-router-dom";
 import { useCurrentUser } from "src/redux/auth/selectors";
 
 import CenteredCircularProgress from "src/components/common/CenteredCircularProgress";
+import Unauthorized from "src/components/auth/Unauthorized";
 
-export default ({ children, path, ...props }) => {
+export default ({ children, path, mode, ...props }) => {
     const [isAuthenticated, authRefresh] = useCurrentUser();
 
-    if (authRefresh) {
+    if (authRefresh && mode) {
         return <CenteredCircularProgress />;
-    } else if (!isAuthenticated) {
+    }
+
+    if (!isAuthenticated && mode) {
         return (
             <Redirect
                 to={{
@@ -18,6 +21,10 @@ export default ({ children, path, ...props }) => {
                 }}
             />
         );
+    }
+
+    if (mode === "admin") {
+        return <Unauthorized />;
     }
 
     return <Route {...props}>{children}</Route>;

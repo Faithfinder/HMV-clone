@@ -4,10 +4,17 @@ import {
     FullCategory,
     Item,
     Login,
-    PageNotFound
+    PageNotFound,
+    NewItem
 } from "src/components/pages";
 
 const routes = [
+    {
+        path: "/items/new",
+        component: NewItem,
+        exact: true,
+        mode: "admin"
+    },
     {
         path: "/items/:itemId",
         component: Item,

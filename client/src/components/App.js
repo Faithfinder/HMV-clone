@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Switch } from "react-router-dom";
 import ErrorBoundary from "react-error-boundary";
 
 import {
@@ -13,6 +13,7 @@ import Container from "@material-ui/core/Container";
 import history from "src/history";
 import Navbar from "src/components/navbar/Navbar";
 import routes from "src/components/routes";
+import Route from "src/components/auth/Route";
 
 const theme = createMuiTheme({
     palette: { primary: blueGrey, secondary: { main: "#7cb342" } }
