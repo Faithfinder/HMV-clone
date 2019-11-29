@@ -1,5 +1,6 @@
 import items from "src/redux/items/types";
 import reviews from "src/redux/reviews/types";
+import shoppingCart from "src/redux/shoppingCart/types";
 
 import produce from "immer";
 
@@ -10,6 +11,11 @@ export default produce((draft, { type, payload, error }) => {
     switch (type) {
         case items.fetchResponse:
             payload.forEach(element => {
+                draft[element._id] = element;
+            });
+            return;
+        case shoppingCart.checkResponse:
+            payload.items.forEach(element => {
                 draft[element._id] = element;
             });
             return;

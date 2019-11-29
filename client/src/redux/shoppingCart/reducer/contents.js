@@ -6,8 +6,9 @@ export default (state = {}, { type, payload, error }) => {
     if (error) return state;
     switch (type) {
         case cart.setResponse:
-        case cart.checkResponse:
             return payload;
+        case cart.checkResponse:
+            return payload.cart;
         case auth.logOutResponse:
         case orders.createOrderResponse:
             return {};

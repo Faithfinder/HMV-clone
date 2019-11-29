@@ -2,7 +2,6 @@ import { batch } from "react-redux";
 import { createAction } from "redux-actions";
 
 import cart from "src/redux/shoppingCart/types";
-import items from "src/redux/items/types";
 import cartBackend from "src/services/backend/shoppingCart";
 
 export const addToCart = itemId => async (dispatch, getState) => {
@@ -51,21 +50,15 @@ async function setCart(dispatch, updatedCart) {
 }
 
 export const checkCart = () => async dispatch => {
-    let cartPayload;
-    let itemsPayload;
+    let payload;
 
     batch(() => {
         dispatch({ type: cart.checkRequest });
-        dispatch({ type: items.fetchRequest });
     });
     try {
-        const data = await cartBackend.checkCart();
-        cartPayload = data.cart;
-        itemsPayload = data.items;
+        payload = await cartBackend.checkCart();
     } catch (error) {
-        cartPayload = error;
-        itemsPayload = error;
+        payload = error;
     }
-    dispatch(createAction(items.fetchResponse)(itemsPayload));
-    dispatch(createAction(cart.checkResponse)(cartPayload));
+    dispatch(createAction(cart.checkResponse)(payload));
 };
