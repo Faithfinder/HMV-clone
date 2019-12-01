@@ -30,14 +30,3 @@ export const fetchItem = itemId => async dispatch => {
         dispatch(createAction(itemsTypes.fetchResponse)(bundledItems));
     }
 };
-
-export const fetchFeatured = () => async dispatch => {
-    let payload;
-    try {
-        dispatch({ type: itemsTypes.fetchRequest });
-        payload = await itemsBackend.fetchFeatured();
-    } catch (error) {
-        payload = error;
-    }
-    dispatch(createAction(itemsTypes.fetchResponse)(payload));
-};

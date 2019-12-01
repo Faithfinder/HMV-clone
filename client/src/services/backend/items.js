@@ -11,17 +11,6 @@ const fetchFiltered = async filter => {
     }
 };
 
-const fetchFeatured = async () => {
-    const response = await axios.get("/api/items/featured");
-    if (response.status === 200) {
-        return response.data;
-    } else {
-        throw new Error(
-            `Couldn't fetch featured items: ${response.statusText}`
-        );
-    }
-};
-
 const fetchItem = async itemId => {
     const response = await axios.get(`/api/items/${itemId}`);
     if (response.status === 200) {
@@ -33,6 +22,5 @@ const fetchItem = async itemId => {
 
 export default {
     fetchFiltered,
-    fetchFeatured,
     fetchItem
 };

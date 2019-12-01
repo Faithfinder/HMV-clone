@@ -7,7 +7,7 @@ export const useItemsByCategory = category => {
 
 export const useFeaturedItems = () => {
     const [items] = useSelector(({ items }) => [Object.values(items.byId)]);
-    return items.filter(item => item.featured);
+    return items.filter(item => item.isFeatured);
 };
 
 export const useItem = itemId => {

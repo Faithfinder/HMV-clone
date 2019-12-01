@@ -16,7 +16,7 @@ import Image from "material-ui-image";
 
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 
-import { fetchFeatured } from "src/redux/items/actions";
+import { fetchItems } from "src/redux/items/actions";
 import { useFeaturedItems } from "src/redux/items/selectors";
 
 import AddToCartButton from "src/components/shoppingCart/AddToCartButton";
@@ -84,7 +84,7 @@ const FeaturedItems = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchFeatured());
+        dispatch(fetchItems({ isFeatured: true }));
     }, [dispatch]);
 
     const featuredItems = useFeaturedItems();

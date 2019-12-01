@@ -6,7 +6,11 @@ const itemSchema = new mongoose.Schema({
     description: { type: String, default: "" },
     image: String,
     price: { type: Number, default: 0, min: 0 },
-    featured: { image: String, caption: String },
+    isFeatured: { type: Boolean, default: false },
+    featured: {
+        image: { type: String, default: "" },
+        caption: { type: String, default: "" }
+    },
     category: { type: String, enum: config.itemCategories, required: true },
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }]
 });
