@@ -15,7 +15,7 @@ import AddToCartButton from "src/components/shoppingCart/AddToCartButton";
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 250,
+        width: 250,
         margin: "0.5em",
         display: "flex",
         flexDirection: "column"
@@ -41,7 +41,16 @@ export default ({ item }) => {
                 onClick={openItem(item)}
                 className={classes.cardActionArea}
             >
-                <Image src={item.image} title={item.title} alt={item.title} />
+                <Image
+                    src={item.image}
+                    title={item.title}
+                    alt={item.title}
+                    style={{
+                        width: "250px",
+                        height: "250px",
+                        paddingTop: "initial"
+                    }}
+                />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
                         {ellipsize(item.title, 50)}
