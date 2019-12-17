@@ -22,7 +22,6 @@ export default ({ label, ...props }) => {
             <Typography component="legend">{label}</Typography>
             <ErrorTooltip
                 title={meta.error || ""}
-                arrow={1}
                 open={Boolean(meta.touched && meta.error)}
             >
                 <Rating
