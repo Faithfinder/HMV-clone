@@ -30,3 +30,15 @@ export const fetchItem = itemId => async dispatch => {
         dispatch(createAction(itemsTypes.fetchResponse)(bundledItems));
     }
 };
+
+export const createItem = item => async dispatch => {
+    let payload;
+    dispatch({ type: itemsTypes.createRequest });
+    try {
+        payload = await itemsBackend.createItem(item);
+    } catch (error) {
+        payload = error;
+    }
+    dispatch(createAction(itemsTypes.createResponse)(payload));
+    return Promise.resolve(payload);
+};

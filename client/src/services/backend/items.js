@@ -20,7 +20,17 @@ const fetchItem = async itemId => {
     }
 };
 
+const createItem = async item => {
+    const response = await axios.post(`/api/items`, item);
+    if (response.status === 200) {
+        return response.data;
+    } else {
+        throw new Error(`Couldn't create item: ${response.statusText}`);
+    }
+};
+
 export default {
     fetchFiltered,
-    fetchItem
+    fetchItem,
+    createItem
 };

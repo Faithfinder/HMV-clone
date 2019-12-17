@@ -20,6 +20,7 @@ export default produce((draft, { type, payload, error }) => {
             });
             return;
         case items.fetchSpecificResponse:
+        case items.createResponse:
             draft[payload._id] = payload;
             return;
         case reviews.createReviewResponse:
