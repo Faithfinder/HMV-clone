@@ -9,6 +9,8 @@ import { fetchItems } from "src/redux/items/actions";
 import { useItemsByCategory } from "src/redux/items/selectors";
 import ItemCard from "src/components/items/ItemCard";
 import Link from "src/components/common/CombinedLink";
+import NewItemButton from "src/components/items/NewItemButton";
+import PrivateComponent from "src/components/auth/PrivateComponent";
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -27,10 +29,20 @@ export const MainPageCategory = ({ category }) => {
 
     return (
         <>
-            <Typography variant="h4" className={classes.title}>
-                {category}
-            </Typography>
-            <Link to={`/categories/${category}`}>View all</Link>
+            <Grid
+                container
+                spacing={1}
+                className={classes.title}
+                alignItems="center"
+            >
+                <Grid item>
+                    <Typography variant="h4">{category}</Typography>
+                    <Link to={`/categories/${category}`}>View all</Link>
+                </Grid>
+                <PrivateComponent adminOnly>
+                    <Grid item component={NewItemButton} category={category} />
+                </PrivateComponent>
+            </Grid>
             <Grid container justify="space-evenly" spacing={0}>
                 {items.slice(0, 4).map(item => (
                     <ItemCard key={item._id} item={item} />

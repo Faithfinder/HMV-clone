@@ -9,6 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import { fetchItems } from "src/redux/items/actions";
 import { useItemsByCategory } from "src/redux/items/selectors";
 import ItemCard from "src/components/items/ItemCard";
+import NewItemButton from "src/components/items/NewItemButton";
+import PrivateComponent from "src/components/auth/PrivateComponent";
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -19,18 +21,28 @@ const useStyles = makeStyles(theme => ({
 const FullCategory = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const { categoryName } = useParams();
-    const items = useItemsByCategory(categoryName);
+    const { categoryName: category } = useParams();
+    const items = useItemsByCategory(category);
 
     useEffect(() => {
-        dispatch(fetchItems({ category: categoryName }));
-    }, [dispatch, categoryName]);
+        dispatch(fetchItems({ category: category }));
+    }, [dispatch, category]);
 
     return (
         <>
-            <Typography variant="h4" className={classes.title}>
-                {categoryName}
-            </Typography>
+            <Grid
+                container
+                spacing={1}
+                className={classes.title}
+                alignItems="center"
+            >
+                <Grid item>
+                    <Typography variant="h4">{category}</Typography>
+                </Grid>
+                <PrivateComponent adminOnly>
+                    <Grid item component={NewItemButton} category={category} />
+                </PrivateComponent>
+            </Grid>
             <Grid container justify="space-evenly" spacing={0}>
                 {items.map(item => (
                     <ItemCard key={item._id} item={item} />
