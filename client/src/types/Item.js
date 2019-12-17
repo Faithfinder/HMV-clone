@@ -1,6 +1,11 @@
 import * as yup from "yup";
+import categories from "src/types/categories";
 
 class Item {
+    constructor(category) {
+        this.category = category || "";
+    }
+
     title = "";
     description = "";
     image = "";
@@ -31,6 +36,6 @@ export const createItemValidationSchema = isFeatured =>
                       caption: yup.string()
                   })
                 : yup.mixed().nullable(),
-            category: yup.string().required("Please choose a category")
+            category: yup.string().oneOf(categories, "Please choose a category")
         })
     });

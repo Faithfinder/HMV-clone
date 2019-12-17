@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ItemForm = ({ submitAction }) => {
+const ItemForm = ({ submitAction, initialItem }) => {
     const classes = useStyles();
     const [isFeatured, setIsFeatured] = useState(false);
 
@@ -32,7 +32,7 @@ const ItemForm = ({ submitAction }) => {
     return (
         <Formik
             initialValues={{
-                item: new Item()
+                item: initialItem || new Item()
             }}
             validationSchema={createItemValidationSchema(isFeatured)}
             onSubmit={handleSubmit}
