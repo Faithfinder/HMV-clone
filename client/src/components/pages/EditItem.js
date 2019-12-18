@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import ItemForm from "src/components/items/ItemForm";
 import { useItem } from "src/redux/items/selectors";
 import { fetchItem } from "src/redux/items/actions";
+import PageNotFound from "src/components/pages/PageNotFound";
 
 const NewItem = () => {
     const dispatch = useDispatch();
@@ -20,7 +21,9 @@ const NewItem = () => {
 
     const item = useItem(itemId);
 
-    const postItem = async formData => {
+    if (!item) return <PageNotFound />;
+
+    const updateItem = async formData => {
         console.log(formData);
         history.push(`/items/${itemId}`);
     };
@@ -28,7 +31,7 @@ const NewItem = () => {
     return (
         <>
             <Typography variant="h2">Edit item</Typography>
-            <ItemForm submitAction={postItem} initialItem={item} />
+            <ItemForm submitAction={updateItem} initialItem={item} />
         </>
     );
 };

@@ -10,7 +10,7 @@ import { Formik, Field, Form } from "formik";
 import { TextField } from "formik-material-ui";
 
 import Item, { createItemValidationSchema } from "src/types/Item";
-import CategorySelect from "../common/CategorySelect";
+import CategorySelect from "src/components/common/CategorySelect";
 
 const useStyles = makeStyles(theme => ({
     control: { margin: theme.spacing(1, 2) },
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 
 const ItemForm = ({ submitAction, initialItem }) => {
     const classes = useStyles();
-    const [isFeatured, setIsFeatured] = useState(false);
+    const [isFeatured, setIsFeatured] = useState(initialItem.isFeatured);
 
     const handleSubmit = (values, actions) => {
         values.item.isFeatured = isFeatured;
@@ -32,7 +32,7 @@ const ItemForm = ({ submitAction, initialItem }) => {
     return (
         <Formik
             initialValues={{
-                item: initialItem || new Item()
+                item: { ...initialItem } || new Item()
             }}
             validationSchema={createItemValidationSchema(isFeatured)}
             onSubmit={handleSubmit}
@@ -61,7 +61,7 @@ const ItemForm = ({ submitAction, initialItem }) => {
                 <Field
                     id="item-image"
                     name="item.image"
-                    label="image"
+                    label="Image"
                     autoComplete="off"
                     variant="outlined"
                     component={TextField}
@@ -82,6 +82,8 @@ const ItemForm = ({ submitAction, initialItem }) => {
                     className={classes.control}
                     control={
                         <Checkbox
+                            id="item-isFeaatured"
+                            checked={isFeatured}
                             value={isFeatured}
                             onClick={() => setIsFeatured(!isFeatured)}
                         ></Checkbox>
