@@ -19,7 +19,7 @@ export const fetchItem = itemId => async dispatch => {
     let bundledItems;
     dispatch({ type: itemsTypes.fetchSpecificRequest });
     try {
-        payload = await itemsBackend.fetchItem(itemId);
+        payload = await itemsBackend.fetchSingle(itemId);
         bundledItems = payload.items;
     } catch (error) {
         payload = error;
@@ -35,7 +35,7 @@ export const createItem = item => async dispatch => {
     let payload;
     dispatch({ type: itemsTypes.createRequest });
     try {
-        payload = await itemsBackend.createItem(item);
+        payload = await itemsBackend.create(item);
     } catch (error) {
         payload = error;
     }

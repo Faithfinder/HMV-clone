@@ -11,7 +11,7 @@ const fetchFiltered = async filter => {
     }
 };
 
-const fetchItem = async itemId => {
+const fetchSingle = async itemId => {
     const response = await axios.get(`/api/items/${itemId}`);
     if (response.status === 200) {
         return response.data;
@@ -20,7 +20,7 @@ const fetchItem = async itemId => {
     }
 };
 
-const createItem = async item => {
+const create = async item => {
     const response = await axios.post(`/api/items`, { item });
     if (response.status === 200) {
         return response.data;
@@ -31,6 +31,6 @@ const createItem = async item => {
 
 export default {
     fetchFiltered,
-    fetchItem,
-    createItem
+    fetchSingle,
+    create,
 };
