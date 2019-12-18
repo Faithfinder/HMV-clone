@@ -14,10 +14,9 @@ const NewItem = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const postItem = formData => {
-        dispatch(createItem(formData)).then(item =>
-            history.push(`/items/${item._id}`)
-        );
+    const postItem = async formData => {
+        const createdItem = await dispatch(createItem(formData));
+        history.push(`/items/${createdItem._id}`);
     };
 
     return (
