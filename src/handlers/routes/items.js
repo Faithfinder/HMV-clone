@@ -44,7 +44,18 @@ export const updateItem = async (req, res, next) => {
             req.params.item_id,
             req.body.item,
             { new: true }
-        );
+        )
+            .populate({ path: "items" })
+            .populate({
+                path: "reviews",
+                populate: {
+                    path: "author",
+                    model: "User",
+                    select: "email"
+                },
+                options: { sort: "-createdAt" }
+            })
+            .populate("reviews.author");
 
         return res.status(200).json(item);
     } catch (err) {

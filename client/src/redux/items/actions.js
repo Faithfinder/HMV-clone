@@ -42,3 +42,14 @@ export const createItem = item => async dispatch => {
     dispatch(createAction(itemsTypes.createResponse)(payload));
     return Promise.resolve(payload);
 };
+
+export const updateItem = item => async dispatch => {
+    let payload;
+    dispatch({ type: itemsTypes.updateRequest });
+    try {
+        payload = await itemsBackend.update(item);
+    } catch (error) {
+        payload = error;
+    }
+    dispatch(createAction(itemsTypes.updateResponse)(payload));
+};

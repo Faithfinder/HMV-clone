@@ -21,6 +21,7 @@ export default produce((draft, { type, payload, error }) => {
             return;
         case items.fetchSpecificResponse:
         case items.createResponse:
+        case items.updateResponse:
             draft[payload._id] = payload;
             return;
         case reviews.createReviewResponse:

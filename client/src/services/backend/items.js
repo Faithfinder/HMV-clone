@@ -29,8 +29,18 @@ const create = async item => {
     }
 };
 
+const update = async item => {
+    const response = await axios.patch(`/api/items/${item._id}`, { item });
+    if (response.status === 200) {
+        return response.data;
+    } else {
+        throw new Error(`Couldn't update item: ${response.statusText}`);
+    }
+};
+
 export default {
     fetchFiltered,
     fetchSingle,
     create,
+    update
 };
