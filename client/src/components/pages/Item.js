@@ -17,6 +17,7 @@ import CenteredCircularProgress from "src/components/common/CenteredCircularProg
 import AddToCartButton from "src/components/shoppingCart/AddToCartButton";
 import ItemCard from "src/components/items/ItemCard";
 import ReviewList from "src/components/reviews/ReviewList";
+import EditItemButton from "src/components/items/EditItemButton";
 
 const useStyles = makeStyles(theme => ({
     verticalSpacing: {
@@ -82,7 +83,7 @@ const Item = () => {
                         variant="h4"
                         className={classes.title}
                     >
-                        {item.title}
+                        {item.title} <EditItemButton itemId={item._id} />
                     </Grid>
                     <Grid item component={Typography} variant="subtitle1">
                         Price: {item.price} <AddToCartButton item={item} />
