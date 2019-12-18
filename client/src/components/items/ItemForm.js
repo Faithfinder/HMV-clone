@@ -24,22 +24,20 @@ const ItemForm = ({ submitAction, initialItem }) => {
     const [isFeatured, setIsFeatured] = useState(initialItem.isFeatured);
 
     const handleSubmit = (values, actions) => {
-        values.item.isFeatured = isFeatured;
+        values.isFeatured = isFeatured;
         submitAction(values);
     };
 
     return (
         <Formik
-            initialValues={{
-                item: { ...initialItem } || new Item()
-            }}
+            initialValues={{ ...initialItem } || new Item()}
             validationSchema={createItemValidationSchema(isFeatured)}
             onSubmit={handleSubmit}
         >
             <Grid container direction="column" component={Form}>
                 <Field
-                    id="item-title"
-                    name="item.title"
+                    id="title"
+                    name="title"
                     label="Title"
                     autoComplete="off"
                     variant="outlined"
@@ -47,8 +45,8 @@ const ItemForm = ({ submitAction, initialItem }) => {
                     className={classes.control}
                 />
                 <Field
-                    id="item-description"
-                    name="item.description"
+                    id="description"
+                    name="description"
                     label="Description"
                     multiline
                     variant="outlined"
@@ -58,8 +56,8 @@ const ItemForm = ({ submitAction, initialItem }) => {
                     className={classes.control}
                 />
                 <Field
-                    id="item-image"
-                    name="item.image"
+                    id="image"
+                    name="image"
                     label="Image"
                     autoComplete="off"
                     variant="outlined"
@@ -67,9 +65,9 @@ const ItemForm = ({ submitAction, initialItem }) => {
                     className={classes.control}
                 />
                 <Field
-                    id="item-price"
+                    id="price"
                     type="number"
-                    name="item.price"
+                    name="price"
                     label="Price"
                     autoComplete="off"
                     variant="outlined"
@@ -81,7 +79,7 @@ const ItemForm = ({ submitAction, initialItem }) => {
                     className={classes.control}
                     control={
                         <Checkbox
-                            id="item-isFeatured"
+                            id="isFeatured"
                             checked={isFeatured}
                             value={isFeatured}
                             onClick={() => setIsFeatured(!isFeatured)}
@@ -90,8 +88,8 @@ const ItemForm = ({ submitAction, initialItem }) => {
                     label="Feature this item in the carousel"
                 />
                 <Field
-                    id="item-featured-image"
-                    name="item.featured.image"
+                    id="featured-image"
+                    name="featured.image"
                     label="Image"
                     autoComplete="off"
                     variant="outlined"
@@ -100,8 +98,8 @@ const ItemForm = ({ submitAction, initialItem }) => {
                     className={classes.control}
                 />
                 <Field
-                    id="item-featured-caption"
-                    name="item.featured.caption"
+                    id="featured-caption"
+                    name="featured.caption"
                     label="Caption"
                     autoComplete="off"
                     variant="outlined"

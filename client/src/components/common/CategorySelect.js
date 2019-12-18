@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const CategorySelect = () => {
-    const [field, meta] = useField("item.category");
+    const [field, meta] = useField("category");
     const classes = useStyles();
     const inputLabel = useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
@@ -30,12 +30,12 @@ const CategorySelect = () => {
             className={classes.control}
             error={meta.error && meta.touched}
         >
-            <InputLabel ref={inputLabel} htmlFor="item-category">
+            <InputLabel ref={inputLabel} htmlFor="category">
                 Category
             </InputLabel>
             <Select
-                id="item-category"
-                name="item.category"
+                id="category"
+                name="category"
                 label="Category"
                 autoComplete="off"
                 {...field}

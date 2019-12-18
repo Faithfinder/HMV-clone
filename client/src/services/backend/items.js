@@ -21,7 +21,7 @@ const fetchItem = async itemId => {
 };
 
 const createItem = async item => {
-    const response = await axios.post(`/api/items`, item);
+    const response = await axios.post(`/api/items`, { item });
     if (response.status === 200) {
         return response.data;
     } else {
