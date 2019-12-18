@@ -26,7 +26,6 @@ const ItemForm = ({ submitAction, initialItem }) => {
     const handleSubmit = (values, actions) => {
         values.item.isFeatured = isFeatured;
         submitAction(values);
-        actions.setSubmitting(false);
     };
 
     return (
