@@ -13,6 +13,7 @@ import Image from "material-ui-image";
 
 import AddToCartButton from "src/components/shoppingCart/AddToCartButton";
 import EditItemButton from "src/components/items/EditItemButton";
+import PrivateComponent from "../auth/PrivateComponent";
 
 const useStyles = makeStyles({
     card: {
@@ -64,7 +65,9 @@ export default ({ item }) => {
             </CardActionArea>
             <CardActions>
                 <AddToCartButton item={item} />
-                <EditItemButton itemId={item._id} />
+                <PrivateComponent adminOnly>
+                    <EditItemButton itemId={item._id} />
+                </PrivateComponent>
             </CardActions>
         </Grid>
     );

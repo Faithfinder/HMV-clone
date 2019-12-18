@@ -18,6 +18,7 @@ import AddToCartButton from "src/components/shoppingCart/AddToCartButton";
 import ItemCard from "src/components/items/ItemCard";
 import ReviewList from "src/components/reviews/ReviewList";
 import EditItemButton from "src/components/items/EditItemButton";
+import PrivateComponent from "../auth/PrivateComponent";
 
 const useStyles = makeStyles(theme => ({
     verticalSpacing: {
@@ -86,7 +87,10 @@ const Item = () => {
                         {item.title} <EditItemButton itemId={item._id} />
                     </Grid>
                     <Grid item component={Typography} variant="subtitle1">
-                        Price: {item.price} <AddToCartButton item={item} />
+                        Price: {item.price}{" "}
+                        <PrivateComponent adminOnly>
+                            <AddToCartButton item={item} />
+                        </PrivateComponent>
                     </Grid>
                     <Grid
                         item
