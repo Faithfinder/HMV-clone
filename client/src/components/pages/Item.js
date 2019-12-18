@@ -14,9 +14,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { fetchItem } from "src/redux/items/actions";
 import { useItem } from "src/redux/items/selectors";
 import CenteredCircularProgress from "src/components/common/CenteredCircularProgress";
-import AddToCartButton from "../shoppingCart/AddToCartButton";
+import AddToCartButton from "src/components/shoppingCart/AddToCartButton";
 import ItemCard from "src/components/items/ItemCard";
-import ReviewList from "../reviews/ReviewList";
+import ReviewList from "src/components/reviews/ReviewList";
 
 const useStyles = makeStyles(theme => ({
     verticalSpacing: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const FullCategory = () => {
+const Item = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const { itemId } = useParams();
@@ -103,4 +103,4 @@ const FullCategory = () => {
     );
 };
 
-export default FullCategory;
+export default Item;
