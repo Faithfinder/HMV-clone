@@ -5,13 +5,20 @@ import {
     Item,
     Login,
     PageNotFound,
-    NewItem
+    NewItem,
+    EditItem
 } from "src/components/pages";
 
 const routes = [
     {
         path: "/items/new",
         component: NewItem,
+        exact: true,
+        mode: "admin"
+    },
+    {
+        path: "/items/:itemId/edit",
+        component: EditItem,
         exact: true,
         mode: "admin"
     },
