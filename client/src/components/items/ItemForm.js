@@ -81,7 +81,7 @@ const ItemForm = ({ submitAction, initialItem }) => {
                     className={classes.control}
                     control={
                         <Checkbox
-                            id="item-isFeaatured"
+                            id="item-isFeatured"
                             checked={isFeatured}
                             value={isFeatured}
                             onClick={() => setIsFeatured(!isFeatured)}
