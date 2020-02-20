@@ -17,7 +17,7 @@
     },
     "scripts": {
         "build": "babel src -d lib --source-maps && cd client && yarn && yarn build",
-        "start": "nodemon --exec node_modules/.bin/babel-node -r node_modules/dotenv/config src/app.js",
+        "start": "nodemon --exec node_modules/.bin/babel-node -r dotenv/config src/app.js",
         "seed": "node -r dotenv/config src/scripts/seedDB",
         "serve": "node -r dotenv/config lib/app"
     },
