@@ -3,7 +3,7 @@ const { getObjectIds } = require("../helper");
 
 module.exports = {
     title: "Half price!",
-    image: faker.image.imageUrl(250, 250, "", true, true),
+    image: `https://picsum.photos/seed/${faker.random.number()}/250/250`,
     description: faker.lorem.paragraph(3),
     price: Number(faker.commerce.price()),
     __t: "Bundle",
