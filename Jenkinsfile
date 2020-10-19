@@ -4,6 +4,7 @@ pipeline {
     stage('Checkout') {
       steps {
         git(url: 'https://github.com/Faithfinder/media-store-prototype.git', branch: 'master', poll: true)
+        nodejs 'nodejs'
         sh 'yarn'
       }
     }
