@@ -14,7 +14,7 @@
         "ellipsize": "^0.1.0",
         "formik": "^2.1.4",
         "formik-material-ui": "^2.0.0-beta.1",
-        "immer": "^8.0.1",
+        "immer": "^9.0.6",
         "material-ui-image": "^3.2.3",
         "pure-react-carousel": "^1.25.2",
         "query-string": "^6.11.0",
